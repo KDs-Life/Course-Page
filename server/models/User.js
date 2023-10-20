@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
+//TODO: define schema properties
+
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -12,10 +14,11 @@ const userSchema = new mongoose.Schema({
     select: false,
   },
   accessToken: [String],
-  date: {
+  createdAt: {
     type: Date,
     default: Date.now,
   },
   bookings: [],
+  phone: {},
 });
 export default mongoose.model("User", userSchema);
