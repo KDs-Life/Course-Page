@@ -1,11 +1,18 @@
+import User from "../models/User.js";
 import asyncHandler from "../utils/asyncHandler.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+
+//TODO: express-valdiator for checking data?
 
 // register user
 export const registerUser = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
   const existingUser = await User.findOne({ email });
   if (existingUser) {
-    return res.status(409).send({ status: "(Email is already registered" });
+    return res
+      .status(409)
+      .send({ status: "error", message: "Email is already registered" });
   }
   const hash = await bcrypt.hash(password, 10);
   const newUser = await User.create({

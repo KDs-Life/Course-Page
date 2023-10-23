@@ -7,7 +7,7 @@ const bookingSchema = new mongoose.Schema({
   },
   course: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Course",
+    ref: "Activity",
   },
 });
 
