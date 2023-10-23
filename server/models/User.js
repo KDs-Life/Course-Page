@@ -15,12 +15,24 @@ const userSchema = new mongoose.Schema({
     select: false,
   },
   accessToken: [String],
-  bookings: [],
-  phone: {},
-  firstname: {},
-  lastname: {},
-  address: {},
-  role: {},
+  bookings: [String],
+  phone: {
+    type: Number,
+  },
+  firstname: {
+    type: String,
+  },
+  lastname: {type: String},
+  address: {
+    Street: {type: String},
+    Housenumber: {type: Number},
+    ZIP: {type: Number},
+    City: {type: String},
+    Country: {type: String},
+  },
+  role: {
+    type: String,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
