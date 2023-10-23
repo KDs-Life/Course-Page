@@ -14,8 +14,7 @@ const userSchema = new mongoose.Schema({
     required: [true, "Password is required"],
     select: false,
   },
-  accessToken: [String],
-  bookings: [String],
+  bookings: [],
   phone: {
     type: Number,
   },
