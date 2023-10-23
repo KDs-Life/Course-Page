@@ -3,7 +3,6 @@ import Activity from "../models/Activity.js";
 export const getActivities = async (req, res, next) => {
   try {
     const activities = await Activity.find();
-    console.log("Activities:", activities);
 
     if (!activities.length) {
       throw { statusCode: 404, message: "Activity not found" };
