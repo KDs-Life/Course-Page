@@ -14,18 +14,16 @@ export const getActivities = async (req, res, next) => {
   }
 };
 
-
 export const getActivityById = async (req, res, next) => {
   try {
-    const { id } = req.params; 
-    const activity = await Activity.findOne({ id }); 
+    const { id } = req.params;
+    const activity = await Activity.find({ _id: id });
 
     if (!activity) {
-     
       return res.status(404).json({ message: "Activity not found" });
     }
 
-    res.json(activity); 
+    res.json(activity);
   } catch (error) {
     next(error);
   }

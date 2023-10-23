@@ -25,27 +25,33 @@ const activitySchema = new mongoose.Schema({
   maxSlots: {
     type: Number,
   },
-  requirements: [{
-    type: String,
-  }],
+  requirements: [
+    {
+      type: String,
+    },
+  ],
   address: {
-    Street: {type: String},
-    Housenumber: {type: Number},
-    ZIP: {type: Number},
-    City: {type: String},
-    Country: {type: String},
+    Street: { type: String },
+    Housenumber: { type: Number },
+    ZIP: { type: Number },
+    City: { type: String },
+    Country: { type: String },
   },
-  images: [{
-    url: {type: String},
-    alt: {type: String},
-  }],
+  images: [
+    {
+      url: { type: String },
+      alt: { type: String },
+    },
+  ],
   price: {
     type: Number,
     default: 0,
   },
-  category: [{
-    type: String,
-  }],
+  category: [
+    {
+      type: String,
+    },
+  ],
   publishedDate: {
     type: Date,
     default: Date.now,
