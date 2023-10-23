@@ -1,55 +1,121 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState } from "react";
+import "./CoursePage.css";
 
-function CoursePage() {
-  const [courses, setCourses] = useState([]);
-
-  // Harte kodierte Kursdaten als Beispiel
-  const exampleCourse = {
+// Definiert eine Liste von Winterkursen
+const winterCourses = [
+  {
     id: 1,
-    name: 'Ski-Kurs 101',
-    details: 'Anfängerkurs für Skifahrer',
-    beschreibung: 'Lernen Sie die Grundlagen des Skifahrens in diesem Anfängerkurs. Geeignet für alle Altersgruppen und Fähigkeitsstufen.',
-    image: 'URL_DES_KURS_BILDES',
+    name: "Skikurs für Anfänger",
+    Image: "https://placehold.co/600x400",
+    details: "Grundlagen des Skifahrens für Einsteiger",
+    beschreibung:
+      "Lernen Sie die Grundlagen des Skifahrens in diesem Anfängerkurs. Geeignet für alle Altersgruppen und Fähigkeitsstufen.",
+  },
+  {
+    id: 2,
+    name: "Fortgeschrittener Skikurs",
+    Image: "https://placehold.co/600x400",
+    details: "Skifahren auf fortgeschrittenem Niveau",
+    beschreibung:
+      "Verbessern Sie Ihre Skifahrkünste in diesem fortgeschrittenen Kurs. Geeignet für erfahrene Skifahrer, die ihre Technik verfeinern möchten.",
+  },
+  {
+    id: 3,
+    name: "Snowboardkurs für Jugendliche",
+    Image: "https://placehold.co/600x400",
+    details: "Snowboarden speziell für Jugendliche",
+    beschreibung:
+      "Ein spezieller Snowboardkurs für Jugendliche, um das Snowboarden zu erlernen und Spaß im Schnee zu haben.",
+  },
+  {
+    id: 4,
+    name: "Langlaufkurs",
+    Image: "https://placehold.co/600x400",
+    details: "Langlaufski für alle Altersgruppen",
+    beschreibung:
+      "Entdecken Sie die Freude am Langlaufen in diesem Kurs, der sich sowohl an Anfänger als auch an erfahrene Langläufer richtet.",
+  },
+  {
+    id: 5,
+    name: "Eiskunstlaufkurs",
+    Image: "https://placehold.co/600x400",
+    details: "Eiskunstlauf für Anfänger und Fortgeschrittene",
+    beschreibung:
+      "Lernen Sie die Grundlagen des Eiskunstlaufs oder verbessern Sie Ihre Fähigkeiten in diesem Kurs, der für alle Altersgruppen geeignet ist.",
+  },
+  {
+    id: 6,
+    name: "Schneeschuhwandern",
+    Image: "https://placehold.co/600x400",
+    details: "Naturerlebnis mit Schneeschuhen",
+    beschreibung:
+      "Erkunden Sie die winterliche Landschaft auf Schneeschuhen und genießen Sie die Schönheit der Natur im Schnee.",
+  },
+];
+
+// Die Hauptkomponente, die die Kurse und Jahreszeiten darstellt
+function CoursePage() {
+  // Verwendung des useState-Hooks, um den aktuellen Zustand der ausgewählten Jahreszeit zu verfolgen
+  const [season, setSeason] = useState(null);
+
+  // useState-Hooks, um anzuzeigen/auszublenden
+  const [showWinterCourse, setShowWinterCourse] = useState(false);
+  // const [showSummerCourse, setShowSummerCourse] = useState(false);
+  // const [showAutumnCourse, setShowAutumnCourse] = useState(false);
+  // const [showSpringCourse, setShowSpringCourse] = useState(false);
+
+  // Diese Funktion wird aufgerufen, wenn auf einen Jahreszeit-Button geklickt wird
+  const handleSeasonClick = (selectedSeason) => {
+    // Setzt die ausgewählte Jahreszeit im Zustand
+    setSeason(selectedSeason);
+    // Versteckt den Button, wenn eine Jahreszeit ausgewählt wird
+    setShowWinterCourse(false);
+    // setShowSummerCourse(false);
+    // setShowAutumnCourse(false);
+    // setShowSpringCourse(false);
   };
-
-  useEffect(() => {
-    // Hier sollte die URL deiner Backend-API stehen, die Kursdaten bereitstellt
-    const apiUrl = 'DIE API';
-
-    axios.get(apiUrl)
-      .then((response) => {
-        setCourses(response.data);
-      })
-      .catch((error) => {
-        console.error('Fehler beim Abrufen der Daten:', error);
-      });
-  }, []);
 
   return (
     <>
-      <h1>Unsere Winter / Ski-Kurs Angebote</h1>
-      <p>Wir bieten Ihnen eine Vielzahl an Kursen an, die Sie hier buchen können.</p>
-      <ul>
-        {/* Füge den hart codierten Kurs hinzu */}
-        <li key={exampleCourse.id}>
-          <strong>Name: {exampleCourse.name}</strong><br />
-          Details: {exampleCourse.details}<br />
-          Beschreibung: {exampleCourse.beschreibung}
-        </li>
+      <div className="seasonContainer">
+        {/* Jahreszeit-Buttons, die die handleSeasonClick-Funktion aufrufen */}
+        <button onClick={() => handleSeasonClick("Winter")}>Winter</button>
+        <button onClick={() => handleSeasonClick("Summer")}>Summer</button>
+        <button onClick={() => handleSeasonClick("Autumn")}>Autumn</button>
+        <button onClick={() => handleSeasonClick("Spring")}>Spring</button>
+      </div>
+      {season === "Winter" && (
+        // Wenn die Winter-Saison ausgewählt ist, wird der Inhalt angezeigt
+        <div className="courseContainer">
+          <button onClick={() => setShowWinterCourse(!showWinterCourse)}>
+            Winterkurse
+          </button>
 
-        {courses.map((course) => (
-          <li key={course.id}>
-            <strong>Name: {course.name}</strong><br />
-            Details: {course.details}<br />
-            Beschreibung: {course.beschreibung}
-          </li>
-        ))}
-      </ul>
-      <p>Unser Weinachtsspecial in den Bergen für Familien, Paare, Abenteurer und Gruppen</p>
-      <ul>
-        {/* Daten für X-Mas Specials ausgeben */}
-      </ul>
+          {/* INHALT FÜR WINTERKURSE */}
+          {showWinterCourse && (
+            <div className="winterCourseBox">
+              <h2>Winterkurse</h2>
+              <ul>
+                {/* Liste der Winterkurse */}
+                {winterCourses.map((course) => (
+                  <li key={course.id}>
+                    <strong>Name: {course.name}</strong>
+                    <br />
+                    <img src={course.Image} alt="" />
+                    {course.details}
+                    <br />
+                    {course.beschreibung}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* INHALT FÜR SOMMERKURSE */}
+      {/* INHALT FÜR HERBSTKURSE */}
+      {/* INHALT FÜR FRÜHLINGSKURSE */}
     </>
   );
 }
