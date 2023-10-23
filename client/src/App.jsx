@@ -5,9 +5,12 @@ import SignUp from "./components/User/SignUp.jsx";
 import CoursePage from "./components/CoursePage/CoursePage.jsx";
 import NotFound from "./components/NotFound.jsx";
 import CourseDetails from "./components/CoursePage/CourseDetails.jsx";
-import {Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+
+import "mdb-react-ui-kit/dist/css/mdb.min.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 function App() {
   return (
@@ -20,7 +23,6 @@ function App() {
         <Route path="/login" element={<LogIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="*" element={<NotFound />} />
-
       </Routes>
     </>
   );

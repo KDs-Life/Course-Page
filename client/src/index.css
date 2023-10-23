@@ -1,4 +1,7 @@
 :root {
-background-color: white;
+  background-color: white;
 }
 
+body {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+}
