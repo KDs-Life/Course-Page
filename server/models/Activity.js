@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 
-// TODO: define schema properties
-
 const activitySchema = new mongoose.Schema({
   title: {
     type: String,
