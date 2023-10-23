@@ -14,11 +14,15 @@ const userSchema = new mongoose.Schema({
     select: false,
   },
   accessToken: [String],
+  bookings: [],
+  phone: {},
+  firstname: {},
+  lastname: {},
+  address: {},
+  role: {},
   createdAt: {
     type: Date,
     default: Date.now,
   },
-  bookings: [],
-  phone: {},
 });
 export default mongoose.model("User", userSchema);

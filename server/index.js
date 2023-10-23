@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import authRouter from "./routes/authRouter.js";
+import userRouter from "./routes/userRouter.js";
 import "./db/server.js";
 
 const PORT = process.env.PORT || 8000;
@@ -18,6 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use("/auth", authRouter);
+app.use("/user", userRouter);
 
 app.listen(PORT, () => {
   console.log(`Server running on ${HOST}:${PORT}`);
