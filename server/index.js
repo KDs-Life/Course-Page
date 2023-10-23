@@ -18,7 +18,7 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.use("/auth", authRouter);
+app.use("/", authRouter);
 app.use("/user", userRouter);
 
 app.listen(PORT, () => {
