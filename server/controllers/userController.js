@@ -2,7 +2,7 @@ import User from "../models/User.js";
 import asyncHandler from "../utils/asyncHandler.js";
 
 export const getUser = asyncHandler(async (req, res, next) => {
-  const { email } = req.body;
+  const email = req.body.email.trim();
   const existingUser = await User.findOne({ email });
   if (existingUser) {
     // get user data and return
