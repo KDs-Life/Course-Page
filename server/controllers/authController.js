@@ -37,7 +37,7 @@ export const registerUser = asyncHandler(async (req, res, next) => {
 // logout user
 export const logoutUser = async (req, res, next) => {
   return res
-    .clearCookie("accessToken")
+    .clearCookie("accessToken", { domain: "localhost", path: "/" })
     .status(200)
     .json({ status: "success", message: "Logout successful" });
 };
@@ -51,10 +51,9 @@ export const loginUser = asyncHandler(async (req, res) => {
       .json({ status: "error", message: "Email and password are required." });
   }
   const foundUser = await User.findOne({ email }).select("+password");
-  if (!foundUser)
-    return res
-      .status(404)
-      .send({ status: "error", message: "Email not found." });
+  if (!foundUser) {
+    return res.status(401).json({ message: "Email not found." });
+  }
   const match = await bcrypt.compare(password, foundUser.password);
   if (match) {
     const accessToken = jwt.sign(
@@ -63,7 +62,7 @@ export const loginUser = asyncHandler(async (req, res) => {
       },
       process.env.ACCESS_TOKEN_SECRET
     );
-    res.cookie("accessToken", accessToken, { httpOnly: true, maxAge: 1800000 }); // 30min
+    res.cookie("accessToken", accessToken, { maxAge: 1800000, httpOnly: true });
     res.status(200).send({ status: "success", message: "Login successful." });
   }
 });
