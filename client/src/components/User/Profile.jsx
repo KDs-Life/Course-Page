@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
+import { useAuth } from "../../context/AuthContext";
 import axios from "../../api/axios";
 
 function Profile() {
-  const { auth, setAuth } = useAuth();
+  const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -12,18 +12,27 @@ function Profile() {
         headers: { "Content-type": "application/json" },
         withCredentials: true,
       });
-      setAuth({});
-      navigate("/");
+      setAuthUser("");
+      setIsLoggedIn(false);
+      navigate("/login");
       //return response.data;
     } catch (error) {
       console.log(error);
     }
   };
 
+  if (!isLoggedIn) {
+    return (
+      <>
+        <div>You are not logged in</div>
+      </>
+    );
+  }
+
   return (
     <>
       <div>Profile Page</div>
-      <p>{auth.email}</p>
+      <p>{authUser}</p>
       <button onClick={handleLogout}>LOGOUT</button>
     </>
   );
