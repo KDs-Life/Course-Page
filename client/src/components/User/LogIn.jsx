@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import axios from "../../api/axios";
+import Form from "react-bootstrap/Form";
 
 function LogIn() {
   const { auth, setAuth } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
+  const navigate = useNavigate();
 
   const handleLogout = async (e) => {
     try {
@@ -16,9 +18,8 @@ function LogIn() {
         withCredentials: true,
       });
       setAuth({});
-      setEmail("");
-      setPwd("");
-      return response.data;
+      navigate("/");
+      //return response.data;
     } catch (error) {
       console.log(error);
     }
@@ -37,6 +38,7 @@ function LogIn() {
           withCredentials: true,
         }
       );
+      navigate("/profile");
       setAuth({ auth: true, email: email });
       setEmail("");
       setPwd("");
@@ -55,7 +57,6 @@ function LogIn() {
         <div>
           <button onClick={handleLogout}>Log-Out</button>
         </div>
-        <Navigate replace to="/login" />
       </>
     );
   return (
@@ -63,24 +64,18 @@ function LogIn() {
       <div className="user-log-in-container">
         <div>
           {errMsg && <p>{errMsg}</p>}
-          <form onSubmit={handleSubmit}>
-            <input
-              type="email"
-              name="email"
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="E-Mail"
-              required
-            />
-
-            <input
-              type="password"
-              name="password"
-              onChange={(e) => setPwd(e.target.value)}
-              placeholder="Password"
-              required
-            />
+          <Form>
+            <Form.Group className="mb-3" controlId="formGroupEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control type="email" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)} required />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formGroupPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" placeholder="Password" onChange={(e) => setPwd(e.target.value)} required />
+            </Form.Group>
             <button type="submit">Log-In</button>
-          </form>
+           
+          </Form>
         </div>
       </div>
     </>
