@@ -6,13 +6,14 @@ import Profile from "./components/User/Profile.jsx";
 import CoursePage from "./components/CoursePage/CoursePage.jsx";
 import NotFound from "./components/NotFound.jsx";
 import CourseDetails from "./components/CoursePage/CourseDetails.jsx";
+import { AuthProvider } from "./context/AuthContext.jsx";
 import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <NavBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -23,7 +24,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </>
+    </AuthProvider>
   );
 }
 

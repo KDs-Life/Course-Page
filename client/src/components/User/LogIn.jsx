@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
+import { useAuth } from "../../context/AuthContext";
 import axios from "../../api/axios";
 import Form from "react-bootstrap/Form";
 import "./LogIn.css";
 
 function LogIn() {
-  const { auth, setAuth } = useAuth();
+  const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn, token, setToken } =
+    useAuth();
   const [email, setEmail] = useState("");
   const [password, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
@@ -18,8 +19,9 @@ function LogIn() {
         headers: { "Content-type": "application/json" },
         withCredentials: true,
       });
-      setAuth({});
-      navigate("/");
+      setAuthUser({});
+      setIsLoggedIn(false);
+      navigate("/login");
       //return response.data;
     } catch (error) {
       console.log(error);
@@ -29,7 +31,6 @@ function LogIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     //TODO: check out custom hooks for AXIOS (differantiate between private and non-private calls to the api)
-
     try {
       const response = await axios.post(
         "/login",
@@ -39,10 +40,12 @@ function LogIn() {
           withCredentials: true,
         }
       );
-      navigate("/profile");
-      setAuth({ auth: true, email: email });
+      setAuthUser(email);
+      setIsLoggedIn(true);
+      setToken((curr) => (curr = response.data.accessToken));
       setEmail("");
       setPwd("");
+      navigate("/profile");
     } catch (error) {
       if (error.response?.status === 400) {
         setErrMsg("Missing Username or Password");
@@ -51,7 +54,7 @@ function LogIn() {
       }
     }
   };
-  if (auth && auth === true)
+  if (isLoggedIn)
     return (
       <>
         <div>LOGGED IN</div>
@@ -60,6 +63,8 @@ function LogIn() {
         </div>
       </>
     );
+
+  /*{token && <div>{token}</div>} */
   return (
     <>
       <div className="user-log-in-container">

@@ -59,11 +59,26 @@ export const loginUser = asyncHandler(async (req, res) => {
     const accessToken = jwt.sign(
       {
         email: foundUser.email,
+        roles: foundUser.role,
       },
-      process.env.ACCESS_TOKEN_SECRET
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: "10s" }
     );
-    res.cookie("accessToken", accessToken, { maxAge: 1800000, httpOnly: true });
-    res.status(200).send({ status: "success", message: "Login successful." });
+    const refreshToken = jwt.sign(
+      {
+        email: foundUser.email,
+      },
+      process.env.REFRESH_TOKEN_SECRET,
+      { expiresIn: "1d" }
+    );
+    res.cookie("jwt", refreshToken, {
+      httpOnly: true,
+      //secure: true,
+      sameSite: "None",
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 Days
+    });
+    res.json({ accessToken });
+    //res.status(200).send({ status: "success", message: "Login successful." });
   }
 });
 
