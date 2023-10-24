@@ -65,7 +65,7 @@ function LogIn() {
       <div className="user-log-in-container">
         <div>
           {errMsg && <p>{errMsg}</p>}
-          <Form>
+          <Form className="log-in-form">
             <Form.Group className="mb-3" controlId="formGroupEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control
@@ -84,7 +84,7 @@ function LogIn() {
                 required
               />
             </Form.Group>
-            <button type="submit" onClick={handleSubmit}>
+            <button type="submit" onClick={handleSubmit} className="logIn-Btn">
               Log-In
             </button>
           </Form>
