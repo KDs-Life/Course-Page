@@ -84,7 +84,9 @@ function LogIn() {
                 required
               />
             </Form.Group>
-            <button type="submit">Log-In</button>
+            <button type="submit" onClick={handleSubmit}>
+              Log-In
+            </button>
           </Form>
         </div>
       </div>
