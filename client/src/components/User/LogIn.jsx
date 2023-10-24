@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import axios from "../../api/axios";
 import Form from "react-bootstrap/Form";
@@ -9,6 +9,7 @@ function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
+  const navigate = useNavigate();
 
   const handleLogout = async (e) => {
     try {
@@ -17,9 +18,8 @@ function LogIn() {
         withCredentials: true,
       });
       setAuth({});
-      setEmail("");
-      setPwd("");
-      return response.data;
+      navigate("/");
+      //return response.data;
     } catch (error) {
       console.log(error);
     }
@@ -38,6 +38,7 @@ function LogIn() {
           withCredentials: true,
         }
       );
+      navigate("/profile");
       setAuth({ auth: true, email: email });
       setEmail("");
       setPwd("");
@@ -56,7 +57,6 @@ function LogIn() {
         <div>
           <button onClick={handleLogout}>Log-Out</button>
         </div>
-        <Navigate replace to="/login" />
       </>
     );
   return (

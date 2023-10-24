@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import { requireAuth, checkUser } from "./middlewares/authMiddleware.js";
 import authRouter from "./routes/authRouter.js";
 import userRouter from "./routes/userRouter.js";
 import activityRouter from "./routes/activityRouter.js";
@@ -19,6 +20,7 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
+app.use("*", checkUser);
 app.use("/", authRouter);
 app.use("/user", userRouter);
 app.use("/activities", activityRouter);
