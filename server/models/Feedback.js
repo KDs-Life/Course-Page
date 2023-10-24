@@ -7,8 +7,12 @@ const feedbackSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Course",
   },
-  rating: {},
-  text: {},
+  rating: {
+    type: Number,
+  },
+  text: {
+    type: String,
+  },
 });
 
 export default mongoose.model("Feedback", feedbackSchema);
