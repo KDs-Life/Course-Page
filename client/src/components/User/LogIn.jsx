@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import axios from "../../api/axios";
+import Form from "react-bootstrap/Form";
 
 function LogIn() {
   const { auth, setAuth } = useAuth();
@@ -63,24 +64,18 @@ function LogIn() {
       <div className="user-log-in-container">
         <div>
           {errMsg && <p>{errMsg}</p>}
-          <form onSubmit={handleSubmit}>
-            <input
-              type="email"
-              name="email"
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="E-Mail"
-              required
-            />
-
-            <input
-              type="password"
-              name="password"
-              onChange={(e) => setPwd(e.target.value)}
-              placeholder="Password"
-              required
-            />
+          <Form>
+            <Form.Group className="mb-3" controlId="formGroupEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control type="email" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)} required />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formGroupPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" placeholder="Password" onChange={(e) => setPwd(e.target.value)} required />
+            </Form.Group>
             <button type="submit">Log-In</button>
-          </form>
+           
+          </Form>
         </div>
       </div>
     </>
