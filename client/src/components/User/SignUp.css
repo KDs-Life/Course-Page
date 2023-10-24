@@ -72,8 +72,8 @@
   border: #013fcf solid 2px;
 }
 
-.signUp-Btn {
-  background-color: #3498db;
+#signUp-Btn {
+  background-color: #03a906;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -81,4 +81,8 @@
   cursor: pointer;
   font-weight: bold;
   margin-top: 10px;
+}
+
+#signUp-Btn:hover {
+  transition: all 0.3s ease-in-out;
 }

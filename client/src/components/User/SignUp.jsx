@@ -48,7 +48,7 @@ function SignUp() {
     <div className="sign-up-wrapper">
       <h2 className="sign-up-title">Sign Up</h2>
       <div>
-        <Form className="sign-up-form">
+        <Form className="sign-up-form" onSubmit={handleSubmit}>
           <Row className="mb-3">
             <Form.Group as={Col} controlId="formGridEmail">
               <Form.Label>Email</Form.Label>
@@ -64,7 +64,7 @@ function SignUp() {
           </Row>
 
           <Row className="mb-3">
-            <Form.Group as={Col} controlId="formGridName">
+            <Form.Group as={Col} controlId="formGridFirstName">
               <Form.Label>First Name</Form.Label>
               <Form.Control
                 type="text"
@@ -75,23 +75,35 @@ function SignUp() {
               />
             </Form.Group>
 
-            <Form.Group as={Col} controlId="formGridName">
+            <Form.Group as={Col} controlId="formGridLastName">
               <Form.Label>Last Name</Form.Label>
-              <Form.Control placeholder="Last Name" required />
+              <Form.Control
+                type="text"
+                placeholder="Last Name"
+                name="lastname"
+                value={newUser.lastname}
+                onChange={handleChange}
+              />
             </Form.Group>
           </Row>
 
           <Row className="mb-3">
             <Form.Group as={Col} controlId="formGridPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" required />
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                name="password"
+                required
+              />
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridPassword">
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Confirm Password"
+                placeholder="Password"
+                name="password"
                 required
               />
             </Form.Group>
@@ -99,14 +111,10 @@ function SignUp() {
 
           <Form.Group className="mb-3" controlId="formGridAddress1">
             <Form.Label>Address</Form.Label>
-            <Form.Control placeholder="1234 Main St" required />
+            <Form.Control type="text" placeholder="adresse" name="adresse" />
           </Form.Group>
 
-          <Button
-            variant="primary"
-            type="submit"
-            className="signUp-Btn"
-            onClick={handleSubmit}>
+          <Button type="submit" id="signUp-Btn">
             Submit
           </Button>
         </Form>
