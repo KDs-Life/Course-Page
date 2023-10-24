@@ -3,7 +3,8 @@ import { useAuth } from "../../context/AuthContext";
 import axios from "../../api/axios";
 
 function Profile() {
-  const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth();
+  const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn, token, setToken } =
+    useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -14,7 +15,8 @@ function Profile() {
       });
       setAuthUser("");
       setIsLoggedIn(false);
-      navigate("/login");
+      setToken("");
+      navigate("/");
       //return response.data;
     } catch (error) {
       console.log(error);
@@ -33,6 +35,7 @@ function Profile() {
     <>
       <div>Profile Page</div>
       <p>{authUser}</p>
+      <p>{token}</p>
       <button onClick={handleLogout}>LOGOUT</button>
     </>
   );
