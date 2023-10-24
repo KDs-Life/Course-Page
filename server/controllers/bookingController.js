@@ -2,7 +2,7 @@ import Booking from "../models/Booking.js";
 
 export const getBookings = async (req, res, next) => {
   try {
-    const bookings = await Activity.find();
+    const bookings = await Booking.find();
 
     if (!bookings.length) {
       throw { statusCode: 404, message: "Booking not found" };
