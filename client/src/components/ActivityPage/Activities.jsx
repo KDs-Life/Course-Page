@@ -1,4 +1,4 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./Activities.css";
 import axios from "../../api/axios";
 
@@ -103,7 +103,6 @@ function Activities() {
       .get("/activities")
       .then((response) => {
         setWinterActivitiesData(response.data);
-        console.log(response.data)
         setLoading(false);
       })
       .catch((error) => {
@@ -131,19 +130,20 @@ function Activities() {
       </div>
       {season === "Winter" && (
         <div className="courseContainer">
-          <button onClick={toggleWinterActivity}>
-            Winterkurse
-          </button>
+          <button onClick={toggleWinterActivity}>Winterkurse</button>
 
-          <div className={`winterActivityBox ${showWinterActivity ? "open" : "closed"}`}>
+          <div
+            className={`winterActivityBox ${
+              showWinterActivity ? "open" : "closed"
+            }`}
+          >
             <h2>Winterkurse</h2>
-
-            <ul>
-              {loading ? (
-                <p>Lade Winterkursdaten...</p>
-              ) : (
-                winterActivitiesData.map((activity) => (
-                  <li key={activity.id}>
+            {loading ? (
+              <p>Lade Winterkursdaten...</p>
+            ) : (
+              <ul>
+                {winterActivitiesData.map((activity, key) => (
+                  <li key={key}>
                     <strong>{activity.title}</strong>
                     <br />
                     <img src={activity.images} alt="" />
@@ -152,15 +152,15 @@ function Activities() {
                     {activity.minSlots}
                     {activity.maxSlots}
                     {activity.requirements}
-                    {activity.address}
+                    {activity.address.street}
                     {activity.price}
                     {activity.category}
                     {activity.publishedDate}
                     <br />
                   </li>
-                ))
-              )}
-            </ul>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
       )}
