@@ -98,12 +98,12 @@ function SignUp() {
               />
             </Form.Group>
 
-            <Form.Group as={Col} controlId="formGridPassword">
+            <Form.Group as={Col} controlId="formGridPasswordConfirm">
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Password"
-                name="password"
+                placeholder="Confirm Password"
+                name="confirmPassword"
                 required
               />
             </Form.Group>
