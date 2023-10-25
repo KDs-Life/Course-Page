@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios"; // Importiere Axios
+import axios from "../../api/axios"; // Importiere Axios
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";

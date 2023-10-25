@@ -66,13 +66,14 @@ function LogIn() {
 
   /*{token && <div>{token}</div>} */
   return (
-    <>
+    <div className="logIn-Wrapper">
+      <h2 className="logIn-Title">Log-In</h2>
       <div className="user-log-in-container">
         <div>
           {errMsg && <p>{errMsg}</p>}
           <Form className="log-in-form">
             <Form.Group className="mb-3" controlId="formGroupEmail">
-              <Form.Label>Email address</Form.Label>
+              <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
                 placeholder="Enter email"
@@ -89,13 +90,21 @@ function LogIn() {
                 required
               />
             </Form.Group>
-            <button type="submit" onClick={handleSubmit} className="logIn-Btn">
-              Log-In
-            </button>
+            <div className="btn-container">
+              <button
+                type="submit"
+                onClick={handleSubmit}
+                className="logIn-Btn">
+                Log-In
+              </button>
+              <button onClick={() => navigate("/signup")} id="signUp-Btn">
+                Sign-Up
+              </button>
+            </div>
           </Form>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

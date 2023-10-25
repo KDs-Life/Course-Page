@@ -6,6 +6,20 @@
     padding: 0 10px;
     border-bottom: 1px solid #ccc;
   }
+
+  .winterActivityBox {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in;
+  }
+  
+  .winterActivityBox.open {
+    max-height: 1000px; /* Hier die gewünschte maximale Höhe einstellen */
+  }
+  
+  .winterActivityBox.closed {
+    max-height: 0;
+  }
   
   .seasonContainer button {
     background-color: #fff;
@@ -31,7 +45,7 @@
   }
   
   .courseContainer {
-    border: solid red 1px;
+    /* border: solid red 1px; */
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
