@@ -5,7 +5,7 @@ const bookingSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  course: {
+  activity: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Activity",
   },
