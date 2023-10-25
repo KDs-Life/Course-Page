@@ -1,11 +1,21 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import axios from "../../api/axios";
+import axios from "../../api/axiosPrivate";
+import { useState, useEffect } from "react";
 
 function Profile() {
-  const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn, token, setToken } =
-    useAuth();
+  const {
+    authUser,
+    setAuthUser,
+    isLoggedIn,
+    setIsLoggedIn,
+    token,
+    setToken,
+    role,
+    setRole,
+  } = useAuth();
   const navigate = useNavigate();
+  const [userProfile, setUserProfile] = useState();
 
   const handleLogout = () => {
     try {
@@ -15,13 +25,27 @@ function Profile() {
       });
       setAuthUser("");
       setIsLoggedIn(false);
-      setToken("");
+      setToken((curr) => (curr = ""));
+      setRole((curr) => (curr = ""));
       navigate("/");
       //return response.data;
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      const userInfos = () => {
+        return axios.post("/user/profile", {
+          email: authUser,
+        });
+      };
+      userInfos()
+        .then((response) => setUserProfile(response.data.data))
+        .catch((err) => console.log(err));
+    }
+  }, []);
 
   if (!isLoggedIn) {
     return (
@@ -34,8 +58,16 @@ function Profile() {
   return (
     <>
       <div>Profile Page</div>
-      <p>{authUser}</p>
-      <p>{token}</p>
+      {userProfile ? (
+        <>
+          <div>Email: {authUser}</div>
+          <div>Bookings: {userProfile.bookings.length}</div>
+          <div>Member since: {userProfile.member_since}</div>
+        </>
+      ) : (
+        ""
+      )}
+
       <button onClick={handleLogout}>LOGOUT</button>
     </>
   );
