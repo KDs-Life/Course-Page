@@ -52,10 +52,10 @@ function Activities() {
     <>
       {/* Ansicht für Saison-Auswahl-Buttons */}
       <div className="seasonContainer">
-        <button onClick={() => handleSeasonClick("Winter")}>Winter</button>
-        <button onClick={() => handleSeasonClick("Summer")}>Summer</button>
-        <button onClick={() => handleSeasonClick("Autumn")}>Autumn</button>
-        <button onClick={() => handleSeasonClick("Spring")}>Spring</button>
+        <button onClick={() => handleSeasonClick("Winter")} className="season-btn">Winter</button>
+        <button onClick={() => handleSeasonClick("Summer")} className="season-btn">Summer</button>
+        <button onClick={() => handleSeasonClick("Autumn")} className="season-btn">Autumn</button>
+        <button onClick={() => handleSeasonClick("Spring")} className="season-btn">Spring</button>
       </div>
 
       {/* Ansicht für Winteraktivitäten */}
@@ -69,7 +69,7 @@ function Activities() {
             className={`winterActivityBox ${
               showWinterActivity ? "open" : "closed"
             }`}>
-            <h2>Winterkurse</h2>
+            <h2 className="winter-titel">Winterkurse</h2>
 
             {/* Rendern der Winteraktivitäten */}
             <Row xs={1} md={2} className="g-4">
@@ -96,7 +96,7 @@ function Activities() {
                           {activity.category}
                           {activity.publishedDate}
                         </Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
+                        <Button variant="primary">Buchen</Button>
                       </Card.Body>
                     </Card>
                   </Col>
