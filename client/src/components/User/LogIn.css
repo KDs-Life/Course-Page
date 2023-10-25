@@ -1,38 +1,96 @@
-.user-log-in-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 450px;
-    width: 40%;
-    margin: 5% auto;
-    background: linear-gradient(135deg, #3498db, #006f57);
-    border-radius: 8px;
-  }
-  
-  log-in-form {
-    border-radius: 8px;
-    padding: 30px;
-    max-width: 400px;
-    width: 100%;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  
+.logIn-Wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 65vh;
+  width: 60%;
+  margin: 1% auto;
+  background: linear-gradient(135deg, #3498db, #006f57);
+  border-radius: 8px;
+}
 
+.logIn-Title {
+  font-size: 2rem;
+  color: #fff;
+  margin: 20px;
+  /* border: red solid 1px; */
   
-  .logIn-Btn {
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    margin-top: 10px;
-    transition: background-color 0.3s;
+}
+.logIn-Title:hover {
+  animation: colorTransition 6s linear infinite;
+}
+@keyframes colorTransition {
+  0% {
+    color: #01099b; /* Erste Farbe */
   }
-  
-  .logIn-Btn:hover {
-    background-color: #2980b9;
+  33% {
+    color: #43e0fc; /* Zweite Farbe */
   }
-  
+  66% {
+    color: #007d3f; /* Dritte Farbe */
+  }
+  100% {
+    color: #23d5ab; /* Zur ersten Farbe zurückkehren */
+  }
+}
+log-in-form {
+  border-radius: 8px;
+  padding: 30px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+}
+
+.logIn-Btn {
+  background: linear-gradient(-45deg, #01099b, #43e0fc, #007d3f, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.logIn-Btn:hover {
+  background-color: #2980b9;
+}
+
+#signUp-Btn {
+  background: linear-gradient(-45deg, #01099b, #43e0fc, #007d3f, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
