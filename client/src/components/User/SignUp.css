@@ -13,7 +13,7 @@
 .sign-up-title {
   font-size: 2rem;
   color: #fff;
-  margin-bottom: 20px;
+  margin: 20px;
   /* border: red solid 1px; */
 }
 
@@ -23,16 +23,16 @@
 
 @keyframes colorTransition {
   0% {
-    color: #ff5733; /* Erste Farbe */
+    color: #01099b; /* Erste Farbe */
   }
   33% {
-    color: #33ff57; /* Zweite Farbe */
+    color: #43e0fc; /* Zweite Farbe */
   }
   66% {
-    color: #5733ff; /* Dritte Farbe */
+    color: #007d3f; /* Dritte Farbe */
   }
   100% {
-    color: #ff5733; /* Zur ersten Farbe zurückkehren */
+    color: #23d5ab; /* Zur ersten Farbe zurückkehren */
   }
 }
 
@@ -72,8 +72,8 @@
   border: #013fcf solid 2px;
 }
 
-.signUp-Btn {
-  background-color: #3498db;
+#signUp-Btn {
+  background-color: #03a906;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -81,4 +81,9 @@
   cursor: pointer;
   font-weight: bold;
   margin-top: 10px;
+}
+
+#signUp-Btn:hover {
+  transition: all 0.3s ease-in-out;
+  background-color: #022ca1;
 }
