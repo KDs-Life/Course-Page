@@ -1,5 +1,6 @@
 import Activity from "../models/Activity.js";
 import User from "../models/User.js";
+import Booking from "../models/Booking.js";
 import asyncHandler from "../utils/asyncHandler.js";
 import * as userController from "../controllers/userController.js";
 
@@ -31,12 +32,11 @@ export const getActivityById = async (req, res, next) => {
   }
 };
 
+
 export const bookActivity = async (req, res, next) => {
 
   try {
     const { userId, activityId, quantity, price } = req.body;
-
-    // TODO: check if user already booked this activity
 
     const activity = await Activity.findById(activityId);
 
@@ -53,6 +53,18 @@ export const bookActivity = async (req, res, next) => {
     const updatedUser = await User.findByIdAndUpdate(user._id, {$push:{"bookings":{activity: activityId, quantity: quantity, price: price}}}, {
       new: true,
     });
+
+    /* Create new booking in bookings collection
+    const booking = new Booking({
+      user: userId,
+      activity: activityId,
+      quantity: quantity,
+      price: price,
+    });
+
+    await booking.save();
+    */
+
     res.json(updatedUser);
   
   } catch (error) {
