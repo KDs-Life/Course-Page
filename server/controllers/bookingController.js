@@ -53,3 +53,17 @@ export const getBookingById = async (req, res, next) => {
     res.json(newBooking);
   });
   */
+
+  export const checkSlotBookings = async (req, res, next) => {
+    try {
+
+      const checkSlots = await User.Bookings.find();
+  
+      if (!checkSlots.length) {
+        throw { statusCode: 404, message: "Booking not found" };
+      }
+      res.json(checkSlots);
+    } catch (error) {
+      next(error);
+    }
+  };
