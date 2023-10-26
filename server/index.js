@@ -21,9 +21,9 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.use("*", checkUser);
+//app.use("*", checkUser);
 app.use("/", authRouter);
-app.use("/user", userRouter);
+app.use("/user", requireAuth, userRouter);
 app.use("/activities", activityRouter);
 app.use("/bookings", bookingRouter);
 

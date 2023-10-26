@@ -71,7 +71,7 @@ function LogIn() {
       <div className="user-log-in-container">
         <div>
           {errMsg && <p>{errMsg}</p>}
-          <Form className="log-in-form">
+          <Form className="log-in-form" onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formGroupEmail">
               <Form.Label>Email</Form.Label>
               <Form.Control
@@ -91,10 +91,7 @@ function LogIn() {
               />
             </Form.Group>
             <div className="btn-container">
-              <button
-                type="submit"
-                onClick={handleSubmit}
-                className="logIn-Btn">
+              <button type="submit" className="logIn-Btn">
                 Log-In
               </button>
               <button onClick={() => navigate("/signup")} id="signUp-Btn">

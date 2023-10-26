@@ -37,9 +37,13 @@ function Profile() {
   useEffect(() => {
     if (isLoggedIn) {
       const userInfos = () => {
-        return axios.post("/user/profile", {
-          email: authUser,
-        });
+        return axios.post(
+          "/user/profile",
+          {
+            email: authUser,
+          },
+          { withCredentials: true }
+        );
       };
       userInfos()
         .then((response) => setUserProfile(response.data.data))

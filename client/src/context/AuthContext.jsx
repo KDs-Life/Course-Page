@@ -13,10 +13,10 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState("");
   const [role, setRole] = useState("User");
 
-  if (token) {
-    const decoded = jwt_decode(token);
-    const { email, role } = decoded.UserInfo;
-  }
+  // if (token !== "") {
+  //   const decoded = jwt_decode(token);
+  //   const { email, role } = decoded.UserInfo;
+  // }
   const value = {
     authUser,
     setAuthUser,
