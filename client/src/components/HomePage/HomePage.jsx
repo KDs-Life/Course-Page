@@ -6,16 +6,17 @@ function HomePage() {
   return (
     <>
       {/* Add Carousel component here */}
+
       <Carousel slide={false}>
         <Carousel.Item>
-          <img src="https://placehold.co/600x400" alt="First slide" />
+          <img src="/images/course1.jpg" alt="Ski1" />
           <Carousel.Caption>
             <h3>Willkommen bei SkiFuturistisch</h3>
             <p>Erleben Sie die Zukunft des Skifahrens.</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <img src="https://placehold.co/600x400" alt="Second slide" />
+          <img src="/images/course2.jpg" alt="Ski2" />
           <Carousel.Caption>
             <h3>Technologisch fortschrittliche Kurse</h3>
             <p>
@@ -25,7 +26,37 @@ function HomePage() {
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <img src="https://placehold.co/600x400" alt="Third slide" />
+          <img src="/images/course3.jpg" alt="Ski3" />
+          <Carousel.Caption>
+            <h3>Kontaktieren Sie uns</h3>
+            <p>
+              Wenn Sie Fragen haben oder buchen möchten, sind wir gerne für Sie
+              da.
+            </p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img src="/images/course4.jpg" alt="Ski4" />
+          <Carousel.Caption>
+            <h3>Kontaktieren Sie uns</h3>
+            <p>
+              Wenn Sie Fragen haben oder buchen möchten, sind wir gerne für Sie
+              da.
+            </p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img src="/images/course5.jpg" alt="Ski5" />
+          <Carousel.Caption>
+            <h3>Kontaktieren Sie uns</h3>
+            <p>
+              Wenn Sie Fragen haben oder buchen möchten, sind wir gerne für Sie
+              da.
+            </p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img src="/images/course6.jpg" alt="Ski6" />
           <Carousel.Caption>
             <h3>Kontaktieren Sie uns</h3>
             <p>
@@ -59,7 +90,7 @@ function HomePage() {
           </Col>
         </Row>
       </Container>
-      
+
       <footer>
         <Row>
           <Col>
