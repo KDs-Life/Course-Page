@@ -26,14 +26,20 @@ export const registerUser = asyncHandler(async (req, res, next) => {
   res
     .status(201)
     .send({ token, status: "success", message: "Register user successful" });
+
+  //   const token = jwt.sign(
+  //     { uid: newUser._id, username: newUser.username },
+  //     process.env.JWT_SECRET
+  //   );
+  //   res.status(201).send({ token, newUser });
 });
 
 // logout user
 export const logoutUser = async (req, res, next) => {
-  const cookies = req.cookies;
-  if (!cookies?.jwt) return res.sendStatus(204); //no content
-  res.clearCookie("jwt", { httpOnly: true });
-  res.json({ status: "success", message: "Logout successful" });
+  return res
+    .clearCookie("accessToken", { domain: "localhost", path: "/" })
+    .status(200)
+    .json({ status: "success", message: "Logout successful" });
 };
 
 // login user
@@ -52,52 +58,28 @@ export const loginUser = asyncHandler(async (req, res) => {
   if (match) {
     const accessToken = jwt.sign(
       {
-        UserInfo: {
-          email: foundUser.email,
-          role: foundUser.role,
-        },
+        email: foundUser.email,
+        roles: foundUser.role,
       },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "1m" }
+      { expiresIn: "10s" }
     );
     const refreshToken = jwt.sign(
       {
         email: foundUser.email,
       },
       process.env.REFRESH_TOKEN_SECRET,
-      { expiresIn: process.env.REFRESH_TOKEN_EXPIRE }
+      { expiresIn: "1d" }
     );
     res.cookie("jwt", refreshToken, {
       httpOnly: true,
-      maxAge: process.env.REFRESH_COOKIE_EXPIRE,
+      //secure: true,
+      sameSite: "None",
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 Days
     });
     res.json({ accessToken });
+    //res.status(200).send({ status: "success", message: "Login successful." });
   }
 });
 
 // TODO: auth user route for verifying requests
-export const refreshToken = (req, res) => {
-  const cookies = req.cookies;
-  if (!cookies?.jwt) return res.status(401).json({ message: "Unauthorized" });
-  const refreshToken = cookies.jwt;
-  jwt.verify(
-    refreshToken,
-    process.env.REFRESH_TOKEN_SECRET,
-    async (err, decoded) => {
-      if (err) return res.status(403).json({ message: "Forbidden" });
-      const foundUser = await User.findOne({ email: decoded.email }).exec();
-      if (!foundUser) return res.status(401).json({ message: "Unauthorized" });
-      const accessToken = jwt.sign(
-        {
-          UserInfo: {
-            email: foundUser.email,
-            role: foundUser.role,
-          },
-        },
-        process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: process.env.ACCESS_TOKEN_EXPIRE }
-      );
-      res.json({ accessToken });
-    }
-  );
-};

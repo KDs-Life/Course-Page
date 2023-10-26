@@ -42,9 +42,7 @@ function Profile() {
         });
       };
       userInfos()
-        .then((response) => {
-          setUserProfile(response.data.data);
-        })
+        .then((response) => setUserProfile(response.data.data))
         .catch((err) => console.log(err));
     }
   }, []);

@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import jwt_decode from "jwt-decode";
 import axios from "../../api/axios";
 import Form from "react-bootstrap/Form";
 import "./LogIn.css";
 
 function LogIn() {
-  const { setAuthUser, isLoggedIn, setIsLoggedIn, setToken, setRole } =
+  const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn, token, setToken } =
     useAuth();
   const [email, setEmail] = useState("");
   const [password, setPwd] = useState("");
@@ -23,6 +22,7 @@ function LogIn() {
       setAuthUser({});
       setIsLoggedIn(false);
       navigate("/login");
+      //return response.data;
     } catch (error) {
       console.log(error);
     }
@@ -40,11 +40,9 @@ function LogIn() {
           withCredentials: true,
         }
       );
-      const decoded = jwt_decode(response.data.accessToken);
       setAuthUser(email);
       setIsLoggedIn(true);
       setToken((curr) => (curr = response.data.accessToken));
-      setRole(decoded.UserInfo.role);
       setEmail("");
       setPwd("");
       navigate("/profile");
@@ -96,8 +94,7 @@ function LogIn() {
               <button
                 type="submit"
                 onClick={handleSubmit}
-                className="logIn-Btn"
-              >
+                className="logIn-Btn">
                 Log-In
               </button>
               <button onClick={() => navigate("/signup")} id="signUp-Btn">
