@@ -2,6 +2,7 @@ import User from "../models/User.js";
 import asyncHandler from "../utils/asyncHandler.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import pool from "../services/db.js";
 
 const JWT_OPTIONS_ACCESS = {
   algorithm: process.env.JWT_ALGORITHM,
@@ -12,6 +13,12 @@ const JWT_OPTIONS_REFRESH = {
   algorithm: process.env.JWT_ALGORITHM,
   expiresIn: process.env.REFRESH_TOKEN_EXPIRE,
 };
+
+// TEST: check elephantSQL
+export const testSQL = asyncHandler(async (req, res, next) => {
+  const result = await pool.query("SELECT * FROM activities;");
+  return res.status(200).json(result.rows);
+});
 
 //TODO: express-valdiator for checking data?
 
@@ -68,6 +75,50 @@ export const loginUser = asyncHandler(async (req, res) => {
     return res.status(401).json({ message: "Email not found." });
   }
   const match = await bcrypt.compare(password, foundUser.password);
+  if (match) {
+    const accessToken = jwt.sign(
+      {
+        email: foundUser.email,
+        roles: foundUser.role,
+      },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: process.env.ACCESS_TOKEN_EXPIRE }
+    );
+    const refreshToken = jwt.sign(
+      {
+        email: foundUser.email,
+      },
+      process.env.REFRESH_TOKEN_SECRET,
+      { expiresIn: process.env.REFRESH_TOKEN_EXPIRE }
+    );
+    res.cookie("jwt", refreshToken, {
+      httpOnly: true,
+      //secure: true,
+      //sameSite: "None",
+      maxAge: process.env.REFRESH_COOKIE_EXPIRE,
+    });
+    res.json({ accessToken });
+    //res.status(200).send({ status: "success", message: "Login successful." });
+  }
+});
+
+// login user
+export const loginUser2 = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return res
+      .status(400)
+      .json({ status: "error", message: "Email and password are required." });
+  }
+  const foundUser = await pool.query(
+    "SELECT email, password FROM users WHERE email = $1;",
+    [email]
+  );
+
+  if (!foundUser) {
+    return res.status(401).json({ message: "Email not found." });
+  }
+  const match = await bcrypt.compare(password, foundUser.rows[0].password);
   if (match) {
     const accessToken = jwt.sign(
       {

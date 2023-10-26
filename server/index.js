@@ -7,6 +7,7 @@ import userRouter from "./routes/userRouter.js";
 import activityRouter from "./routes/activityRouter.js";
 import bookingRouter from "./routes/bookingRouter.js";
 import "./db/server.js";
+import "./services/db.js";
 
 const PORT = process.env.PORT || 8000;
 const HOST = process.env.HOST;
