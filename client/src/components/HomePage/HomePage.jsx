@@ -8,14 +8,14 @@ function HomePage() {
       {/* Add Carousel component here */}
       <Carousel slide={false}>
         <Carousel.Item>
-          <img src="https://placehold.co/600x400" alt="First slide" />
+          <img src="/images/course1.jpg" alt="First slide" />
           <Carousel.Caption>
             <h3>Willkommen bei SkiFuturistisch</h3>
             <p>Erleben Sie die Zukunft des Skifahrens.</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <img src="https://placehold.co/600x400" alt="Second slide" />
+          <img src="/images/course2.jpg" alt="Second slide" />
           <Carousel.Caption>
             <h3>Technologisch fortschrittliche Kurse</h3>
             <p>
@@ -25,7 +25,67 @@ function HomePage() {
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <img src="https://placehold.co/600x400" alt="Third slide" />
+          <img src="/images/course3.jpg" alt="Third slide" />
+          <Carousel.Caption>
+            <h3>Kontaktieren Sie uns</h3>
+            <p>
+              Wenn Sie Fragen haben oder buchen möchten, sind wir gerne für Sie
+              da.
+            </p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img src="/images/course4.jpg" alt="Third slide" />
+          <Carousel.Caption>
+            <h3>Kontaktieren Sie uns</h3>
+            <p>
+              Wenn Sie Fragen haben oder buchen möchten, sind wir gerne für Sie
+              da.
+            </p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img src="/images/course5.jpg" alt="Third slide" />
+          <Carousel.Caption>
+            <h3>Kontaktieren Sie uns</h3>
+            <p>
+              Wenn Sie Fragen haben oder buchen möchten, sind wir gerne für Sie
+              da.
+            </p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img src="/images/course6.jpg" alt="Third slide" />
+          <Carousel.Caption>
+            <h3>Kontaktieren Sie uns</h3>
+            <p>
+              Wenn Sie Fragen haben oder buchen möchten, sind wir gerne für Sie
+              da.
+            </p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img src="/images/course7.jpg" alt="Third slide" />
+          <Carousel.Caption>
+            <h3>Kontaktieren Sie uns</h3>
+            <p>
+              Wenn Sie Fragen haben oder buchen möchten, sind wir gerne für Sie
+              da.
+            </p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img src="/images/course8.jpg" alt="Third slide" />
+          <Carousel.Caption>
+            <h3>Kontaktieren Sie uns</h3>
+            <p>
+              Wenn Sie Fragen haben oder buchen möchten, sind wir gerne für Sie
+              da.
+            </p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img src="/images/course9.jpg" alt="Third slide" />
           <Carousel.Caption>
             <h3>Kontaktieren Sie uns</h3>
             <p>
@@ -59,7 +119,7 @@ function HomePage() {
           </Col>
         </Row>
       </Container>
-      
+
       <footer>
         <Row>
           <Col>

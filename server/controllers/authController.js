@@ -3,6 +3,16 @@ import asyncHandler from "../utils/asyncHandler.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+const JWT_OPTIONS_ACCESS = {
+  algorithm: process.env.JWT_ALGORITHM,
+  expiresIn: process.env.ACCESS_TOKEN_EXPIRE,
+};
+
+const JWT_OPTIONS_REFRESH = {
+  algorithm: process.env.JWT_ALGORITHM,
+  expiresIn: process.env.REFRESH_TOKEN_EXPIRE,
+};
+
 //TODO: express-valdiator for checking data?
 
 // register user
@@ -36,8 +46,11 @@ export const registerUser = asyncHandler(async (req, res, next) => {
 
 // logout user
 export const logoutUser = async (req, res, next) => {
+  const cookies = req.cookies;
+  for (let prop in cookies) {
+    res.clearCookie(prop); //Or res.cookie(prop, '', {expires: new Date(0)});
+  }
   return res
-    .clearCookie("accessToken", { domain: "localhost", path: "/" })
     .status(200)
     .json({ status: "success", message: "Logout successful" });
 };
@@ -62,20 +75,20 @@ export const loginUser = asyncHandler(async (req, res) => {
         roles: foundUser.role,
       },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "10s" }
+      { expiresIn: process.env.ACCESS_TOKEN_EXPIRE }
     );
     const refreshToken = jwt.sign(
       {
         email: foundUser.email,
       },
       process.env.REFRESH_TOKEN_SECRET,
-      { expiresIn: "1d" }
+      { expiresIn: process.env.REFRESH_TOKEN_EXPIRE }
     );
     res.cookie("jwt", refreshToken, {
       httpOnly: true,
       //secure: true,
-      sameSite: "None",
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 Days
+      //sameSite: "None",
+      maxAge: process.env.REFRESH_COOKIE_EXPIRE,
     });
     res.json({ accessToken });
     //res.status(200).send({ status: "success", message: "Login successful." });
