@@ -1,7 +1,52 @@
-
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
+  font-family: "Roboto", sans-serif;
+  color: white;
 }
+/* Globale Stile */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes text {
+  0% {
+    color: #fff;
+    margin-bottom: -40px;
+  }
+  30% {
+    letter-spacing: 25px;
+    margin-bottom: -40px;
+  }
+  85% {
+    letter-spacing: 8px;
+    margin-bottom: -40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px;
+  }
+
+  .main-content {
+    margin: 10px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 5px;
+  }
+
+  .main-content {
+    margin: 5px;
+  }
+}
+

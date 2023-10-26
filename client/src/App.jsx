@@ -17,6 +17,7 @@ function App() {
   return (
     <AuthProvider>
       <NavBar />
+      <div className="main-content">
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/activities" element={<Activities />} />
@@ -29,6 +30,7 @@ function App() {
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
+      </div>
     </AuthProvider>
   );
 }
