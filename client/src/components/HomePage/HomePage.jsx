@@ -108,16 +108,6 @@ function HomePage() {
             <img src="https://placehold.co/400x400" alt="Skiing Image" />
           </Col>
         </Row>
-        <Row>
-          <Col>
-            <h2>Unsere Ski-Kurse</h2>
-            <p>Erleben Sie etc etc etc.</p>
-            <Button variant="secondary">Jetzt buchen</Button>
-          </Col>
-          <Col>
-            <img src="https://placehold.co/400x400" alt="Skiing Image" />
-          </Col>
-        </Row>
       </Container>
 
       <footer>

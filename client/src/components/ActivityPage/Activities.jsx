@@ -50,71 +50,104 @@ function Activities() {
 
   return (
     <>
-      {/* Ansicht für Saison-Auswahl-Buttons */}
-      <div className="seasonContainer">
-        <button onClick={() => handleSeasonClick("Winter")} className="season-btn">Winter</button>
-        <button onClick={() => handleSeasonClick("Summer")} className="season-btn">Summer</button>
-        <button onClick={() => handleSeasonClick("Autumn")} className="season-btn">Autumn</button>
-        <button onClick={() => handleSeasonClick("Spring")} className="season-btn">Spring</button>
-      </div>
+      <div className="activities-wrapper">
+        {/* Ansicht für Saison-Auswahl-Buttons */}
+        <div className="seasonContainer">
+          <button
+            onClick={() => handleSeasonClick("Winter")}
+            className="season-btn">
+            Winter
+          </button>
+          <button
+            onClick={() => handleSeasonClick("Summer")}
+            className="season-btn">
+            Summer
+          </button>
+          <button
+            onClick={() => handleSeasonClick("Autumn")}
+            className="season-btn">
+            Autumn
+          </button>
+          <button
+            onClick={() => handleSeasonClick("Spring")}
+            className="season-btn">
+            Spring
+          </button>
+        </div>
 
-      {/* Ansicht für Winteraktivitäten */}
-      {season === "Winter" && (
-        <div className="courseContainer">
-          <Button onClick={toggleWinterActivity} variant="success">
-            Winterkurse
-          </Button>
-          {/* Liste von Winteraktivitäten in Bootstrap-Karten */}
-          <div
-            className={`winterActivityBox ${
-              showWinterActivity ? "open" : "closed"
-            }`}>
-            <h2 className="winter-titel">Winterkurse</h2>
+        {/* Ansicht für Winteraktivitäten */}
+        {season === "Winter" && (
+          <div className="courseContainer">
+            <Button
+              onClick={toggleWinterActivity}
+              variant="success"
+              id="winter-btn">
+              Winterkurse
+            </Button>
+            {/* Liste von Winteraktivitäten in Bootstrap-Karten */}
+            <div
+              className={`winterActivityBox ${
+                showWinterActivity ? "open" : "closed"
+              }`}>
+              <h2 className="winter-titel">Winterkurse</h2>
 
-            {/* Rendern der Winteraktivitäten */}
-            <Row xs={1} md={2} className="g-4">
-              {loading ? (
-                <p>Lade Winterkursdaten...</p>
-              ) : (
-                winterActivitiesData.map((activity) => (
-                  <Col key={activity.id}>
-                    <Card>
-                      <Card.Img variant="top" src={activity.images} />
-                      <Card.Body>
-                        <Card.Title>{activity.title}</Card.Title>
-                        <Card.Text>
-                          {activity.description}
-                          {activity.startDate}
-                          {activity.minSlots}
-                          {activity.maxSlots}
-                          {activity.requirements}
+              {/* Rendern der Winteraktivitäten */}
+              <Row xs={1} md={2} className="g-4">
+                {loading ? (
+                  <p>Lade Winterkursdaten...</p>
+                ) : (
+                  winterActivitiesData.map((activity, id) => (
+                    <Col key={activity.id}>
+                      <Card>
+                        <Card.Img
+                          variant="top"
+                          src={`/images/course${id + 1}.jpg`}
+                        />
+                        <Card.Body>
+                          <Card.Title>{activity.title}</Card.Title>
+                          <div>{id}</div>
+                          <Card.Text>
+                            <div className="information-box">
+                              {activity.description}
+                              {activity.startDate}
+                              {activity.minSlots}
+                              {activity.maxSlots}
+                            </div>
+
+                            {/* OBERE PART HIER ANZEIGEN! 
+                          UNTERE PART AUF DETAILS SEITE */}
+
+                            {/* {activity.requirements}
                           {activity.address.street}
                           {activity.address.Housenumber}
                           {activity.address.ZIP}
                           {activity.address.City}
                           {activity.address.Country}
                           {activity.category}
-                          {activity.publishedDate}
-                        </Card.Text>
-                        <Button variant="primary">Buchen</Button>
-                      </Card.Body>
-                    </Card>
-                  </Col>
-                ))
-              )}
-            </Row>
+                          {activity.publishedDate} */}
+                          </Card.Text>
+                          <Button variant="primary" id="winterCourse-Btn">
+                            Mehr
+                          </Button>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  ))
+                )}
+              </Row>
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Ansicht für Sommeraktivitäten^q */}
-      {season === "Summer" && (
-        <div className="courseContainer">
-          <Button onClick={toggleSummerActivity} variant="success">
-            Sommerkurse
-          </Button>
-        </div>
-      )}
+        {/* Ansicht für Sommeraktivitäten^q */}
+        {season === "Summer" && (
+          <div className="courseContainer">
+            <Button onClick={toggleSummerActivity} variant="success" id="summer-btn">
+              Sommerkurse
+            </Button>
+          </div>
+        )}
+      </div>
     </>
   );
 }

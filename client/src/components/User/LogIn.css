@@ -1,86 +1,68 @@
+/* LogIn-Wrapper */
 .logIn-Wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 65vh;
-  width: 60%;
+  
+  height: auto;
+  max-width: 500px; /* Ändern Sie die maximale Breite für bessere Darstellung */
+  width: 100%;
   margin: 1% auto;
   background: linear-gradient(135deg, #3498db, #006f57);
   border-radius: 8px;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .logIn-Title {
   font-size: 2rem;
   color: #fff;
   margin: 20px;
-  /* border: red solid 1px; */
-  
 }
+
 .logIn-Title:hover {
   animation: colorTransition 6s linear infinite;
 }
-@keyframes colorTransition {
-  0% {
-    color: #01099b; /* Erste Farbe */
-  }
-  33% {
-    color: #43e0fc; /* Zweite Farbe */
-  }
-  66% {
-    color: #007d3f; /* Dritte Farbe */
-  }
-  100% {
-    color: #23d5ab; /* Zur ersten Farbe zurückkehren */
-  }
-}
+
 log-in-form {
   border-radius: 8px;
   padding: 30px;
-  max-width: 400px;
   width: 100%;
+  max-width: 400px; /* responsive max. breite  */
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
+  box-sizing: border-box;
 }
 
 .btn-container {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  flex-direction: row;
   width: 100%;
 }
 
-.logIn-Btn {
-  background: linear-gradient(-45deg, #01099b, #43e0fc, #007d3f, #23d5ab);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  margin-top: 10px;
-  transition: background-color 0.3s;
-}
-
-.logIn-Btn:hover {
-  background-color: #2980b9;
-}
-
+.logIn-Btn,
 #signUp-Btn {
   background: linear-gradient(-45deg, #01099b, #43e0fc, #007d3f, #23d5ab);
-  background-size: 400% 400%;
+  background-size: 400% ;
   animation: gradient 15s ease infinite;
   color: #fff;
   border: none;
-  padding: 10px 20px;
+  margin: 10px 0;
   border-radius: 5px;
-  cursor: pointer;
   font-weight: bold;
-  margin-top: 10px;
   transition: background-color 0.3s;
+  width: 45% ;
+  height: 45px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logIn-Btn:hover,
+#signUp-Btn:hover {
+  background-color: #2980b9;
 }
 
 @keyframes gradient {

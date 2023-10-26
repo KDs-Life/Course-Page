@@ -5,7 +5,7 @@ import SignUp from "./components/User/SignUp.jsx";
 import Profile from "./components/User/Profile.jsx";
 import Activities from "./components/ActivityPage/Activities.jsx";
 import NotFound from "./components/NotFound.jsx";
-import CourseDetails from "./components/ActivityPage/CourseDetails.jsx";
+import ActivitiesDetails from "./components/ActivityPage/ActivitiesDetails.jsx";
 import Dashboard from "./components/Admin/Dashboard.jsx";
 import AuthCheck from "./components/AuthCheck.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
@@ -17,10 +17,11 @@ function App() {
   return (
     <AuthProvider>
       <NavBar />
+      <div className="main-content">
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/activities" element={<Activities />} />
-        <Route path="/activities/:id" element={<CourseDetails />} />
+        <Route path="/activities/:id" element={<ActivitiesDetails />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<Profile />} />
@@ -29,6 +30,7 @@ function App() {
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
+      </div>
     </AuthProvider>
   );
 }
