@@ -107,7 +107,7 @@ function Activities() {
         </div>
       )}
 
-      {/* Ansicht für Sommeraktivitäten */}
+      {/* Ansicht für Sommeraktivitäten^q */}
       {season === "Summer" && (
         <div className="courseContainer">
           <Button onClick={toggleSummerActivity} variant="success">
