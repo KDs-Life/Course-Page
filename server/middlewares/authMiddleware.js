@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 const requireAuth = (req, res, next) => {
   const token = req.cookies.jwt;
   if (token) {
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decodedToken) => {
+    jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, (err, decodedToken) => {
       if (err) {
         console.error(err.message);
         res.status(401).json("401 Unauthorized");
@@ -29,8 +29,8 @@ const checkUser = (req, res, next) => {
           res.locals.user = null;
           next();
         } else {
-          let user = await User.findById(decodedToken.id);
-          res.locals.user = user._id;
+          let user = await User.findById(decodedToken.email);
+          res.locals.user = user.email;
           next();
         }
       }

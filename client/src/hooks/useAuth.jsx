@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import jwtDecode from "jwt-decode";
 
 const useAuth = () => {
   const token = useSelector(selectCurrentToken);
@@ -7,9 +7,9 @@ const useAuth = () => {
   let status = "User";
 
   if (token) {
-    const decoded = jwt.decode(token);
+    const decoded = jwtDecode(token);
     const { username, role } = decoded.UserInfo;
-
+    console.log(role);
     isManager = role.includes("Manager");
     isAdmin = role.includes("Admin");
 

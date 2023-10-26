@@ -6,6 +6,8 @@ import Profile from "./components/User/Profile.jsx";
 import Activities from "./components/ActivityPage/Activities.jsx";
 import NotFound from "./components/NotFound.jsx";
 import CourseDetails from "./components/ActivityPage/CourseDetails.jsx";
+import Dashboard from "./components/Admin/Dashboard.jsx";
+import AuthCheck from "./components/AuthCheck.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -22,6 +24,9 @@ function App() {
         <Route path="/login" element={<LogIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<Profile />} />
+        <Route element={<AuthCheck allowedRoles={["Admin"]} />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AuthProvider>

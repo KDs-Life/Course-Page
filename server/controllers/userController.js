@@ -13,7 +13,7 @@ export const getUser = asyncHandler(async (req, res, next) => {
       username: existingUser.email,
       member_since: existingUser.createdAt,
     };
-    return res.status(409).send({ status: "success", data });
+    return res.status(200).send({ status: "success", data });
   } else
     res.status(404).send({ status: "error", message: "No Userdata found" });
 });
