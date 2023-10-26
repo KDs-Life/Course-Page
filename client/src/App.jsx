@@ -5,7 +5,7 @@ import SignUp from "./components/User/SignUp.jsx";
 import Profile from "./components/User/Profile.jsx";
 import Activities from "./components/ActivityPage/Activities.jsx";
 import NotFound from "./components/NotFound.jsx";
-import CourseDetails from "./components/ActivityPage/CourseDetails.jsx";
+import ActivitiesDetails from "./components/ActivityPage/ActivitiesDetails.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -18,7 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/activities" element={<Activities />} />
-        <Route path="/activities/:id" element={<CourseDetails />} />
+        <Route path="/activities/:id" element={<ActivitiesDetails />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<Profile />} />

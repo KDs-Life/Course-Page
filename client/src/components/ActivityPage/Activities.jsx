@@ -52,10 +52,26 @@ function Activities() {
     <>
       {/* Ansicht für Saison-Auswahl-Buttons */}
       <div className="seasonContainer">
-        <button onClick={() => handleSeasonClick("Winter")} className="season-btn">Winter</button>
-        <button onClick={() => handleSeasonClick("Summer")} className="season-btn">Summer</button>
-        <button onClick={() => handleSeasonClick("Autumn")} className="season-btn">Autumn</button>
-        <button onClick={() => handleSeasonClick("Spring")} className="season-btn">Spring</button>
+        <button
+          onClick={() => handleSeasonClick("Winter")}
+          className="season-btn">
+          Winter
+        </button>
+        <button
+          onClick={() => handleSeasonClick("Summer")}
+          className="season-btn">
+          Summer
+        </button>
+        <button
+          onClick={() => handleSeasonClick("Autumn")}
+          className="season-btn">
+          Autumn
+        </button>
+        <button
+          onClick={() => handleSeasonClick("Spring")}
+          className="season-btn">
+          Spring
+        </button>
       </div>
 
       {/* Ansicht für Winteraktivitäten */}
@@ -83,20 +99,24 @@ function Activities() {
                       <Card.Body>
                         <Card.Title>{activity.title}</Card.Title>
                         <Card.Text>
-                          {activity.description}
+                          {/* {activity.description}
                           {activity.startDate}
                           {activity.minSlots}
-                          {activity.maxSlots}
-                          {activity.requirements}
+                          {activity.maxSlots} */}
+
+                          {/* OBERE PART HIER ANZEIGEN! 
+                          UNTERE PART AUF DETAILS SEITE */} 
+                          
+                          {/* {activity.requirements}
                           {activity.address.street}
                           {activity.address.Housenumber}
                           {activity.address.ZIP}
                           {activity.address.City}
                           {activity.address.Country}
                           {activity.category}
-                          {activity.publishedDate}
+                          {activity.publishedDate} */}
                         </Card.Text>
-                        <Button variant="primary">Buchen</Button>
+                        <Button variant="primary">Mehr</Button>
                       </Card.Body>
                     </Card>
                   </Col>
