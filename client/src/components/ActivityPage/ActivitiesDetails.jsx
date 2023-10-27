@@ -23,7 +23,7 @@ function ActivitiesDetails() {
   return (
     <>
       <Card>
-        <img src={activity.images} alt="BILD" />
+        <img src={activity.images?.url} alt="BILD" />
         <Card.Body>
           <Card.Text>{activity.description}</Card.Text>
         </Card.Body>
