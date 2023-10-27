@@ -1,10 +1,9 @@
-/* LogIn-Wrapper */
+
 .logIn-Wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  
   height: auto;
   max-width: 500px; /* Ändern Sie die maximale Breite für bessere Darstellung */
   width: 100%;
@@ -17,7 +16,6 @@
 
 .logIn-Title {
   font-size: 2rem;
-  color: #fff;
   margin: 20px;
 }
 
@@ -29,7 +27,7 @@ log-in-form {
   border-radius: 8px;
   padding: 30px;
   width: 100%;
-  max-width: 400px; /* responsive max. breite  */
+  max-width: 400px; 
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
   box-sizing: border-box;
@@ -47,7 +45,6 @@ log-in-form {
   background: linear-gradient(-45deg, #01099b, #43e0fc, #007d3f, #23d5ab);
   background-size: 400% ;
   animation: gradient 15s ease infinite;
-  color: #fff;
   border: none;
   margin: 10px 0;
   border-radius: 5px;

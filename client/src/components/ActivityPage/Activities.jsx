@@ -7,7 +7,6 @@ import Card from "react-bootstrap/Card"; // Bootstrap-Komponente für Karten
 import Col from "react-bootstrap/Col"; // Bootstrap-Komponente für Spalten
 import Row from "react-bootstrap/Row"; // Bootstrap-Komponente für Zeilen
 import Button from "react-bootstrap/Button"; // Bootstrap-Komponente für Buttons
-import { NavLink } from "react-bootstrap";
 
 // Platzhalterdaten für Winteraktivitäten (werden später durch echte Daten ersetzt)
 
@@ -56,26 +55,22 @@ function Activities() {
         <div className="seasonContainer">
           <button
             onClick={() => handleSeasonClick("Winter")}
-            className="season-btn"
-          >
+            className="season-btn">
             Winter
           </button>
           <button
             onClick={() => handleSeasonClick("Summer")}
-            className="season-btn"
-          >
+            className="season-btn">
             Summer
           </button>
           <button
             onClick={() => handleSeasonClick("Autumn")}
-            className="season-btn"
-          >
+            className="season-btn">
             Autumn
           </button>
           <button
             onClick={() => handleSeasonClick("Spring")}
-            className="season-btn"
-          >
+            className="season-btn">
             Spring
           </button>
         </div>
@@ -83,20 +78,20 @@ function Activities() {
         {/* Ansicht für Winteraktivitäten */}
         {season === "Winter" && (
           <div className="courseContainer">
+            
             <Button
               onClick={toggleWinterActivity}
               variant="success"
-              id="winter-btn"
-            >
+              id="winter-btn">
               Winterkurse
             </Button>
+            
             {/* Liste von Winteraktivitäten in Bootstrap-Karten */}
             <div
               className={`winterActivityBox ${
                 showWinterActivity ? "open" : "closed"
-              }`}
-            >
-              <h2 className="winter-titel">Winterkurse</h2>
+              }`}>
+            
 
               {/* Rendern der Winteraktivitäten */}
               <Row xs={1} md={2} className="g-4">
@@ -133,14 +128,9 @@ function Activities() {
                           {activity.category}
                           {activity.publishedDate} */}
                           </Card.Text>
-                          <NavLink
-                            as="a"
-                            href={`/activities/${activity._id}`}
-                            variant="primary"
-                            id="winterCourse-Btn"
-                          >
+                          <Button variant="primary" id="winterCourse-Btn">
                             Mehr
-                          </NavLink>
+                          </Button>
                         </Card.Body>
                       </Card>
                     </Col>
@@ -154,11 +144,7 @@ function Activities() {
         {/* Ansicht für Sommeraktivitäten^q */}
         {season === "Summer" && (
           <div className="courseContainer">
-            <Button
-              onClick={toggleSummerActivity}
-              variant="success"
-              id="summer-btn"
-            >
+            <Button onClick={toggleSummerActivity} variant="success" id="summer-btn">
               Sommerkurse
             </Button>
           </div>
