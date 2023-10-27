@@ -98,3 +98,42 @@ export const getActivityByIDSQL = asyncHandler(async (req, res) => {
     res.status(500).json({ message: "Activity not found" });
   }
 });
+
+export const createActivitySQL = asyncHandler(async (req, res) => {
+  const {
+    title,
+    description,
+    active,
+    startdate,
+    minslots,
+    maxslots,
+    requirements,
+    address_id,
+    image_url,
+    image_alt,
+    price,
+    category,
+    published,
+  } = req.body;
+
+  const result = await pool.query(
+    "INSERT INTO activities (title, description, active, startdate, minslots, maxslots, requirements, address_id, image_url, image_alt, price, category, published) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *;",
+    [
+      title,
+      description,
+      active,
+      startdate,
+      minslots,
+      maxslots,
+      requirements,
+      address_id,
+      image_url,
+      image_alt,
+      price,
+      category,
+      published,
+    ]
+  );
+
+  res.status(200).json(result.rows[0]);
+});
