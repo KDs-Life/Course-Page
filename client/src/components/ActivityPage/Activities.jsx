@@ -135,7 +135,7 @@ function Activities() {
                           </Card.Text>
                           <NavLink
                             as="a"
-                            href={`/activities/${activity._id}`}
+                            href={`/activities/${activity.id}`}
                             variant="primary"
                             id="winterCourse-Btn"
                           >
