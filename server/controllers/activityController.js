@@ -85,6 +85,16 @@ export const getActivitiesSQL = asyncHandler(async (req, res) => {
   return res.status(200).json(result.rows);
   }
   catch (error) {
-    res.status(500).json({ message: "Activities not found" });
+    res.status(500).json({ message: "Activitiy not found" });
+  }
+});
+
+export const getActivityByIDSQL = asyncHandler(async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await pool.query("SELECT * FROM activities WHERE id = $1;", [id]);
+    return res.status(200).json(result.rows[0]);
+  } catch (error) {
+    res.status(500).json({ message: "Activity not found" });
   }
 });
