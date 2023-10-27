@@ -3,7 +3,9 @@ import User from "../models/User.js";
 import Booking from "../models/Booking.js";
 import asyncHandler from "../utils/asyncHandler.js";
 import * as userController from "../controllers/userController.js";
+import pool from "../services/db.js";
 
+/*<
 export const getActivities = async (req, res, next) => {
   try {
     const activities = await Activity.find();
@@ -31,8 +33,9 @@ export const getActivityById = async (req, res, next) => {
     next(error);
   }
 };
+*/
 
-
+/*
 export const bookActivity = async (req, res, next) => {
 
   try {
@@ -63,7 +66,6 @@ export const bookActivity = async (req, res, next) => {
     });
 
     await booking.save();
-    */
 
     res.json(updatedUser);
   
@@ -71,3 +73,67 @@ export const bookActivity = async (req, res, next) => {
     next(error);
   }
 }
+*/
+
+
+
+// SQL Part
+
+export const getActivitiesSQL = asyncHandler(async (req, res) => {
+  try {
+  const result = await pool.query("SELECT * FROM activities;");
+  return res.status(200).json(result.rows);
+  }
+  catch (error) {
+    res.status(500).json({ message: "Activitiy not found" });
+  }
+});
+
+export const getActivityByIDSQL = asyncHandler(async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await pool.query("SELECT * FROM activities WHERE id = $1;", [id]);
+    return res.status(200).json(result.rows[0]);
+  } catch (error) {
+    res.status(500).json({ message: "Activity not found" });
+  }
+});
+
+export const createActivitySQL = asyncHandler(async (req, res) => {
+  const {
+    title,
+    description,
+    active,
+    startdate,
+    minslots,
+    maxslots,
+    requirements,
+    address_id,
+    image_url,
+    image_alt,
+    price,
+    category,
+    published,
+  } = req.body;
+
+  const result = await pool.query(
+    "INSERT INTO activities (title, description, active, startdate, minslots, maxslots, requirements, address_id, image_url, image_alt, price, category, published) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *;",
+    [
+      title,
+      description,
+      active,
+      startdate,
+      minslots,
+      maxslots,
+      requirements,
+      address_id,
+      image_url,
+      image_alt,
+      price,
+      category,
+      published,
+    ]
+  );
+
+  res.status(200).json(result.rows[0]);
+});
