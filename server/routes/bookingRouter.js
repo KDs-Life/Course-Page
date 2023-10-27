@@ -3,9 +3,12 @@ import * as bookingController from "../controllers/bookingController.js";
 
 const bookingRouter = Router();
 
-bookingRouter.route("/checkAll").get(bookingController.checkSlotBookings);
+bookingRouter.route("/checkAll").get(bookingController.checkBookings);
 bookingRouter.route("/check/:id").get(bookingController.checkSlotBookingsById);
 bookingRouter.route("/").get(bookingController.getBookings);
-bookingRouter.route("/:id").get(bookingController.getBookingById);
+bookingRouter
+  .route("/:id")
+  .get(bookingController.getBookingById)
+  .post(bookingController.createBooking);
 
 export default bookingRouter;

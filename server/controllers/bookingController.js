@@ -30,6 +30,17 @@ export const getBookingById = async (req, res, next) => {
   }
 };
 
+export const createBooking = asyncHandler(async (req, res, next) => {
+  const { user, activity, quantity, price } = req.body;
+  const newBooking = await Booking.create({
+    user,
+    activity,
+    quantity,
+    price,
+  });
+  res.json(newBooking);
+});
+
 /* Create booking as Admin 
 
   export const createBooking = asyncHandler(async (req, res, next) => {
@@ -106,6 +117,20 @@ export const checkSlotBookingsById = async (req, res, next) => {
       return res.status(404).json({ message: "Actitivy not found" });
     }
     res.json(checkSlots);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const checkBookings = async (req, res, next) => {
+  try {
+    const bookings = await Booking.find().populate("user activity").exec();
+    if (!bookings.length) {
+      return res
+        .status(404)
+        .json({ status: "error", message: "Nothing not found" });
+    }
+    res.json(bookings);
   } catch (error) {
     next(error);
   }
