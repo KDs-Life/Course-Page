@@ -14,7 +14,7 @@ pool.connect((err) => {
   if (err) {
     console.error("connection error ", err.message);
   } else {
-    console.log("connected to ElephantSQL");
+    console.log(`connected to ${process.env.DB_HOST}:${process.env.DB_PORT}`);
   }
 });
 

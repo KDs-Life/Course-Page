@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import axios from "../../api/axiosPrivate";
 import { useState, useEffect } from "react";
+import jwtDecode from "jwt-decode";
+import axios from "../../api/axiosPrivate";
 
 function Profile() {
   const {
@@ -16,6 +17,7 @@ function Profile() {
   } = useAuth();
   const navigate = useNavigate();
   const [userProfile, setUserProfile] = useState();
+  const [tokenTimer, setTokenTimer] = useState(0);
 
   const handleLogout = () => {
     try {
@@ -35,7 +37,16 @@ function Profile() {
   };
 
   useEffect(() => {
+    // FIXME: check if token is valid, if not: refresh?
+    const timer =
+      tokenTimer > 0 && setInterval(() => setTokenTimer(tokenTimer - 1), 1000);
+    return () => clearInterval(timer);
+  }, [tokenTimer]);
+
+  useEffect(() => {
     if (isLoggedIn) {
+      const userToken = jwtDecode(token);
+      setTokenTimer(Math.ceil(userToken.exp - Date.now() / 1000));
       const userInfos = () => {
         return axios.post(
           "/user/profile",
@@ -47,7 +58,9 @@ function Profile() {
       };
       userInfos()
         .then((response) => setUserProfile(response.data.data))
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          if (err.status === "401") console.log("Refresh token");
+        }); // NOTE: if 401: refresh Token and fire again?
     }
   }, []);
 
@@ -62,6 +75,7 @@ function Profile() {
   return (
     <>
       <div>Profile Page</div>
+      <p>Timer: {tokenTimer}</p>
       {userProfile ? (
         <>
           <div>Email: {authUser}</div>
