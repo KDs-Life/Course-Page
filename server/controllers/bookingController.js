@@ -1,7 +1,9 @@
 import Booking from "../models/Booking.js";
 import User from "../models/User.js";
 import asyncHandler from "../utils/asyncHandler.js";
+import pool from "../services/db.js";
 
+/*
 export const getBookings = async (req, res, next) => {
   try {
     const bookings = await Booking.find();
@@ -14,7 +16,9 @@ export const getBookings = async (req, res, next) => {
     next(error);
   }
 };
+*/
 
+/*
 export const getBookingById = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -40,6 +44,7 @@ export const createBooking = asyncHandler(async (req, res, next) => {
   });
   res.json(newBooking);
 });
+*/
 
 /* Create booking as Admin 
 
@@ -64,7 +69,7 @@ export const createBooking = asyncHandler(async (req, res, next) => {
     res.json(newBooking);
   });
   */
-
+/*
 export const checkSlotBookings = async (req, res, next) => {
   try {
     const agg = [
@@ -135,3 +140,27 @@ export const checkBookings = async (req, res, next) => {
     next(error);
   }
 };
+*/
+
+
+// Start SQL functions:
+
+export const getBookingsSQL = asyncHandler(async (req, res) => {
+  try {
+  const result = await pool.query("SELECT * FROM bookings;");
+  return res.status(200).json(result.rows);
+  }
+  catch (error) {
+    res.status(500).json({ message: "Booking not found" });
+  }
+});
+
+export const getBookingsByIDSQL = asyncHandler(async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await pool.query("SELECT * FROM bookings WHERE id = $1;", [id]);
+    return res.status(200).json(result.rows[0]);
+  } catch (error) {
+    res.status(500).json({ message: "Booking not found" });
+  }
+});
