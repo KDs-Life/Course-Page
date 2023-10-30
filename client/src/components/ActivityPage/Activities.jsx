@@ -128,7 +128,12 @@ function Activities() {
                           {activity.category}
                           {activity.publishedDate} */}
                           </Card.Text>
-                          <Button variant="primary" id="winterCourse-Btn">
+                          <NavLink
+                            as="a"
+                            href={`/activities/${activity.id}`}
+                            variant="primary"
+                            id="winterCourse-Btn"
+                          >
                             Mehr
                           </Button>
                         </Card.Body>

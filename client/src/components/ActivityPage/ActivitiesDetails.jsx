@@ -11,7 +11,7 @@ function ActivitiesDetails() {
     axios
       .get(`/activities/${id}`)
       .then((response) => {
-        setActivity(response.data[0]);
+        setActivity(response.data);
       })
       .catch((error) => {
         console.error("Fehler beim Abrufen der Daten: ", error);
@@ -24,9 +24,12 @@ function ActivitiesDetails() {
 
   return (
     <>
-      <Card>
-        <img src={activity.images[0].url} alt="BILD" />{" "}
-        {/* image-url will change when we switch to SQL !*/}
+      <Card className="dflex align-items-center">
+        <img
+          src={activity.image_url}
+          alt={activity.image_alt}
+          width={`720px`}
+        />
         <Card.Body>
           <Card.Text>{activity.description}</Card.Text>
         </Card.Body>
@@ -34,17 +37,15 @@ function ActivitiesDetails() {
 
       <h1>{activity.title}</h1>
 
-      {activity.address && (
-        <div>
-          <p>{activity.address.street}</p>
-          <p>{activity.address.Housenumber}</p>
-          <p>{activity.address.ZIP}</p>
-          <p>{activity.address.City}</p>
-          <p>{activity.address.Country}</p>
-        </div>
-      )}
-      <p>{activity.category}</p>
-      <p>{activity.publishedDate}</p>
+      <div>
+        <p>Start: {activity.startdate}</p>
+        <p>MinSlots: {activity.minslots}</p>
+        <p>MaxSlots: {activity.maxslots}</p>
+        <p>Price: {activity.price} €</p>
+        <p>Requirements: {activity.requirements}</p>
+        <p>Category: {activity.category}</p>
+        <p>Published: {activity.published}</p>
+      </div>
     </>
   );
 }
