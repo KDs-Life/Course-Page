@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
@@ -59,7 +59,7 @@ function Profile() {
       userInfos()
         .then((response) => setUserProfile(response.data.data))
         .catch((err) => {
-          if (err.status === "401") console.log("Refresh token");
+          if (err.response.status === "401") console.log("Refresh token");
         }); // NOTE: if 401: refresh Token and fire again?
     }
   }, []);
@@ -75,11 +75,18 @@ function Profile() {
   return (
     <>
       <div>Profile Page</div>
-      <p>Timer: {tokenTimer}</p>
+      {tokenTimer > 0 ? (
+        <p>Timer: {tokenTimer}</p>
+      ) : (
+        <p>
+          <NavLink href="/refresh">Token expired! REFRESH TOKEN</NavLink>
+        </p>
+      )}
       {userProfile ? (
         <>
+          <div>Role: {userProfile.role}</div>
           <div>Email: {authUser}</div>
-          <div>Bookings: {userProfile.bookings.length}</div>
+          <div>Bookings: {userProfile.bookings}</div>
           <div>Member since: {userProfile.member_since}</div>
         </>
       ) : (

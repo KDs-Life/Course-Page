@@ -6,7 +6,7 @@ const requireAuth = (req, res, next) => {
   if (token) {
     jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, (err, decodedToken) => {
       if (err) {
-        console.error(err.message);
+        if (err.message === "jwt expired") console.error(err.message); // TODO: if "jwt expired" -> try refresh
         res.status(401).json("401 Unauthorized");
       } else {
         next();
