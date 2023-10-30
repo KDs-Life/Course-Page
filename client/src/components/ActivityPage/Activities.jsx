@@ -107,13 +107,11 @@ function Activities() {
                         <Card.Body>
                           <Card.Title>{activity.title}</Card.Title>
                           <div>{id}</div>
-                          <Card.Text>
-                            <div className="information-box">
-                              {activity.description}
-                              {activity.startDate}
-                              {activity.minSlots}
-                              {activity.maxSlots}
-                            </div>
+                          <Card.Text className="information-box">
+                            {activity.description}
+                            {activity.startDate}
+                            {activity.minSlots}
+                            {activity.maxSlots}
 
                             {/* OBERE PART HIER ANZEIGEN! 
                           UNTERE PART AUF DETAILS SEITE */}

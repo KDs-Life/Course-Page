@@ -3,6 +3,7 @@ display: flex;
 flex-direction: column;
 flex-wrap: wrap;
 justify-content: center;
+margin: 10px;
 }
 
 
@@ -10,22 +11,18 @@ justify-content: center;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 100%;
   margin-bottom: 25px;
   /* border: 2px solid red; */
 }
 
+#winter-btn:hover,
+#summer-btn:hover,
 .season-btn {
   background: linear-gradient(-45deg, #3498db, #006f57);
-  border-radius: 5px;
-  font-size: 1.2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-
 }
 
+#winter-btn:hover,
+#summer-btn:hover,
 .season-btn:hover {
   background: linear-gradient(-45deg, #006f57, #3498db);
 }
@@ -35,19 +32,8 @@ justify-content: center;
 #winter-btn,
 #summer-btn {
   background: linear-gradient(-45deg, #3498db, #006f57);
-  border-radius: 5px;
-  font-size: 1.2rem;
-  display: flex; 
-  justify-content: flex-start;
-  align-items: center; 
-  height: 45px;
-  
 }
 
-#winter-btn:hover,
-#summer-btn:hover {
-  background: linear-gradient(-45deg, #006f57, #3498db);
-}
 
 #winterCourse-Btn {
   background: linear-gradient(-45deg, #3498db, #006f57);
@@ -94,7 +80,7 @@ justify-content: center;
 }
 
 .card-body {
-  /* border: 2px solid rgb(128, 0, 122); */
+  border: 2px solid rgb(128, 0, 122);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
