@@ -88,6 +88,10 @@ export const loginUser = asyncHandler(async (req, res) => {
         process.env.REFRESH_TOKEN_SECRET,
         { expiresIn: process.env.REFRESH_TOKEN_EXPIRE }
       );
+      const saveRefreshToken = await pool.query(
+        "UPDATE users SET refresh_token = $1 WHERE email = $2;",
+        [refreshToken, email]
+      );
       res.cookie("jwt", refreshToken, {
         httpOnly: true,
         //secure: true,
@@ -101,5 +105,3 @@ export const loginUser = asyncHandler(async (req, res) => {
     //next(error);
   }
 });
-
-// TODO: auth user route for verifying requests
