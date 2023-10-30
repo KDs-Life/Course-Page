@@ -37,7 +37,7 @@ function Activities() {
   // Funktion zum Behandeln des Klicks auf eine Saison
   const handleSeasonClick = (selectedSeason) => {
     setSeason(selectedSeason); // Aktuelle Saison festlegen
-    setShowWinterActivity(false); // Winteraktivitäten verbergen
+    // setShowWinterActivity(false); // Winteraktivitäten verbergen
     setShowSummerActivity(false); // Sommeraktivitäten verbergen
   };
 
@@ -87,18 +87,19 @@ function Activities() {
             </Button>
 
             {/* Liste von Winteraktivitäten in Bootstrap-Karten */}
+
             <div
               className={`winterActivityBox ${
                 showWinterActivity ? "open" : "closed"
               }`}>
               {/* Rendern der Winteraktivitäten */}
-              <Row xs={1} md={2} className="g-4">
+              <Row xs={0} md={0} className="g-4">
                 {loading ? (
                   <p>Lade Winterkursdaten...</p>
                 ) : (
                   winterActivitiesData.map((activity, id) => (
                     <Col key={activity.id}>
-                      <Card>
+                      <Card id="cardBox">
                         <Card.Img
                           variant="top"
                           src={`/images/course${id + 1}.jpg`}
