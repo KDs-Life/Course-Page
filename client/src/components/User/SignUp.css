@@ -1,4 +1,4 @@
-/* Sign-Up-Wrapper */
+
 .sign-up-wrapper {
   display: flex;
   flex-direction: column;
@@ -16,9 +16,7 @@
 
 .sign-up-title {
   font-size: 2rem;
-  color: #fff;
   margin: 20px;
-  cursor: pointer; /* Zeige an, dass der Titel anklickbar ist */
 }
 
 .sign-up-title:hover {
@@ -27,16 +25,16 @@
 
 @keyframes colorTransition {
   0% {
-    color: #01099b; /* Erste Farbe */
+    color: #01099b;
   }
   33% {
-    color: #43e0fc; /* Zweite Farbe */
+    color: #43e0fc; 
   }
   66% {
-    color: #007d3f; /* Dritte Farbe */
+    color: #007d3f; 
   }
   100% {
-    color: #23d5ab; /* Zur ersten Farbe zurückkehren */
+    color: #23d5ab; 
   }
 }
 
@@ -47,7 +45,7 @@
   max-width: 400px;
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
-  box-sizing: border-box; /* Box-Sizing hinzugefügt */
+  box-sizing: border-box; 
 }
 
 .mb-3 {
@@ -67,7 +65,7 @@
   display: block;
   text-align: left;
   margin-bottom: 5px;
-  color: #fff;
+  font-size: 18px;
 }
 
 .mb-3 input:focus {
@@ -76,14 +74,13 @@
 
 #signUp-Btn {
   background-color: #03a906;
-  color: #fff;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
   margin-top: 10px;
-  width: 45%; /* Ändern Sie die Breite für bessere Darstellung */
+  width: 45%; 
 }
 
 #signUp-Btn:hover {
