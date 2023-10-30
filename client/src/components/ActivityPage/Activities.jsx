@@ -7,6 +7,7 @@ import Card from "react-bootstrap/Card"; // Bootstrap-Komponente für Karten
 import Col from "react-bootstrap/Col"; // Bootstrap-Komponente für Spalten
 import Row from "react-bootstrap/Row"; // Bootstrap-Komponente für Zeilen
 import Button from "react-bootstrap/Button"; // Bootstrap-Komponente für Buttons
+import { NavLink } from "react-router-dom";
 
 // Platzhalterdaten für Winteraktivitäten (werden später durch echte Daten ersetzt)
 
@@ -78,21 +79,18 @@ function Activities() {
         {/* Ansicht für Winteraktivitäten */}
         {season === "Winter" && (
           <div className="courseContainer">
-            
             <Button
               onClick={toggleWinterActivity}
               variant="success"
               id="winter-btn">
               Winterkurse
             </Button>
-            
+
             {/* Liste von Winteraktivitäten in Bootstrap-Karten */}
             <div
               className={`winterActivityBox ${
                 showWinterActivity ? "open" : "closed"
               }`}>
-            
-
               {/* Rendern der Winteraktivitäten */}
               <Row xs={1} md={2} className="g-4">
                 {loading ? (
@@ -132,10 +130,10 @@ function Activities() {
                             as="a"
                             href={`/activities/${activity.id}`}
                             variant="primary"
-                            id="winterCourse-Btn"
-                          >
+                            id="winterCourse-Btn">
+                            {" "}
                             Mehr
-                          </Button>
+                          </NavLink>
                         </Card.Body>
                       </Card>
                     </Col>
@@ -149,7 +147,10 @@ function Activities() {
         {/* Ansicht für Sommeraktivitäten^q */}
         {season === "Summer" && (
           <div className="courseContainer">
-            <Button onClick={toggleSummerActivity} variant="success" id="summer-btn">
+            <Button
+              onClick={toggleSummerActivity}
+              variant="success"
+              id="summer-btn">
               Sommerkurse
             </Button>
           </div>
