@@ -1,79 +1,75 @@
 .activities-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 10px;
-  box-sizing: border-box;
+  width: 50%;
 }
 
 .winter-titel {
   font-size: 2rem;
-  font-weight: bold;
   text-align: center;
   padding-bottom: 25px;
-
 }
 
 .seasonContainer {
   display: flex;
-  flex-direction: row; 
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
-  width: 100%;
-  /* max-width: 500px;  */
   margin: 10px;
-  padding: 10px;
+  padding: 0px;
   border-radius: 5px;
-  box-sizing: border-box;
-  /* border: #1dd00c 2px solid; */
+  /* border: #1dd00c 1px solid; */
 }
 
-.season-btn,
-#winter-btn,
-#summer-btn {
+.season-btn {
   background: linear-gradient(-45deg, #3498db, #006f57);
-  color: white;
   border: 1px solid #ccc;
   border-radius: 5px;
-  padding: 10px;
-  margin: 5px;
-  width: 100%;
+  margin: 10px;
+  width: 15%;
   transition: background 0.3s ease-in;
   font-size: 1.5rem;
 }
 
-.season-btn:hover,
-#winter-btn:hover,
-#summer-btn {
+.season-btn:hover {
   background: linear-gradient(-45deg, #006f57, #3498db);
 }
 
 /* Winter-Buttons */
 
-#winter-btn,
+#winter-btn {
+  background: linear-gradient(-45deg, #3498db, #006f57);
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  transition: background 0.3s ease-in;
+}
+
+#winter-btn:hover {
+  background: linear-gradient(-45deg, #006f57, #3498db);
+}
+
 #summer-btn {
-  font-size: 1.5rem;
-  width: 15%;
-  /* margin-bottom: 10px; */
+  background: linear-gradient(-45deg, #3498db, #006f57);
 }
 
 /* Kurs-Container */
-
+.winterActivityBox {
+  /* border: #3498db 2px solid; */
+  border-radius: 5px;
+  padding: 10px;
+}
 .courseContainer {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: flex-start;
-  margin: 10px ;
+  margin: 10px;
   border-bottom: 1px solid #ccc;
 }
 
 .information-box {
-  border: 2px solid #1dd00c;
   border-radius: 5px;
-  padding: 10px; 
+  padding: 10px;
   width: 100%;
   margin: 10px 0;
 }
@@ -84,11 +80,11 @@
   border-radius: 5px;
   transition: background 0.3s ease-in;
   font-size: 1.2rem;
-  margin: 10px auto; 
-  padding: 10px; 
-  width: 50%; 
-  display: block; 
-  color: white;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 #winterCourse-Btn:hover {
@@ -110,13 +106,12 @@
 }
 
 .card-body {
-  height: auto; 
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  padding: 0;
   transition: height 0.3s ease-in;
   border-radius: 5px;
+  min-height: 250px;
+
+  /* border: #3498db 2px solid; */
 }
 
 /* Akkordion-Animation für die Winter-Kurs-Box */
@@ -129,7 +124,7 @@
 
 .winterActivityBox img {
   width: 100%;
-  height: auto; 
+  height: auto;
   object-fit: cover;
   object-position: center;
 }
@@ -157,9 +152,8 @@
 }
 @media (max-width: 768px) {
   .seasonContainer {
-    width: 100%; 
-    max-width: none; 
-
+    width: 100%;
+    max-width: none;
   }
 
   .navbar {
@@ -171,12 +165,18 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {
+  .seasonContainer {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
   .navbar {
-    padding: 5px;
+    padding: 10px;
   }
 
   .main-content {
-    margin: 5px;
+    margin: 10px;
   }
 }
