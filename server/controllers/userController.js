@@ -5,7 +5,7 @@ export const getUser = asyncHandler(async (req, res, next) => {
   const email = req.body.email.trim();
   try {
     const existingUser = await pool.query(
-      "SELECT users.email as email, users.created as created, users.lastname as lastname, users.firstname as firstname, users.role as role, count(b.*) as bookings FROM users JOIN bookings as b ON users.id = b.users_id WHERE users.email = $1 GROUP BY users.email, users.role, users.created, users.lastname, users.firstname;",
+      "SELECT users.email as email, users.created as created, users.lastname as lastname, users.firstname as firstname, users.role as role, count(b.*) as bookings FROM users LEFT JOIN bookings as b ON users.id = b.users_id WHERE users.email = $1 GROUP BY users.email, users.role, users.created, users.lastname, users.firstname;",
       [email]
     );
     if (existingUser.rowCount !== 0) {
