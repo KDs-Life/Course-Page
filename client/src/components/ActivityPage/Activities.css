@@ -1,3 +1,10 @@
+.backround-css {
+  /*NOTE: ANIMATION BACKROUND BEWEGUNG UND KEYFRAMES, UNTEN AM ENDE DES CODES!!*/
+  /* background-image: url("https://i.postimg.cc/JzrkPT1B/winter-aesthetic-morning-foggy-moon-landscape-cold-5k-5786x3254-497.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center; */
+}
 .activities-wrapper {
   display: flex;
   flex-direction: column;
@@ -30,11 +37,15 @@
   background: linear-gradient(-45deg, #3498db, #006f57);
   height: 45px;
   border: 1px solid black;
-  border-radius: 5px;
-  display:  flex;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  width: 150px;
 }
+
 #winter-btn:hover,
-#summer-btn:hover,
 .season-btn:hover {
   background: linear-gradient(-45deg, #006f57, #3498db);
 }
@@ -67,6 +78,7 @@
     background-position: 0% 50%;
   }
 }
+
 .winterActivityBox {
   width: 100%;
   transition: all 0.5s ease-in-out;
@@ -74,17 +86,19 @@
   opacity: 0;
   max-height: 0;
   margin: 10px auto;
-
-  /* border: #3498db 2px solid; */
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr;
 }
+
 #cardBox {
-  /* border: 2px green solid;  */
   width: 350px;
   height: 100%;
+  border-radius: 8px;
 }
 
 .card-body {
-  border: 2px solid rgb(128, 0, 122);
+  /* border: 2px solid rgb(128, 0, 122); */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -94,7 +108,6 @@
 }
 
 .information-box {
-  /* border: 2px green solid; */
   width: 100%;
   height: 100%;
   text-align: center;
@@ -102,7 +115,6 @@
 }
 
 /* Kurs-Container */
-
 .winterActivityBox img {
   width: 100%;
   height: 200px;
@@ -132,11 +144,21 @@
   }
 }
 
+
 /* Media Queries */
 @media (max-width: 768px) {
   .seasonContainer {
     width: 100%;
     max-width: none;
+  }
+  .season-btn {
+    width: 50%;
+  }
+  #winter-btn {
+    width: 50%;
+  }
+  #winterCourse-Btn {
+    width: 100%;
   }
 
   .navbar {
@@ -164,6 +186,6 @@
   }
 
   .winterActivityBox {
-    width: 80%;
+    width: 100%;
   }
 }
