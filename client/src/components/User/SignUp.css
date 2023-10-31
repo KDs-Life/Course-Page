@@ -45,19 +45,3 @@
 .mb-3 input:focus {
   border: #013fcf solid 2px;
 }
-
-#signUp-Btn {
-
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  margin-top: 10px;
-  width: 45%;
-}
-
-#signUp-Btn:hover {
-  transition: all 0.3s ease-in-out;
-  background-color: #022ca1;
-}

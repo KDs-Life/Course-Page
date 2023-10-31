@@ -51,43 +51,19 @@ function Activities() {
 
   return (
     <>
-    <div className="backround-css">
       <div className="activities-wrapper">
         {/* Ansicht für Saison-Auswahl-Buttons */}
         <div className="seasonContainer">
-          <button
-            onClick={() => handleSeasonClick("Winter")}
-            className="season-btn">
-            Winter
-          </button>
-          <button
-            onClick={() => handleSeasonClick("Summer")}
-            className="season-btn">
-            Summer
-          </button>
-          <button
-            onClick={() => handleSeasonClick("Autumn")}
-            className="season-btn">
-            Autumn
-          </button>
-          <button
-            onClick={() => handleSeasonClick("Spring")}
-            className="season-btn">
-            Spring
-          </button>
+          <Button onClick={() => handleSeasonClick("Winter")}>Winter</Button>
+          <Button onClick={() => handleSeasonClick("Summer")}>Summer</Button>
+          <Button onClick={() => handleSeasonClick("Autumn")}>Autumn</Button>
+          <Button onClick={() => handleSeasonClick("Spring")}>Spring</Button>
         </div>
 
         {/* Ansicht für Winteraktivitäten */}
         {season === "Winter" && (
           <div className="courseContainer">
-            <div >
-              <Button
-                onClick={toggleWinterActivity}
-                variant="success"
-                id="winter-btn">
-                Winterkurse
-              </Button>
-            </div>
+            <Button onClick={toggleWinterActivity}>Winterkurse</Button>
 
             {/* Liste von Winteraktivitäten in Bootstrap-Karten */}
 
@@ -132,7 +108,7 @@ function Activities() {
                             as="a"
                             to={`/activities/${activity.id}`}
                             variant="primary"
-                            id="winterCourse-Btn">
+                            id="more-info-link">
                             {" "}
                             Mehr
                           </NavLink>
@@ -157,7 +133,6 @@ function Activities() {
             </Button>
           </div>
         )}
-      </div>
       </div>
     </>
   );
