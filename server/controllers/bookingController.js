@@ -1,7 +1,7 @@
 import asyncHandler from "../utils/asyncHandler.js";
 import pool from "../services/db.js";
 
-export const getBookingsSQL = asyncHandler(async (req, res) => {
+export const getBookings = asyncHandler(async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM bookings;");
     return res.status(200).json(result.rows);
@@ -10,7 +10,7 @@ export const getBookingsSQL = asyncHandler(async (req, res) => {
   }
 });
 
-export const getBookingsByIDSQL = asyncHandler(async (req, res) => {
+export const getBookingsByID = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
     const result = await pool.query("SELECT * FROM bookings WHERE id = $1;", [
@@ -22,7 +22,7 @@ export const getBookingsByIDSQL = asyncHandler(async (req, res) => {
   }
 });
 
-export const createBookingSQL = asyncHandler(async (req, res) => {
+export const createBooking = asyncHandler(async (req, res) => {
   const { userId, activityId, quantity, price } = req.body;
 
   const userResult = await pool.query("SELECT * FROM users WHERE id = $1;", [
@@ -55,4 +55,15 @@ export const createBookingSQL = asyncHandler(async (req, res) => {
   );
 
   res.status(201).json(result.rows[0]);
+});
+
+export const deleteBooking = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await pool.query("DELETE FROM bookings WHERE id = $1 RETURNING *;", [id]);
+    return res.status(200).json({ message: "Booking deleted successfully" });
+  } catch (error) {
+    return res.status(500).json({ message: "Error deleting booking" });
+  }
 });
