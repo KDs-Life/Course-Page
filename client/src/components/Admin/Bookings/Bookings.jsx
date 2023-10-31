@@ -32,7 +32,7 @@ function Bookings() {
 
   return (
     <>
-      <div>Table with bookings</div>
+      <div>Bookings-Table</div>
       <Table responsive>
         <thead>
           <tr>
@@ -52,7 +52,9 @@ function Bookings() {
               <td>{booking.activities_id}</td>
               <td>{booking.quantity}</td>
               <td>{inEuro(booking.price)}</td>
-              <td>{inEuro(booking.price * booking.quantity)}</td>
+              <td>
+                {inEuro(Number(booking.price) * Number(booking.quantity))}
+              </td>
             </tr>
           ))}
         </tbody>
