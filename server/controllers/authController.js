@@ -69,44 +69,50 @@ export const loginUser = asyncHandler(async (req, res) => {
       [email]
     );
     if (!foundUser) {
-      return res.status(401).json({ message: "Email not found." });
+      return res
+        .status(401)
+        .json({ status: "error", message: "Email not found." });
     }
     const match = await bcrypt.compare(password, foundUser.rows[0].password);
-    if (match) {
-      const accessToken = jwt.sign(
-        {
-          email: foundUser.rows[0].email,
-          roles: foundUser.rows[0].role,
-        },
-        process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: process.env.ACCESS_TOKEN_EXPIRE }
-      );
-      const refreshToken = jwt.sign(
-        {
-          email: foundUser.rows[0].email,
-        },
-        process.env.REFRESH_TOKEN_SECRET,
-        { expiresIn: process.env.REFRESH_TOKEN_EXPIRE }
-      );
-      const saveRefreshToken = await pool.query(
-        "UPDATE users SET refresh_token = $1 WHERE email = $2;",
-        [refreshToken, email]
-      );
-      res.cookie("jwt", refreshToken, {
-        httpOnly: true,
-        //secure: true,
-        //sameSite: "None",
-        maxAge: process.env.REFRESH_COOKIE_EXPIRE,
-      });
-      res.json({ accessToken });
-    }
+    if (!match)
+      return res
+        .status(401)
+        .json({ status: "error ", message: "Wrong credentials." });
+
+    const accessToken = jwt.sign(
+      {
+        email: foundUser.rows[0].email,
+        roles: foundUser.rows[0].role,
+      },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: process.env.ACCESS_TOKEN_EXPIRE }
+    );
+    const refreshToken = jwt.sign(
+      {
+        email: foundUser.rows[0].email,
+      },
+      process.env.REFRESH_TOKEN_SECRET,
+      { expiresIn: process.env.REFRESH_TOKEN_EXPIRE }
+    );
+    const saveRefreshToken = await pool.query(
+      "UPDATE users SET refresh_token = $1 WHERE email = $2;",
+      [refreshToken, email]
+    );
+    //TODO: cookie settings in ENV for production?!
+    res.cookie("jwt", refreshToken, {
+      httpOnly: true,
+      //secure: true,
+      //sameSite: "None",
+      maxAge: process.env.REFRESH_COOKIE_EXPIRE,
+    });
+    res.json({ accessToken });
   } catch (error) {
     console.log(error);
     //next(error);
   }
 });
 
-//autoLogin: when user reloads page but got a valid cookie
+//TODO: autoLogin => when user reloads page but got a valid cookie (security issue?)
 export const autoLogin = asyncHandler(async (req, res) => {
   const cookie = req.headers.cookie;
 
