@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import axios from "../../api/axios";
+import { Alert } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import "./LogIn.css";
 
@@ -22,7 +23,6 @@ function LogIn() {
       setAuthUser({});
       setIsLoggedIn(false);
       navigate("/login");
-      //return response.data;
     } catch (error) {
       console.log(error);
     }
@@ -30,7 +30,6 @@ function LogIn() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    //TODO: check out custom hooks for AXIOS (differantiate between private and non-private calls to the api)
     try {
       const response = await axios.post(
         "/login",
@@ -50,10 +49,11 @@ function LogIn() {
       if (error.response?.status === 400) {
         setErrMsg("Missing Username or Password");
       } else if (error.response?.status === 401) {
-        setErrMsg("Unauthorized");
+        setErrMsg("Wrong credentials");
       }
     }
   };
+
   if (isLoggedIn)
     return (
       <>
@@ -71,7 +71,7 @@ function LogIn() {
         <div className="user-log-in-container">
           <h2 className="logIn-Title">Log-In</h2>
           <div>
-            {errMsg && <p>{errMsg}</p>}
+            {errMsg !== "" ? <Alert variant="danger">{errMsg}</Alert> : ""}
             <Form className="log-in-form" onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="formGroupEmail">
                 <Form.Label>Email</Form.Label>
