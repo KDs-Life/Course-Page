@@ -13,7 +13,6 @@ function HomePage() {
               Willkommen auf der Skii-Erlebnis Seite
             </div>
             <div className="masthead-heading ">Lass dich verzaubern!!</div>
-            <Button className="homepage-btn">Log-In</Button>
           </div>
         </section>
         <section className="page-section">
@@ -80,27 +79,28 @@ function HomePage() {
       <footer className="footer-wrapper">
         <div className="footer-box">
           <div>Copyright &copy; Your Website 2023</div>
-          <div className="footer-btn">
+          <div className="social-media-links">
             <Button>
-              <a className="btn" href="#!" aria-label="Twitter">
+              <a href="#!" aria-label="Twitter">
                 <i className="fab fa-twitter"></i>
               </a>
             </Button>
             <Button>
-              <a className="btn" href="#!" aria-label="Facebook">
+              <a href="#!" aria-label="Facebook">
                 <i className="fab fa-facebook-f"></i>
               </a>
             </Button>
             <Button>
-              <a className="btn" href="#!" aria-label="LinkedIn">
+              <a href="#!" aria-label="LinkedIn">
                 <i className="fab fa-linkedin-in"></i>
               </a>
             </Button>
           </div>
-          <div className="footer-link">
+          <div className="footer-links">
             <a className="" href="#!">
               Privacy Policy
             </a>
+            
             <a className="" href="#!">
               Terms of Use
             </a>
