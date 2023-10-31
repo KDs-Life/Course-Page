@@ -26,14 +26,12 @@ function Bookings() {
       });
   }, []);
 
-  //bookings.map((booking) => console.log(booking));
-
   if (!bookings || bookings.length === 0) return <div>No Bookings found</div>;
 
   return (
     <>
       <div>Bookings-Table</div>
-      <Table responsive>
+      <Table responsive="lg" striped>
         <thead>
           <tr>
             <th>id</th>
