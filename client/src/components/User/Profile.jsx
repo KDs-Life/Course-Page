@@ -4,6 +4,11 @@ import { useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
 import axios from "../../api/axiosPrivate";
 
+const getCookie = (key) => {
+  var b = document.cookie.match("(^|;)\\s*" + key + "\\s*=\\s*([^;]+)");
+  return b ? b.pop() : "";
+};
+
 function Profile() {
   const {
     authUser,

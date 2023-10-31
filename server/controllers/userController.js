@@ -26,12 +26,13 @@ export const getUser = asyncHandler(async (req, res, next) => {
 });
 
 export const updateUser = asyncHandler(async (req, res, next) => {
-  
   const { id, street, housenumber, zip, city, country, description } = req.body;
 
   try {
-   
-    const catchId = await pool.query("SELECT address_id FROM users WHERE id = $1;", [id]);
+    const catchId = await pool.query(
+      "SELECT address_id FROM users WHERE id = $1;",
+      [id]
+    );
     const addressId = catchId.rows[0].address_id;
 
     await pool.query(
@@ -40,6 +41,23 @@ export const updateUser = asyncHandler(async (req, res, next) => {
     );
 
     res.status(200).json({ message: "Address details updated successfully" });
+  } catch (error) {
+    next(error);
+  }
+});
+
+//Admin Functions
+export const getAllUser = asyncHandler(async (req, res, next) => {
+  try {
+    const existingUser = await pool.query(
+      "SELECT id, email, firstname, lastname, role, created, address_id FROM users;"
+    );
+    if (existingUser.rowCount !== 0) {
+      return res
+        .status(200)
+        .send({ status: "success", data: existingUser.rows });
+    } else
+      res.status(404).send({ status: "error", message: "No Userdata found" });
   } catch (error) {
     next(error);
   }
