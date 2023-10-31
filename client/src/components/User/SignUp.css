@@ -7,7 +7,7 @@
   align-items: center;
   text-align: center;
   margin: 50px auto;
-  border: rgb(83, 82, 82) solid 2px;
+  border: rgb(83, 82, 82) solid 1px;
   border-radius: 8px;
   box-shadow: 0px 0px 10px 0px rgba(87, 87, 87, 0.75);
   background-color: rgba(255, 255, 255, 0.3);
@@ -17,6 +17,10 @@
 .sign-up-title {
   font-size: 2rem;
   margin-top: 50px;
+}
+
+.sign-up-title:hover {
+  color: aqua;
 }
 
 .sign-up-form {
@@ -43,5 +47,5 @@
 }
 
 .mb-3 input:focus {
-  border: #013fcf solid 2px;
+  /* border: #013fcf solid 2px; */
 }
