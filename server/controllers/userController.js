@@ -26,6 +26,21 @@ export const getUser = asyncHandler(async (req, res, next) => {
 });
 
 export const updateUser = asyncHandler(async (req, res, next) => {
-  // TODO: Update userdetails (address for bookings?!)
-  const { id, firstname, lastname } = req.body;
+  
+  const { id, street, housenumber, zip, city, country, description } = req.body;
+
+  try {
+   
+    const catchId = await pool.query("SELECT address_id FROM users WHERE id = $1;", [id]);
+    const addressId = catchId.rows[0].address_id;
+
+    await pool.query(
+      "UPDATE address SET street = $1, housenumber = $2, zip = $3, city = $4, country = $5, description = $6 WHERE id = $7;",
+      [street, housenumber, zip, city, country, description, addressId]
+    );
+
+    res.status(200).json({ message: "Address details updated successfully" });
+  } catch (error) {
+    next(error);
+  }
 });
