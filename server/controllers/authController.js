@@ -105,3 +105,14 @@ export const loginUser = asyncHandler(async (req, res) => {
     //next(error);
   }
 });
+
+//autoLogin: when user reloads page but got a valid cookie
+export const autoLogin = asyncHandler(async (req, res) => {
+  const cookie = req.headers.cookie;
+
+  if (!cookie || cookie === null) {
+    return res.sendStatus(401);
+  }
+
+  return res.sendStatus(200);
+});

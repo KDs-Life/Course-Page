@@ -4,6 +4,11 @@ import { useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
 import axios from "../../api/axiosPrivate";
 
+const getCookie = (key) => {
+  var b = document.cookie.match("(^|;)\\s*" + key + "\\s*=\\s*([^;]+)");
+  return b ? b.pop() : "";
+};
+
 function Profile() {
   const {
     authUser,
@@ -60,7 +65,7 @@ function Profile() {
         .then((response) => setUserProfile(response.data.data))
         .catch((err) => {
           if (err.response.status === "401") console.log("Refresh token");
-        }); // NOTE: if 401: refresh Token and fire again?
+        }); // NOTE: if 401: refresh accessToken in memory and reload profile?
     }
   }, []);
 
@@ -84,6 +89,11 @@ function Profile() {
       )}
       {userProfile ? (
         <>
+          {userProfile.role === "Admin" ? (
+            <NavLink to="/dashboard">Dashboard</NavLink>
+          ) : (
+            ""
+          )}
           <div>Role: {userProfile.role}</div>
           <div>Email: {authUser}</div>
           <div>Bookings: {userProfile.bookings}</div>
