@@ -6,6 +6,10 @@ import authRouter from "./routes/authRouter.js";
 import userRouter from "./routes/userRouter.js";
 import activityRouter from "./routes/activityRouter.js";
 import bookingRouter from "./routes/bookingRouter.js";
+<<<<<<< HEAD
+=======
+import refreshRouter from "./routes/refreshTokenRouter.js";
+>>>>>>> 4109db99a04504b334b1c1d8227a8dce9b23c59b
 // import "./db/server.js";
 import "./services/db.js";
 
@@ -24,6 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 //app.use("*", checkUser);
 app.use("/", authRouter);
+app.use("/refresh", refreshRouter);
 app.use("/user", requireAuth, userRouter);
 app.use("/activities", activityRouter);
 app.use("/bookings", bookingRouter);

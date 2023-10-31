@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "../../api/axios"; // Importiere Axios
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -15,6 +16,7 @@ function SignUp() {
     confirmPassword: "",
     address: "",
   });
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,6 +33,7 @@ function SignUp() {
           confirmPassword: "",
           address: "",
         });
+        navigate("/login");
       })
       .catch((error) => {
         console.error("Error", error);

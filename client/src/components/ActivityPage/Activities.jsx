@@ -79,12 +79,14 @@ function Activities() {
         {/* Ansicht für Winteraktivitäten */}
         {season === "Winter" && (
           <div className="courseContainer">
-            <Button
-              onClick={toggleWinterActivity}
-              variant="success"
-              id="winter-btn">
-              Winterkurse
-            </Button>
+            <div >
+              <Button
+                onClick={toggleWinterActivity}
+                variant="success"
+                id="winter-btn">
+                Winterkurse
+              </Button>
+            </div>
 
             {/* Liste von Winteraktivitäten in Bootstrap-Karten */}
 
@@ -97,21 +99,21 @@ function Activities() {
                 {loading ? (
                   <p>Lade Winterkursdaten...</p>
                 ) : (
-                  winterActivitiesData.map((activity, id) => (
+                  winterActivitiesData.map((activity, key) => (
                     <Col key={activity.id}>
                       <Card id="cardBox">
                         <Card.Img
                           variant="top"
-                          src={`/images/course${id + 1}.jpg`}
+                          src={`/images/course${key + 1}.jpg`}
                         />
                         <Card.Body>
                           <Card.Title>{activity.title}</Card.Title>
-                          <div>{id}</div>
+                          <div>{activity.id}</div>
                           <Card.Text className="information-box">
                             {activity.description}
-                            {activity.startDate}
-                            {activity.minSlots}
-                            {activity.maxSlots}
+                            {activity.startdate}
+                            {activity.minslots}
+                            {activity.maxslots}
 
                             {/* OBERE PART HIER ANZEIGEN! 
                           UNTERE PART AUF DETAILS SEITE */}
@@ -127,7 +129,7 @@ function Activities() {
                           </Card.Text>
                           <NavLink
                             as="a"
-                            href={`/activities/${activity.id}`}
+                            to={`/activities/${activity.id}`}
                             variant="primary"
                             id="winterCourse-Btn">
                             {" "}
