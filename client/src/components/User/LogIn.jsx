@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import axios from "../../api/axios";
 import Form from "react-bootstrap/Form";
+import { Button } from "react-bootstrap";
 import "./LogIn.css";
 
 function LogIn() {
@@ -59,7 +60,7 @@ function LogIn() {
       <>
         <div>LOGGED IN</div>
         <div>
-          <button onClick={handleLogout}>Log-Out</button>
+          <Button onClick={handleLogout}>Log-Out</Button>
         </div>
       </>
     );
@@ -92,12 +93,12 @@ function LogIn() {
                 />
               </Form.Group>
               <div className="btn-container">
-                <button type="submit" className="logIn-Btn">
+                <Button type="submit">
                   Log-In
-                </button>
-                <button onClick={() => navigate("/signup")} id="signUp-Btn">
+                </Button>
+                <Button onClick={() => navigate("/signup")}>
                   Sign-Up
-                </button>
+                </Button>
               </div>
             </Form>
           </div>

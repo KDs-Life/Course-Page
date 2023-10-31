@@ -103,7 +103,7 @@ function Profile() {
         ""
       )}
 
-      <button onClick={handleLogout}>LOGOUT</button>
+      <Button onClick={handleLogout}>LOGOUT</Button>
     </>
   );
 }

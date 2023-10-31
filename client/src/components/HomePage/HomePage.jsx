@@ -1,5 +1,6 @@
 // import { Container, Row, Col, Button } from "react-bootstrap";
 // import Carousel from "react-bootstrap/Carousel";
+import { Button } from "react-bootstrap";
 import "./HomePage.css";
 
 function HomePage() {
@@ -12,7 +13,7 @@ function HomePage() {
               Willkommen auf der Skii-Erlebnis Seite
             </div>
             <div className="masthead-heading ">Lass dich verzaubern!!</div>
-            <button className="homepage-btn">Log-In</button>
+            <Button className="homepage-btn">Log-In</Button>
           </div>
         </section>
         <section className="page-section">
@@ -80,21 +81,21 @@ function HomePage() {
         <div className="footer-box">
           <div>Copyright &copy; Your Website 2023</div>
           <div className="footer-btn">
-            <button>
+            <Button>
               <a className="btn" href="#!" aria-label="Twitter">
                 <i className="fab fa-twitter"></i>
               </a>
-            </button>
-            <button>
+            </Button>
+            <Button>
               <a className="btn" href="#!" aria-label="Facebook">
                 <i className="fab fa-facebook-f"></i>
               </a>
-            </button>
-            <button>
+            </Button>
+            <Button>
               <a className="btn" href="#!" aria-label="LinkedIn">
                 <i className="fab fa-linkedin-in"></i>
               </a>
-            </button>
+            </Button>
           </div>
           <div className="footer-link">
             <a className="" href="#!">

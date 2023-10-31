@@ -26,7 +26,7 @@ function User() {
   return (
     <>
       <div>User-Table</div>
-      <Table responsive>
+      <Table responsive striped>
         <thead>
           <tr>
             <th>id</th>

@@ -1,5 +1,5 @@
 .wrapper-container-homepage {
-  /* min-height: 100vh; */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -85,24 +85,29 @@
   justify-content: space-around;
   align-items: center;
   gap: 5px;
-  margin: 10px;
+  margin: 5px;
 }
 .footer-btn button {
-  border: solid 2px #f80000;
+  /* border: solid 2px #f80000; */
+  background-color: transparent;
   border-radius: 5px;
-  padding: 5px 10px;
   align-items: center;
   transition: background-color 0.3s;
 }
 
+.footer-btn button:hover {
+  background-color: #505050;
+}
+
 .footer-btn button i {
   font-size: 24px;
-  margin-right: 10px;
 }
+
 
 .footer-box a {
   text-decoration: none;
   color: #000000;
+  
 }
 
 @media (max-width: 768px) {
