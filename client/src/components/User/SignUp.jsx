@@ -20,6 +20,12 @@ function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (newUser.password !== newUser.confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
     axios
       .post("/signup", newUser) //Backend beachten!!!!!!!
       .then((response) => {
@@ -65,7 +71,7 @@ function SignUp() {
               />
             </Form.Group>
           </Row>
-
+          {/* 
           <Row className="mb-3">
             <Form.Group as={Col} controlId="formGridFirstName">
               <Form.Label>First Name</Form.Label>
@@ -88,7 +94,7 @@ function SignUp() {
                 onChange={handleChange}
               />
             </Form.Group>
-          </Row>
+          </Row> */}
 
           <Row className="mb-3">
             <Form.Group as={Col} controlId="formGridPassword">
@@ -98,6 +104,8 @@ function SignUp() {
                 placeholder="Password"
                 name="password"
                 required
+                value={newUser.password}
+                onChange={handleChange}
               />
             </Form.Group>
 
@@ -108,14 +116,16 @@ function SignUp() {
                 placeholder="Confirm Password"
                 name="confirmPassword"
                 required
+                value={newUser.confirmPassword}
+                onChange={handleChange}
               />
             </Form.Group>
           </Row>
 
-          <Form.Group className="mb-3" controlId="formGridAddress1">
+          {/* <Form.Group className="mb-3" controlId="formGridAddress1">
             <Form.Label>Address</Form.Label>
             <Form.Control type="text" placeholder="adresse" name="adresse" />
-          </Form.Group>
+          </Form.Group> */}
 
           <Button type="submit" id="signUp-Btn">
             Submit

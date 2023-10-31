@@ -51,6 +51,7 @@ function Activities() {
 
   return (
     <>
+    <div className="backround-css">
       <div className="activities-wrapper">
         {/* Ansicht für Saison-Auswahl-Buttons */}
         <div className="seasonContainer">
@@ -156,6 +157,7 @@ function Activities() {
             </Button>
           </div>
         )}
+      </div>
       </div>
     </>
   );
