@@ -84,6 +84,11 @@ function Profile() {
       )}
       {userProfile ? (
         <>
+          {userProfile.role === "Admin" ? (
+            <NavLink to="/dashboard">Dashboard</NavLink>
+          ) : (
+            ""
+          )}
           <div>Role: {userProfile.role}</div>
           <div>Email: {authUser}</div>
           <div>Bookings: {userProfile.bookings}</div>
