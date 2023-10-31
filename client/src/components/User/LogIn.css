@@ -44,27 +44,8 @@ log-in-form {
   width: 100%;
 }
 
-.logIn-Btn,
-#signUp-Btn {
-  background: linear-gradient(-45deg, #01099b, #43e0fc, #007d3f, #23d5ab);
-  background-size: 400%;
-  animation: gradient 15s ease infinite;
-  border: none;
-  margin: 10px 0;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: background-color 0.3s;
-  width: 45%;
-  height: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.logIn-Btn:hover,
-#signUp-Btn:hover {
-  background-color: #2980b9;
-}
+
 
 @keyframes gradient {
   0% {
