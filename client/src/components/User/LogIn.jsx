@@ -66,42 +66,44 @@ function LogIn() {
 
   /*{token && <div>{token}</div>} */
   return (
-    <div className="logIn-Wrapper">
-      <h2 className="logIn-Title">Log-In</h2>
-      <div className="user-log-in-container">
-        <div>
-          {errMsg && <p>{errMsg}</p>}
-          <Form className="log-in-form" onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="formGroupEmail">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formGroupPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                onChange={(e) => setPwd(e.target.value)}
-                required
-              />
-            </Form.Group>
-            <div className="btn-container">
-              <button type="submit" className="logIn-Btn">
-                Log-In
-              </button>
-              <button onClick={() => navigate("/signup")} id="signUp-Btn">
-                Sign-Up
-              </button>
-            </div>
-          </Form>
+    <>
+      <div className="logIn-Wrapper">
+        <div className="user-log-in-container">
+          <h2 className="logIn-Title">Log-In</h2>
+          <div>
+            {errMsg && <p>{errMsg}</p>}
+            <Form className="log-in-form" onSubmit={handleSubmit}>
+              <Form.Group className="mb-3" controlId="formGroupEmail">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter email"
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formGroupPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  onChange={(e) => setPwd(e.target.value)}
+                  required
+                />
+              </Form.Group>
+              <div className="btn-container">
+                <button type="submit" className="logIn-Btn">
+                  Log-In
+                </button>
+                <button onClick={() => navigate("/signup")} id="signUp-Btn">
+                  Sign-Up
+                </button>
+              </div>
+            </Form>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
