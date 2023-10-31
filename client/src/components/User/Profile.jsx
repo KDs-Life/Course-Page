@@ -60,7 +60,7 @@ function Profile() {
         .then((response) => setUserProfile(response.data.data))
         .catch((err) => {
           if (err.response.status === "401") console.log("Refresh token");
-        }); // NOTE: if 401: refresh Token and fire again?
+        }); // NOTE: if 401: refresh accessToken in memory and reload profile?
     }
   }, []);
 
