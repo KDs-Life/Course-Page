@@ -1,51 +1,41 @@
 .activities-wrapper {
-display: flex;
-flex-direction: column;
-flex-wrap: wrap;
-justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px;
+  padding: 10px;
 }
-
 
 .seasonContainer {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 100%;
   margin-bottom: 25px;
-  /* border: 2px solid red; */
+  gap: 5px;
+  width: 25%;
 }
 
 .season-btn {
+  border-radius: 8px;
   background: linear-gradient(-45deg, #3498db, #006f57);
-  border-radius: 5px;
   font-size: 1.2rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 40px;
-
-}
-
-.season-btn:hover {
-  background: linear-gradient(-45deg, #006f57, #3498db);
-}
-
-/* Winter-Buttons */
-
-#winter-btn,
-#summer-btn {
-  background: linear-gradient(-45deg, #3498db, #006f57);
-  border-radius: 5px;
-  font-size: 1.2rem;
-  display: flex; 
-  justify-content: flex-start;
-  align-items: center; 
   height: 45px;
-  
+  width: 25%;
 }
 
+#winter-btn {
+  background: linear-gradient(-45deg, #3498db, #006f57);
+  height: 45px;
+  border: 1px solid black;
+  border-radius: 5px;
+  display:  flex;
+}
 #winter-btn:hover,
-#summer-btn:hover {
+#summer-btn:hover,
+.season-btn:hover {
   background: linear-gradient(-45deg, #006f57, #3498db);
 }
 
@@ -94,7 +84,7 @@ justify-content: center;
 }
 
 .card-body {
-  /* border: 2px solid rgb(128, 0, 122); */
+  border: 2px solid rgb(128, 0, 122);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
