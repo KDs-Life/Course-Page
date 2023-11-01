@@ -7,14 +7,14 @@ import "./NavBar.css";
 
 function NavBar() {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
-      <Container>
-        <Navbar.Brand as={Link} to="/">
-          React-Bootstrap
-        </Navbar.Brand>
+    <Navbar expand="lg" className="navbar-wrapper" sticky="top">
+      <Container className="container-navbar">
+        <Navbar.Brand as={Link} to="/" id="navbar-name">
+          WAS GEHT!!! CLICK ME 
+        </Navbar.Brand >
         <Navbar.Toggle aria-controls="basic-navbar-nav" id="icon" />
-        <Navbar.Collapse id="basic-navbar-nav" className="bg-tertiary">
-          <Nav className="me-auto">
+        <Navbar.Collapse id="" className="links-container">
+          <Nav className="navbar-links">
             <Nav.Link as={Link} to="/activities">
               Kurse
             </Nav.Link>
