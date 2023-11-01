@@ -25,26 +25,26 @@ export const getUser = asyncHandler(async (req, res, next) => {
   }
 });
 
-export const updateUser = asyncHandler(async (req, res, next) => {
-  const { id, street, housenumber, zip, city, country, description } = req.body;
+// export const updateUser = asyncHandler(async (req, res, next) => {
+//   const { id, street, housenumber, zip, city, country, description } = req.body;
 
-  try {
-    const catchId = await pool.query(
-      "SELECT address_id FROM users WHERE id = $1;",
-      [id]
-    );
-    const addressId = catchId.rows[0].address_id;
+//   try {
+//     const catchId = await pool.query(
+//       "SELECT address_id FROM users WHERE id = $1;",
+//       [id]
+//     );
+//     const addressId = catchId.rows[0].address_id;
 
-    await pool.query(
-      "UPDATE address SET street = $1, housenumber = $2, zip = $3, city = $4, country = $5, description = $6 WHERE id = $7;",
-      [street, housenumber, zip, city, country, description, addressId]
-    );
+//     await pool.query(
+//       "UPDATE address SET street = $1, housenumber = $2, zip = $3, city = $4, country = $5, description = $6 WHERE id = $7;",
+//       [street, housenumber, zip, city, country, description, addressId]
+//     );
 
-    res.status(200).json({ message: "Address details updated successfully" });
-  } catch (error) {
-    next(error);
-  }
-});
+//     res.status(200).json({ message: "Address details updated successfully" });
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 //Admin Functions
 export const getAllUser = asyncHandler(async (req, res, next) => {
@@ -58,6 +58,27 @@ export const getAllUser = asyncHandler(async (req, res, next) => {
         .send({ status: "success", data: existingUser.rows });
     } else
       res.status(404).send({ status: "error", message: "No Userdata found" });
+  } catch (error) {
+    next(error);
+  }
+});
+
+export const updateUser = asyncHandler(async (req, res, next) => {
+  const { id, street, housenumber, zip, city, country, description, firstname, lastname, phone } = req.body;
+
+  try {
+    const newAddress = await pool.query(
+      "INSERT INTO address (street, housenumber, zip, city, country, description) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;",
+      [street, housenumber, zip, city, country, description]
+    );
+    const addressId = newAddress.rows[0].id;
+
+    await pool.query(
+      "UPDATE users SET firstname = $1, lastname = $2, phone = $3, address_id = $4 WHERE id = $5;",
+      [firstname, lastname, phone, addressId, id]
+    );
+
+    res.status(200).json({ message: "Address details updated successfully" });
   } catch (error) {
     next(error);
   }
