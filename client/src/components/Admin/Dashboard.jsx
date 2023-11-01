@@ -1,19 +1,24 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate, Outlet } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import Bookings from "./Bookings/Bookings";
-import User from "./User/User";
+import { Button, ButtonGroup } from "react-bootstrap";
 
 function Dashboard() {
   const { authUser, isLoggedIn, token } = useAuth();
+  const navigate = useNavigate();
+
   if (!isLoggedIn) {
     return <Navigate to="/" replace={true} />;
   } else {
     return (
       <>
         <h2>Admin Dashboard</h2>
-        <div>{authUser}</div>
-        <User />
-        <Bookings />
+        <div>You are logged in as {authUser}</div>
+        <ButtonGroup>
+          <Button onClick={() => navigate("users")}>User</Button>
+          <Button onClick={() => navigate("bookings")}>Bookings</Button>
+          <Button onClick={() => navigate("activities")}>Actvities</Button>
+        </ButtonGroup>
+        <Outlet />
       </>
     );
   }

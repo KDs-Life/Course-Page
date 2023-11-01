@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import axios from "../../../api/axiosPrivate";
 
-function User() {
+function UserDashboard() {
   const [users, setUsers] = useState();
 
   useEffect(() => {
@@ -56,4 +56,4 @@ function User() {
   );
 }
 
-export default User;
+export default UserDashboard;
