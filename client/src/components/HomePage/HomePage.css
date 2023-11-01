@@ -27,16 +27,6 @@
   /* border: 2px solid #00f625; */
 }
 
-.homepage-btn {
-  background-color: #145aa0;
-  font-size: 18px;
-  padding: 10px 30px;
-  border: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-  /* border: 2px solid #9a00dc; */
-}
-
 .homepage-btn:hover {
   background-color: #e74c3c;
 }
@@ -71,43 +61,40 @@
   width: 98%;
   margin: auto;
   border-radius: 8px;
+  padding: 10px ;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }
 
 .footer-box {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin: 15px;
-
+  flex-wrap: wrap;
+  gap: 10px;
 }
-.footer-btn {
+.social-media-links {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  gap: 5px;
-  margin: 5px;
-}
-.footer-btn button {
-  /* border: solid 2px #f80000; */
-  background-color: transparent;
-  border-radius: 5px;
-  align-items: center;
-  transition: background-color 0.3s;
+  gap: 10px;
+  
 }
 
-.footer-btn button:hover {
-  background-color: #505050;
+.social-media-links:hover {
+  color: #e73c3c;
 }
 
-.footer-btn button i {
-  font-size: 24px;
+.footer-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 
 .footer-box a {
   text-decoration: none;
   color: #000000;
-  
 }
 
 @media (max-width: 768px) {
