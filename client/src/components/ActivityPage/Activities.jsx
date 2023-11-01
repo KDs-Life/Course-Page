@@ -57,32 +57,28 @@ function Activities() {
         {/* Ansicht für Aktivitäten */}
         <div className="courseContainer">
           {/* Liste von Aktivitäten in Bootstrap-Karten */}
-          <div>
-            {/* Rendern der Winteraktivitäten */}
-            <Row xs={0} md={0} className="g-4">
-              {loading ? (
-                <p>Lade Winterkursdaten...</p>
-              ) : (
-                activityData.map((activity, key) => (
-                  <Col key={activity.id}>
-                    <Card id="cardBox">
-                      <Card.Img
-                        variant="top"
-                        src={`/images/course${key + 1}.jpg`}
-                      />
-                      <Card.Body>
-                        <Card.Title>{activity.title}</Card.Title>
-                        <div>{activity.id}</div>
-                        <Card.Text className="information-box">
-                          {activity.description}
-                          {activity.startdate}
-                          {activity.minslots}
-                          {activity.maxslots}
 
-                          {/* OBERE PART HIER ANZEIGEN! 
+          {/* Rendern der Winteraktivitäten */}
+
+          {loading ? (
+            <p>Lade Winterkursdaten...</p>
+          ) : (
+            activityData.map((activity, key) => (
+              <Card id="cardBox" key={activity.id}>
+                <Card.Img variant="top" src={`/images/course${key + 1}.jpg`} />
+                <Card.Body>
+                  <Card.Title>{activity.title}</Card.Title>
+                  <div>{activity.id}</div>
+                  <Card.Text className="information-box">
+                    {activity.description}
+                    {activity.startdate}
+                    {activity.minslots}
+                    {activity.maxslots}
+
+                    {/* OBERE PART HIER ANZEIGEN! 
                           UNTERE PART AUF DETAILS SEITE */}
 
-                          {/* {activity.requirements}
+                    {/* {activity.requirements}
                           {activity.address.street}
                           {activity.address.Housenumber}
                           {activity.address.ZIP}
@@ -90,23 +86,20 @@ function Activities() {
                           {activity.address.Country}
                           {activity.category}
                           {activity.publishedDate} */}
-                        </Card.Text>
-                        <NavLink
-                          as="a"
-                          to={`/activities/${activity.id}`}
-                          variant="primary"
-                          id="more-info-link"
-                        >
-                          {" "}
-                          Mehr
-                        </NavLink>
-                      </Card.Body>
-                    </Card>
-                  </Col>
-                ))
-              )}
-            </Row>
-          </div>
+                  </Card.Text>
+                  <NavLink
+                    as="a"
+                    to={`/activities/${activity.id}`}
+                    variant="primary"
+                    id="more-info-link"
+                  >
+                    {" "}
+                    Mehr
+                  </NavLink>
+                </Card.Body>
+              </Card>
+            ))
+          )}
         </div>
 
         {/* Ansicht für Sommeraktivitäten^q */}
