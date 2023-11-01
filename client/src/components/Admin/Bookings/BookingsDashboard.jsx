@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import axios from "../../../api/axiosPrivate";
 
-function Bookings() {
+function BookingsDashboard() {
   const [bookings, setBookings] = useState();
 
   const inEuro = (value) => {
@@ -61,4 +61,4 @@ function Bookings() {
   );
 }
 
-export default Bookings;
+export default BookingsDashboard;
