@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import jwtDecode from "jwt-decode";
 import axios from "../../api/axiosPrivate";
+import "./Profile.css";
 
 function Profile() {
   const {
@@ -75,31 +76,33 @@ function Profile() {
 
   return (
     <>
-      <div>Profile Page</div>
-      {tokenTimer > 0 ? (
-        <p>Timer: {tokenTimer}</p>
-      ) : (
-        <p>
-          <NavLink href="/refresh">Token expired! REFRESH TOKEN</NavLink>
-        </p>
-      )}
-      {userProfile ? (
-        <>
-          {userProfile.role === "Admin" ? (
-            <NavLink to="/dashboard">Dashboard</NavLink>
-          ) : (
-            ""
-          )}
-          <div>Role: {userProfile.role}</div>
-          <div>Email: {authUser}</div>
-          <div>Bookings: {userProfile.bookings}</div>
-          <div>Member since: {userProfile.member_since}</div>
-        </>
-      ) : (
-        ""
-      )}
+      <div className="profile-wrapper">
+        <h3>Profile Page</h3>
+        {tokenTimer > 0 ? (
+          <p>Timer: {tokenTimer}</p>
+        ) : (
+          <p>
+            <NavLink href="/refresh">Token expired! REFRESH TOKEN</NavLink>
+          </p>
+        )}
+        {userProfile ? (
+          <>
+            {userProfile.role === "Admin" ? (
+              <NavLink to="/dashboard">Dashboard</NavLink>
+            ) : (
+              ""
+            )}
+            <div>Role: {userProfile.role}</div>
+            <div>Email: {authUser}</div>
+            <div>Bookings: {userProfile.bookings}</div>
+            <div>Member since: {userProfile.member_since}</div>
+          </>
+        ) : (
+          ""
+        )}
 
-      <Button onClick={handleLogout}>LOGOUT</Button>
+        <Button onClick={handleLogout}>LOGOUT</Button>
+      </div>
     </>
   );
 }
