@@ -6,26 +6,24 @@ import "react-bootstrap";
 import Card from "react-bootstrap/Card"; // Bootstrap-Komponente für Karten
 import Col from "react-bootstrap/Col"; // Bootstrap-Komponente für Spalten
 import Row from "react-bootstrap/Row"; // Bootstrap-Komponente für Zeilen
-import Button from "react-bootstrap/Button"; // Bootstrap-Komponente für Buttons
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Button from "react-bootstrap/Button";
 import { NavLink } from "react-router-dom";
 
 // Platzhalterdaten für Winteraktivitäten (werden später durch echte Daten ersetzt)
 
 function Activities() {
   // Verwaltung des Komponenten-Status mit React Hooks
-  const [season, setSeason] = useState(null); // Aktuelle ausgewählte Saison
-  const [showWinterActivity, setShowWinterActivity] = useState(false); // Anzeigen/Verbergen von Winteraktivitäten
-  const [winterActivitiesData, setWinterActivitiesData] = useState([]); // Daten der Winteraktivitäten
-  const [showSummerActivity, setShowSummerActivity] = useState(false);
-  // const [summerActivitiesData, setSummerActivitiesData] = useState([]); // Daten der Sommeraktivitäten
+  const [season, setSeason] = useState("all"); // Aktuelle ausgewählte Saison
+  const [activityData, setActivityData] = useState([]); // Daten der Winteraktivitäten
   const [loading, setLoading] = useState(true); // Ladezustand der Daten
 
   // Effekt, der Daten von einem API-Endpunkt abruft, wenn die Komponente geladen wird
   useEffect(() => {
     axios
-      .get("/activities")
+      .get("/activities") // TODO: Daten in der DB um Seasons erweitern
       .then((response) => {
-        setWinterActivitiesData(response.data); // Daten aus der API speichern
+        setActivityData(response.data); // Daten aus der API speichern
         setLoading(false); // Ladezustand beenden
       })
       .catch((error) => {
@@ -35,18 +33,9 @@ function Activities() {
   }, []); // Leeres Abhängigkeitsarray bedeutet, dass dieser Effekt nur einmal beim Laden der Komponente ausgeführt wird
 
   // Funktion zum Behandeln des Klicks auf eine Saison
-  const handleSeasonClick = (selectedSeason) => {
-    setSeason(selectedSeason); // Aktuelle Saison festlegen
-    // setShowWinterActivity(false); // Winteraktivitäten verbergen
-    setShowSummerActivity(false); // Sommeraktivitäten verbergen
-  };
-
-  // Funktion zum Anzeigen/Verbergen der Winteraktivitäten
-  const toggleWinterActivity = () => {
-    setShowWinterActivity(!showWinterActivity);
-  };
-  const toggleSummerActivity = () => {
-    setShowSummerActivity(!showSummerActivity);
+  const handleFilterClick = (value) => {
+    if (value === season) return;
+    setSeason(value); // Aktuellen Filter festlegen
   };
 
   return (
@@ -54,48 +43,46 @@ function Activities() {
       <div className="activities-wrapper">
         {/* Ansicht für Saison-Auswahl-Buttons */}
         <div className="seasonContainer">
-          <Button onClick={() => handleSeasonClick("Winter")}>Winter</Button>
-          <Button onClick={() => handleSeasonClick("Summer")}>Summer</Button>
-          <Button onClick={() => handleSeasonClick("Autumn")}>Autumn</Button>
-          <Button onClick={() => handleSeasonClick("Spring")}>Spring</Button>
+          <ButtonGroup type="button" name="season">
+            <Button onClick={() => handleFilterClick("all")} active>
+              All
+            </Button>
+            <Button onClick={() => handleFilterClick("winter")}>Winter</Button>
+            <Button onClick={() => handleFilterClick("summer")}>Summer</Button>
+            <Button onClick={() => handleFilterClick("autumn")}>Autumn</Button>
+            <Button onClick={() => handleFilterClick("spring")}>Spring</Button>
+          </ButtonGroup>
         </div>
 
-        {/* Ansicht für Winteraktivitäten */}
-        {season === "Winter" && (
-          <div className="courseContainer">
-            <Button onClick={toggleWinterActivity}>Winterkurse</Button>
+        {/* Ansicht für Aktivitäten */}
+        <div className="courseContainer">
+          {/* Liste von Aktivitäten in Bootstrap-Karten */}
+          <div>
+            {/* Rendern der Winteraktivitäten */}
+            <Row xs={0} md={0} className="g-4">
+              {loading ? (
+                <p>Lade Winterkursdaten...</p>
+              ) : (
+                activityData.map((activity, key) => (
+                  <Col key={activity.id}>
+                    <Card id="cardBox">
+                      <Card.Img
+                        variant="top"
+                        src={`/images/course${key + 1}.jpg`}
+                      />
+                      <Card.Body>
+                        <Card.Title>{activity.title}</Card.Title>
+                        <div>{activity.id}</div>
+                        <Card.Text className="information-box">
+                          {activity.description}
+                          {activity.startdate}
+                          {activity.minslots}
+                          {activity.maxslots}
 
-            {/* Liste von Winteraktivitäten in Bootstrap-Karten */}
-
-            <div
-              className={`winterActivityBox ${
-                showWinterActivity ? "open" : "closed"
-              }`}>
-              {/* Rendern der Winteraktivitäten */}
-              <Row xs={0} md={0} className="g-4">
-                {loading ? (
-                  <p>Lade Winterkursdaten...</p>
-                ) : (
-                  winterActivitiesData.map((activity, key) => (
-                    <Col key={activity.id}>
-                      <Card id="cardBox">
-                        <Card.Img
-                          variant="top"
-                          src={`/images/course${key + 1}.jpg`}
-                        />
-                        <Card.Body>
-                          <Card.Title>{activity.title}</Card.Title>
-                          <div>{activity.id}</div>
-                          <Card.Text className="information-box">
-                            {activity.description}
-                            {activity.startdate}
-                            {activity.minslots}
-                            {activity.maxslots}
-
-                            {/* OBERE PART HIER ANZEIGEN! 
+                          {/* OBERE PART HIER ANZEIGEN! 
                           UNTERE PART AUF DETAILS SEITE */}
 
-                            {/* {activity.requirements}
+                          {/* {activity.requirements}
                           {activity.address.street}
                           {activity.address.Housenumber}
                           {activity.address.ZIP}
@@ -103,36 +90,37 @@ function Activities() {
                           {activity.address.Country}
                           {activity.category}
                           {activity.publishedDate} */}
-                          </Card.Text>
-                          <NavLink
-                            as="a"
-                            to={`/activities/${activity.id}`}
-                            variant="primary"
-                            id="more-info-link">
-                            {" "}
-                            Mehr
-                          </NavLink>
-                        </Card.Body>
-                      </Card>
-                    </Col>
-                  ))
-                )}
-              </Row>
-            </div>
+                        </Card.Text>
+                        <NavLink
+                          as="a"
+                          to={`/activities/${activity.id}`}
+                          variant="primary"
+                          id="more-info-link"
+                        >
+                          {" "}
+                          Mehr
+                        </NavLink>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                ))
+              )}
+            </Row>
           </div>
-        )}
+        </div>
 
         {/* Ansicht für Sommeraktivitäten^q */}
-        {season === "Summer" && (
+        {/* {season === "Summer" && (
           <div className="courseContainer">
             <Button
               onClick={toggleSummerActivity}
               variant="success"
-              id="summer-btn">
+              id="summer-btn"
+            >
               Sommerkurse
             </Button>
           </div>
-        )}
+        )} */}
       </div>
     </>
   );
