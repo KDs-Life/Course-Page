@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
+import { format, parseISO } from "date-fns";
 import axios from "../../../api/axiosPrivate";
 
 function UserDashboard() {
@@ -46,7 +47,7 @@ function UserDashboard() {
               <td>{user.firstname}</td>
               <td>{user.lastname}</td>
               <td>{user.role}</td>
-              <td>{user.created}</td>
+              <td>{format(parseISO(user.created), "dd.MM.yyyy")}</td>
               <td>{user.address}</td>
             </tr>
           ))}
