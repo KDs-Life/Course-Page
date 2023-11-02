@@ -4,11 +4,10 @@ import "./Activities.css";
 import axios from "../../api/axios";
 import "react-bootstrap";
 import Card from "react-bootstrap/Card"; // Bootstrap-Komponente für Karten
-import Col from "react-bootstrap/Col"; // Bootstrap-Komponente für Spalten
-import Row from "react-bootstrap/Row"; // Bootstrap-Komponente für Zeilen
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
 import { NavLink } from "react-router-dom";
+
 
 // Platzhalterdaten für Winteraktivitäten (werden später durch echte Daten ersetzt)
 
@@ -69,8 +68,11 @@ function Activities() {
                 <Card.Body>
                   <Card.Title>{activity.title}</Card.Title>
                   <div>{activity.id}</div>
+                  
                   <Card.Text className="information-box">
-                    {activity.description}
+                    {/* {activity.description} */ }
+                   
+                  
                     {activity.startdate}
                     {activity.minslots}
                     {activity.maxslots}
