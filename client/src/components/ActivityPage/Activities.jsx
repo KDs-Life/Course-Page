@@ -48,7 +48,7 @@ function Activities() {
       <div className="activities-wrapper">
         {/* Ansicht für Saison-Auswahl-Buttons */}
         <div className="seasonContainer">
-          <ButtonGroup type="button" name="season">
+          {/* <ButtonGroup type="button" name="season">
             <Button onClick={() => handleFilterClick("all")} active>
               All
             </Button>
@@ -56,7 +56,7 @@ function Activities() {
             <Button onClick={() => handleFilterClick("summer")}>Summer</Button>
             <Button onClick={() => handleFilterClick("autumn")}>Autumn</Button>
             <Button onClick={() => handleFilterClick("spring")}>Spring</Button>
-          </ButtonGroup>
+          </ButtonGroup> */}
         </div>
 
         {/* Ansicht für Aktivitäten */}
