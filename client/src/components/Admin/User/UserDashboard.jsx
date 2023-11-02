@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import { format, parseISO } from "date-fns";
 import Table from "react-bootstrap/Table";
 import axios from "../../../api/axiosPrivate";
 
@@ -7,7 +9,7 @@ function UserDashboard() {
 
   useEffect(() => {
     const getUser = () => {
-      return axios.get("/user/all", {
+      return axios.get("/dashboard/users", {
         headers: { "Content-type": "application/json" },
         withCredentials: true,
       });
@@ -29,24 +31,24 @@ function UserDashboard() {
       <Table responsive striped>
         <thead>
           <tr>
-            <th>id</th>
             <th>email</th>
             <th>firstname</th>
             <th>lastname</th>
             <th>role</th>
-            <th>created</th>
+            <th>member since</th>
             <th>address</th>
           </tr>
         </thead>
         <tbody>
           {users.map((user, key) => (
             <tr key={key}>
-              <td>{user.id}</td>
-              <td>{user.email}</td>
+              <td>
+                <NavLink to={`edit/${user.id}`}>{user.email}</NavLink>
+              </td>
               <td>{user.firstname}</td>
               <td>{user.lastname}</td>
               <td>{user.role}</td>
-              <td>{user.created}</td>
+              <td>{format(parseISO(user.created), "dd.MM.yyyy")}</td>
               <td>{user.address}</td>
             </tr>
           ))}
