@@ -14,6 +14,7 @@ import {
 import "./Activities.css";
 import "react-bootstrap";
 
+
 // Platzhalterdaten für Winteraktivitäten (werden später durch echte Daten ersetzt)
 
 function Activities() {
