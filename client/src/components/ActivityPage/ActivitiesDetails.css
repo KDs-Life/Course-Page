@@ -1,0 +1,74 @@
+.activity-wrapper {
+  padding: 20px;
+  margin: 20px;
+  max-width: 100%;
+  /* background-color: rgba(255, 255, 255, 0.4); */
+  background: transparent;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  color: white;
+}
+.activity-wrapper h1 {
+  /* border: 1px solid red; */
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.activity-wrapper img {
+  /* border: 1px solid red; */
+  width: 720px;
+  border-radius: 10px;
+  
+}
+
+.activity-description {
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+  width: 80%;
+  margin: 20px;
+}
+.activityDetails-date {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  padding: 5px 15px;
+}
+
+.activityDetails-date p {
+  font-size: 0.8rem;
+}
+
+.inner-details {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+table {
+  width: 50%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  /* border: rgb(255, 0, 0) 1px solid; */
+}
+
+table th,
+table td {
+  padding: 5px;
+  /* border: 1px solid #ddd; */
+}
+
+table th {
+  font-weight: bold;
+  text-align: left;
+}
+
+table td {
+  text-align: left;
+}
