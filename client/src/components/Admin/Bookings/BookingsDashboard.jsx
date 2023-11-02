@@ -62,7 +62,9 @@ function BookingsDashboard() {
               <td>
                 {booking.sum}{" "}
                 {booking.sum > booking.maxslots && (
-                  <Badge bg="danger">!!!</Badge>
+                  <Badge pill bg="danger">
+                    OVERBOOKED
+                  </Badge>
                 )}
               </td>
             </tr>
