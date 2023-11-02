@@ -32,7 +32,6 @@ function BookingsDashboard() {
 
   return (
     <>
-      <div>Bookings-Table</div>
       <Table responsive="lg" striped>
         <thead>
           <tr>

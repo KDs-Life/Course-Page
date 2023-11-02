@@ -14,7 +14,7 @@ function Dashboard() {
         <h2>Admin Dashboard</h2>
         <div>You are logged in as {authUser}</div>
         <ButtonGroup>
-          <Button onClick={() => navigate("users")}>User</Button>
+          <Button onClick={() => navigate("users")}>Users</Button>
           <Button onClick={() => navigate("bookings")}>Bookings</Button>
           <Button onClick={() => navigate("activities")}>Actvities</Button>
         </ButtonGroup>
