@@ -2,6 +2,12 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import axios from "../../api/axios";
+import {
+  format,
+  formatDistanceToNow,
+  formatDistanceStrict,
+  parseISO,
+} from "date-fns";
 
 function ActivitiesDetails() {
   const [activity, setActivity] = useState(null);
@@ -38,8 +44,11 @@ function ActivitiesDetails() {
       <h1>{activity.title}</h1>
 
       <div>
-        <p>Start: {activity.startdate}</p>
-        <p>MinSlots: {activity.minslots}</p>
+        {format(parseISO(activity.startdate), "dd.MM.yyyy")} (
+        {formatDistanceToNow(parseISO(activity.startdate), {
+          addSuffix: true,
+        })}
+        )<p>MinSlots: {activity.minslots}</p>
         <p>MaxSlots: {activity.maxslots}</p>
         <p>Price: {activity.price} €</p>
         <p>Requirements: {activity.requirements}</p>
