@@ -10,11 +10,14 @@ import Dashboard from "./components/Admin/Dashboard.jsx";
 import AuthCheck from "./components/AuthCheck.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { Routes, Route } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
 import UserDashboard from "./components/Admin/User/UserDashboard.jsx";
 import BookingsDashboard from "./components/Admin/Bookings/BookingsDashboard.jsx";
 import ActivitiesDashboard from "./components/Admin/Activities/ActivitiesDashboard.jsx";
+import UserEdit from "./components/Admin/User/UserEdit.jsx";
+import BookingsEdit from "./components/Admin/Bookings/BookingsEdit.jsx";
+import ActivitiesEdit from "./components/Admin/Activities/ActivitiesEdit.jsx";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 function App() {
   return (
@@ -31,8 +34,11 @@ function App() {
           <Route element={<AuthCheck allowedRoles={["Admin"]} />}>
             <Route path="/dashboard" element={<Dashboard />}>
               <Route path="users" element={<UserDashboard />} />
+              <Route path="users/edit/:id" element={<UserEdit />} />
               <Route path="bookings" element={<BookingsDashboard />} />
+              <Route path="bookings/edit/:id" element={<BookingsEdit />} />
               <Route path="activities" element={<ActivitiesDashboard />} />
+              <Route path="activities/edit/:id" element={<ActivitiesEdit />} />
             </Route>
           </Route>
           <Route path="*" element={<NotFound />} />

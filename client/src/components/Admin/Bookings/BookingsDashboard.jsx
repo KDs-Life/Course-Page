@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import Table from "react-bootstrap/Table";
+import { NavLink } from "react-router-dom";
+import { Table, Badge } from "react-bootstrap";
+import { format, formatDistanceToNow, parseISO } from "date-fns";
 import axios from "../../../api/axiosPrivate";
 
 function BookingsDashboard() {
@@ -14,7 +16,7 @@ function BookingsDashboard() {
 
   useEffect(() => {
     const getBookings = () => {
-      return axios.get("/bookings", {
+      return axios.get("/dashboard/bookings", {
         headers: { "Content-type": "application/json" },
         withCredentials: true,
       });
@@ -34,24 +36,35 @@ function BookingsDashboard() {
       <Table responsive="lg" striped>
         <thead>
           <tr>
-            <th>id</th>
-            <th>users_id</th>
-            <th>activities_id</th>
-            <th>quantity</th>
-            <th>price</th>
-            <th>fullprice</th>
+            <th>Title</th>
+            <th>Start</th>
+            <th>Bookings</th>
+            <th>Max slots</th>
+            <th>Booked slots</th>
           </tr>
         </thead>
         <tbody>
           {bookings.map((booking, key) => (
             <tr key={key}>
-              <td>{booking.id}</td>
-              <td>{booking.users_id}</td>
-              <td>{booking.activities_id}</td>
-              <td>{booking.quantity}</td>
-              <td>{inEuro(booking.price)}</td>
               <td>
-                {inEuro(Number(booking.price) * Number(booking.quantity))}
+                <NavLink to={`edit/${booking.activities_id}`}>
+                  {booking.title}
+                </NavLink>
+              </td>
+              <td>
+                {format(parseISO(booking.startdate), "dd.MM.yyyy")} (
+                {formatDistanceToNow(parseISO(booking.startdate), {
+                  addSuffix: true,
+                })}
+                )
+              </td>
+              <td>{booking.bookings}</td>
+              <td>{booking.maxslots}</td>
+              <td>
+                {booking.sum}{" "}
+                {booking.sum > booking.maxslots && (
+                  <Badge bg="danger">!!!</Badge>
+                )}
               </td>
             </tr>
           ))}
