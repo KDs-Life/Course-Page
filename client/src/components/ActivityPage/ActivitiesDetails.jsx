@@ -61,11 +61,11 @@ function ActivitiesDetails() {
               <th>Eigenschaft</th>
             </tr>
             <tr>
-              <td>MinSlots:</td>
+              <td>Min. Slots:</td>
               <td>{activity.minslots}</td>
             </tr>
             <tr>
-              <td>MaxSlots:</td>
+              <td>Max. Slots:</td>
               <td>{activity.maxslots}</td>
             </tr>
             <tr>
