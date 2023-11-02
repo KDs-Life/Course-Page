@@ -51,3 +51,15 @@ export const getActivities = asyncHandler(async (req, res) => {
     res.status(500).json({ message: "No activities found" });
   }
 });
+
+export const getActivityById = asyncHandler(async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await pool.query("SELECT * FROM activities WHERE id = $1;", [
+      id,
+    ]);
+    return res.status(200).json(result.rows);
+  } catch (error) {
+    res.status(500).json({ message: "Activity not found" });
+  }
+});
