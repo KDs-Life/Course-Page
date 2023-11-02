@@ -1,14 +1,18 @@
 // Importiere erforderliche Module und Komponenten
 import { useState, useEffect } from "react";
-import "./Activities.css";
+import { NavLink } from "react-router-dom";
 import axios from "../../api/axios";
-import "react-bootstrap";
 import Card from "react-bootstrap/Card"; // Bootstrap-Komponente für Karten
-import Col from "react-bootstrap/Col"; // Bootstrap-Komponente für Spalten
-import Row from "react-bootstrap/Row"; // Bootstrap-Komponente für Zeilen
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
-import { NavLink } from "react-router-dom";
+import {
+  format,
+  formatDistanceToNow,
+  formatDistanceStrict,
+  parseISO,
+} from "date-fns";
+import "./Activities.css";
+import "react-bootstrap";
 
 // Platzhalterdaten für Winteraktivitäten (werden später durch echte Daten ersetzt)
 
@@ -67,18 +71,22 @@ function Activities() {
               <Card id="cardBox" key={activity.id}>
                 <Card.Img variant="top" src={`/images/course${key + 1}.jpg`} />
                 <Card.Body>
-                  <Card.Title>{activity.title}</Card.Title>
-                  <div>{activity.id}</div>
+                  <Card.Title className="col-12 text-truncate">
+                    {activity.title}
+                  </Card.Title>
                   <Card.Text className="information-box">
-                    {activity.description}
-                    {activity.startdate}
-                    {activity.minslots}
-                    {activity.maxslots}
-
+                    {format(parseISO(activity.startdate), "dd.MM.yyyy")} (
+                    {formatDistanceToNow(parseISO(activity.startdate), {
+                      addSuffix: true,
+                    })}
+                    )
+                    <br />
+                    Min Slots:{activity.minslots} Max Slots:{activity.maxslots}{" "}
+                    Bookings:?
                     {/* OBERE PART HIER ANZEIGEN! 
                           UNTERE PART AUF DETAILS SEITE */}
-
-                    {/* {activity.requirements}
+                    {/*  {activity.description}                         
+                          {activity.requirements}
                           {activity.address.street}
                           {activity.address.Housenumber}
                           {activity.address.ZIP}
