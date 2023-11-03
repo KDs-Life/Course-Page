@@ -23,7 +23,7 @@ function NavBar() {
       className={colorChange ? "navbar-wrapper colorChange" : "navbar-wrapper"}
       sticky="top"
     >
-      <Container className="container-navbar">
+      <Container>
         <Navbar.Brand as={Link} to="/" id="navbar-name">
           WAS GEHT!!! CLICK ME
         </Navbar.Brand>

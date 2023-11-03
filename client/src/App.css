@@ -1,43 +1,29 @@
 #root {
-  display: flex;
-  flex-direction: column;
-  font-family: "Roboto", sans-serif;
+  font-family: monospace;
   font-size: 16px;
-  color: #ffffff;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-
-  /* border: 2px solid #000000; */
+  font-weight: 800;
+  color: #fdfdfd;
+  /* border: 2px solid green; */
 }
 
-/* Globale Stile */
 body {
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  background-image: url("https://i.postimg.cc/JzrkPT1B/winter-aesthetic-morning-foggy-moon-landscape-cold-5k-5786x3254-497.jpg");
+  padding: 0 ;
+  background-image: url("https://i.postimg.cc/Kvx8G1hZ/Grau-ski-bild-dunkel.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
 }
 
-/* .btn {
-  background: linear-gradient(-45deg, #01099b, #43e0fc, #007d3f, #23d5ab);
+.btn {
   font-size: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s;  
+  transition: background-color 0.3s;
   animation: gradient 15s ease infinite;
   width: auto;
   height: auto;
-  background-size: 400%;
-} */
+  background-color: blueviolet;
+}
 
 /* @keyframes parallax {
   0% {

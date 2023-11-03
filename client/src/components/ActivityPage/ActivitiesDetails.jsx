@@ -8,6 +8,7 @@ import {
   parseISO,
 } from "date-fns";
 import "./ActivitiesDetails.css";
+import { Button } from "react-bootstrap";
 
 function ActivitiesDetails() {
   const [activity, setActivity] = useState(null);
@@ -30,18 +31,50 @@ function ActivitiesDetails() {
 
   return (
     <>
-      <div className="activity-wrapper">
+      <div className="activity-wrapper-container">
         <h1>{activity.title}</h1>
-        <img
-          src={activity.image_url}
-          alt={activity.image_alt}
-          width={`720px`}
-        />
+        <div className="activity-wrapper">
+          <img
+            src={activity.image_url}
+            alt={activity.image_alt}
+            width={`720px`}
+          />
+          <div className="inner-details">
+            <table>
+              <tr>
+                <th>Informationen</th>
+              </tr>
+              <tr>
+                <td>Slots:</td>
+                <td>
+                  {activity.minslots}/{activity.maxslots}
+                </td>
+              </tr>
 
-        <div className="activity-description">
-          <div className="">
-            <div>{activity.description}</div>
+              <tr>
+                <td>Price:</td>
+                <td>{activity.price} €</td>
+              </tr>
+              <tr>
+                <td>Requirements:</td>
+                <td>{activity.requirements}</td>
+              </tr>
+              <tr>
+                <td>Category:</td>
+                <td>{activity.category}</td>
+              </tr>
+              <tr>
+                <td>Published:</td>
+                <td>{activity.published}</td>
+              </tr>
+              <Button onClick="" className="booking-btn">
+                BUCHEN DU SAU
+              </Button>
+            </table>
           </div>
+        </div>
+        <div className="activity-description">
+          <div>{activity.description}</div>
           <div className="activityDetails-date">
             {format(parseISO(activity.startdate), "dd.MM.yyyy")}
             <p>
@@ -52,38 +85,6 @@ function ActivitiesDetails() {
               )
             </p>
           </div>
-        </div>
-        <div className="inner-details">
-          <table>
-            <tr>
-              <th>Überschrift</th>
-              <th>Eigenschaft</th>
-            </tr>
-            <tr>
-              <td>Min. Slots:</td>
-              <td>{activity.minslots}</td>
-            </tr>
-            <tr>
-              <td>Max. Slots:</td>
-              <td>{activity.maxslots}</td>
-            </tr>
-            <tr>
-              <td>Price:</td>
-              <td>{activity.price} €</td>
-            </tr>
-            <tr>
-              <td>Requirements:</td>
-              <td>{activity.requirements}</td>
-            </tr>
-            <tr>
-              <td>Category:</td>
-              <td>{activity.category}</td>
-            </tr>
-            <tr>
-              <td>Published:</td>
-              <td>{activity.published}</td>
-            </tr>
-          </table>
         </div>
       </div>
     </>

@@ -46,21 +46,9 @@ function Activities() {
   return (
     <>
       <div className="activities-wrapper">
-        {/* Ansicht für Saison-Auswahl-Buttons */}
-        <div className="seasonContainer">
-          {/* <ButtonGroup type="button" name="season">
-            <Button onClick={() => handleFilterClick("all")} active>
-              All
-            </Button>
-            <Button onClick={() => handleFilterClick("winter")}>Winter</Button>
-            <Button onClick={() => handleFilterClick("summer")}>Summer</Button>
-            <Button onClick={() => handleFilterClick("autumn")}>Autumn</Button>
-            <Button onClick={() => handleFilterClick("spring")}>Spring</Button>
-          </ButtonGroup> */}
-        </div>
 
         {/* Ansicht für Aktivitäten */}
-        <div className="courseContainer">
+        <div className="courseContainer container">
           {/* Liste von Aktivitäten in Bootstrap-Karten */}
 
           {/* Rendern der Winteraktivitäten */}
@@ -70,7 +58,7 @@ function Activities() {
           ) : (
             activityData.map((activity, key) => (
               <Card id="cardBox" key={activity.id}>
-                <Card.Img variant="top" src={`/images/course${key + 1}.jpg`} />
+                <Card.Img variant="top" src={activity.image_url} />
                 <Card.Body>
                   <Card.Title className="col-12 text-truncate">
                     {activity.title}
