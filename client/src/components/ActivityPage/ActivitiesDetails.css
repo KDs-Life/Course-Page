@@ -64,7 +64,7 @@ h1 {
   display: flex;
   flex-direction: column;
   text-align: justify;
-  word-break: break-all;
+  word-break: break-word;
   font-size: 20px;
   padding: 10px 25% 0 10%;
   margin: 0 0 0 20px;
