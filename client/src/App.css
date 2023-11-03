@@ -1,7 +1,7 @@
 #root {
   font-family: monospace;
   font-size: 16px;
-  font-weight: 800;
+  font-weight: 600;
   color: #fdfdfd;
   /* border: 2px solid green; */
 }
@@ -22,7 +22,7 @@ body {
   animation: gradient 15s ease infinite;
   width: auto;
   height: auto;
-  background-color: blueviolet;
+ 
 }
 
 /* @keyframes parallax {
