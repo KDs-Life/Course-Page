@@ -8,7 +8,9 @@ dashboardRouter.get("/bookings", dashboardController.getBookings);
 dashboardRouter.get("/bookings/:id", dashboardController.getBookingsByActivity);
 dashboardRouter.get("/users", dashboardController.getUsers);
 //dashboardRouter.get("/users/:id", dashboardController.getUserById);
-dashboardRouter.get("/activities", dashboardController.getActivities);
+dashboardRouter
+  .get("/activities", dashboardController.getActivities)
+  .post("/activities", dashboardController.createActivity);
 dashboardRouter.get("/activities/:id", dashboardController.getActivityById);
 
 export default dashboardRouter;

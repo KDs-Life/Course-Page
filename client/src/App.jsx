@@ -16,6 +16,7 @@ import ActivitiesDashboard from "./components/Admin/Activities/ActivitiesDashboa
 import UserEdit from "./components/Admin/User/UserEdit.jsx";
 import BookingsEdit from "./components/Admin/Bookings/BookingsEdit.jsx";
 import ActivitiesEdit from "./components/Admin/Activities/ActivitiesEdit.jsx";
+import ActivitiesAdd from "./components/Admin/Activities/ActivityAdd.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -38,6 +39,7 @@ function App() {
               <Route path="bookings" element={<BookingsDashboard />} />
               <Route path="bookings/edit/:id" element={<BookingsEdit />} />
               <Route path="activities" element={<ActivitiesDashboard />} />
+              <Route path="activities/add" element={<ActivitiesAdd />} />
               <Route path="activities/edit/:id" element={<ActivitiesEdit />} />
             </Route>
           </Route>

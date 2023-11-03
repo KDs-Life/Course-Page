@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useOutletContext } from "react-router-dom";
 import { Table, Badge } from "react-bootstrap";
 import { format, formatDistanceToNow, parseISO } from "date-fns";
 import axios from "../../../api/axiosPrivate";
 
 function BookingsDashboard() {
   const [bookings, setBookings] = useState();
-
+  const [loading, setLoading] = useOutletContext();
   const inEuro = (value) => {
     return new Intl.NumberFormat("de-DE", {
       style: "currency",
@@ -15,6 +15,7 @@ function BookingsDashboard() {
   };
 
   useEffect(() => {
+    setLoading(true);
     const getBookings = () => {
       return axios.get("/dashboard/bookings", {
         headers: { "Content-type": "application/json" },
@@ -22,13 +23,16 @@ function BookingsDashboard() {
       });
     };
     getBookings()
-      .then((response) => setBookings(response.data))
+      .then((response) => {
+        setBookings(response.data);
+        setLoading(false);
+      })
       .catch((err) => {
         console.log("ERROR: ", err.message);
       });
   }, []);
 
-  if (!bookings || bookings.length === 0) return <div>No Bookings found</div>;
+  if (!bookings || loading) return <div>Loading</div>;
 
   return (
     <>
@@ -43,32 +47,34 @@ function BookingsDashboard() {
           </tr>
         </thead>
         <tbody>
-          {bookings.map((booking, key) => (
-            <tr key={key}>
-              <td>
-                <NavLink to={`edit/${booking.activities_id}`}>
-                  {booking.title}
-                </NavLink>
-              </td>
-              <td>
-                {format(parseISO(booking.startdate), "dd.MM.yyyy")} (
-                {formatDistanceToNow(parseISO(booking.startdate), {
-                  addSuffix: true,
-                })}
-                )
-              </td>
-              <td>{booking.bookings}</td>
-              <td>{booking.maxslots}</td>
-              <td>
-                {booking.sum}{" "}
-                {booking.sum > booking.maxslots && (
-                  <Badge pill bg="danger">
-                    OVERBOOKED
-                  </Badge>
-                )}
-              </td>
-            </tr>
-          ))}
+          {loading
+            ? "Loading"
+            : bookings.map((booking, key) => (
+                <tr key={key}>
+                  <td>
+                    <NavLink to={`edit/${booking.activities_id}`}>
+                      {booking.title}
+                    </NavLink>
+                  </td>
+                  <td>
+                    {format(parseISO(booking.startdate), "dd.MM.yyyy")} (
+                    {formatDistanceToNow(parseISO(booking.startdate), {
+                      addSuffix: true,
+                    })}
+                    )
+                  </td>
+                  <td>{booking.bookings}</td>
+                  <td>{booking.maxslots}</td>
+                  <td>
+                    {booking.sum}{" "}
+                    {booking.sum > booking.maxslots && (
+                      <Badge pill bg="danger">
+                        OVERBOOKED
+                      </Badge>
+                    )}
+                  </td>
+                </tr>
+              ))}
         </tbody>
       </Table>
     </>
