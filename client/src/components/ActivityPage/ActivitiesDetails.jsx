@@ -65,7 +65,19 @@ function ActivitiesDetails() {
               </tr>
               <tr>
                 <td>Published:</td>
-                <td>{activity.published}</td>
+                <td>
+                  {" "}
+                  <div className="activityDetails-date">
+                    {format(parseISO(activity.startdate), "dd.MM.yyyy")}
+                    <p>
+                      (
+                      {formatDistanceToNow(parseISO(activity.startdate), {
+                        addSuffix: true,
+                      })}
+                      )
+                    </p>
+                  </div>
+                </td>
               </tr>
               <Button onClick="" className="booking-btn">
                 BUCHEN DU SAU
@@ -75,16 +87,6 @@ function ActivitiesDetails() {
         </div>
         <div className="activity-description">
           <div>{activity.description}</div>
-          <div className="activityDetails-date">
-            {format(parseISO(activity.startdate), "dd.MM.yyyy")}
-            <p>
-              (
-              {formatDistanceToNow(parseISO(activity.startdate), {
-                addSuffix: true,
-              })}
-              )
-            </p>
-          </div>
         </div>
       </div>
     </>
