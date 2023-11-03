@@ -27,7 +27,6 @@ function UserDashboard() {
 
   return (
     <>
-      <div>User-Table</div>
       <Table responsive striped>
         <thead>
           <tr>

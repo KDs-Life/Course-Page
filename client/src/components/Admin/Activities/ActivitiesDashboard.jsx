@@ -26,7 +26,6 @@ function ActivitiesDashboard() {
     return <div>No activities found</div>;
   return (
     <>
-      <div>Activities-Table</div>
       <Table responsive="lg" striped>
         <thead>
           <tr>

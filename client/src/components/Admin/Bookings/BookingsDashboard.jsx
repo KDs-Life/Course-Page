@@ -32,7 +32,6 @@ function BookingsDashboard() {
 
   return (
     <>
-      <div>Bookings-Table</div>
       <Table responsive="lg" striped>
         <thead>
           <tr>
@@ -63,7 +62,9 @@ function BookingsDashboard() {
               <td>
                 {booking.sum}{" "}
                 {booking.sum > booking.maxslots && (
-                  <Badge bg="danger">!!!</Badge>
+                  <Badge pill bg="danger">
+                    OVERBOOKED
+                  </Badge>
                 )}
               </td>
             </tr>
