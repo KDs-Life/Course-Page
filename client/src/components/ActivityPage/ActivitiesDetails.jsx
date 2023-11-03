@@ -30,60 +30,62 @@ function ActivitiesDetails() {
 
   return (
     <>
-      <div className="activity-wrapper">
+      <div className="activity-wrapper-container">
         <h1>{activity.title}</h1>
-        <img
-          src={activity.image_url}
-          alt={activity.image_alt}
-          width={`720px`}
-        />
+        <div className="activity-wrapper">
+          <img
+            src={activity.image_url}
+            alt={activity.image_alt}
+            width={`720px`}
+          />
 
-        <div className="activity-description">
-          <div className="">
-            <div>{activity.description}</div>
+          <div className="activity-description">
+            <div className="">
+              <div>{activity.description}</div>
+            </div>
+            <div className="activityDetails-date">
+              {format(parseISO(activity.startdate), "dd.MM.yyyy")}
+              <p>
+                (
+                {formatDistanceToNow(parseISO(activity.startdate), {
+                  addSuffix: true,
+                })}
+                )
+              </p>
+            </div>
           </div>
-          <div className="activityDetails-date">
-            {format(parseISO(activity.startdate), "dd.MM.yyyy")}
-            <p>
-              (
-              {formatDistanceToNow(parseISO(activity.startdate), {
-                addSuffix: true,
-              })}
-              )
-            </p>
+          <div className="inner-details">
+            <table>
+              <tr>
+                <th>Überschrift</th>
+                <th>Eigenschaft</th>
+              </tr>
+              <tr>
+                <td>Min. Slots:</td>
+                <td>{activity.minslots}</td>
+              </tr>
+              <tr>
+                <td>Max. Slots:</td>
+                <td>{activity.maxslots}</td>
+              </tr>
+              <tr>
+                <td>Price:</td>
+                <td>{activity.price} €</td>
+              </tr>
+              <tr>
+                <td>Requirements:</td>
+                <td>{activity.requirements}</td>
+              </tr>
+              <tr>
+                <td>Category:</td>
+                <td>{activity.category}</td>
+              </tr>
+              <tr>
+                <td>Published:</td>
+                <td>{activity.published}</td>
+              </tr>
+            </table>
           </div>
-        </div>
-        <div className="inner-details">
-          <table>
-            <tr>
-              <th>Überschrift</th>
-              <th>Eigenschaft</th>
-            </tr>
-            <tr>
-              <td>Min. Slots:</td>
-              <td>{activity.minslots}</td>
-            </tr>
-            <tr>
-              <td>Max. Slots:</td>
-              <td>{activity.maxslots}</td>
-            </tr>
-            <tr>
-              <td>Price:</td>
-              <td>{activity.price} €</td>
-            </tr>
-            <tr>
-              <td>Requirements:</td>
-              <td>{activity.requirements}</td>
-            </tr>
-            <tr>
-              <td>Category:</td>
-              <td>{activity.category}</td>
-            </tr>
-            <tr>
-              <td>Published:</td>
-              <td>{activity.published}</td>
-            </tr>
-          </table>
         </div>
       </div>
     </>

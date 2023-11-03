@@ -100,7 +100,7 @@ function HomePage() {
             <a className="" href="#!">
               Privacy Policy
             </a>
-            
+
             <a className="" href="#!">
               Terms of Use
             </a>
