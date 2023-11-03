@@ -9,8 +9,6 @@
 body {
   margin: 0;
   padding: 0 ;
-  /* max-width: 100%; */
-  /* min-height: 100vh; */
   background-image: url("https://i.postimg.cc/Kvx8G1hZ/Grau-ski-bild-dunkel.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -24,6 +22,7 @@ body {
   animation: gradient 15s ease infinite;
   width: auto;
   height: auto;
+  background-color: blueviolet;
 }
 
 /* @keyframes parallax {
