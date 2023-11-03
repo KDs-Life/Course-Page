@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Card from "react-bootstrap/Card";
 import axios from "../../api/axios";
 import {
   format,
@@ -31,7 +30,7 @@ function ActivitiesDetails() {
 
   return (
     <>
-      <Card className="activity-wrapper">
+      <div className="activity-wrapper">
         <h1>{activity.title}</h1>
         <img
           src={activity.image_url}
@@ -40,9 +39,9 @@ function ActivitiesDetails() {
         />
 
         <div className="activity-description">
-          <Card.Body className="">
-            <Card.Text>{activity.description}</Card.Text>
-          </Card.Body>
+          <div className="">
+            <div>{activity.description}</div>
+          </div>
           <div className="activityDetails-date">
             {format(parseISO(activity.startdate), "dd.MM.yyyy")}
             <p>
@@ -86,7 +85,7 @@ function ActivitiesDetails() {
             </tr>
           </table>
         </div>
-      </Card>
+      </div>
     </>
   );
 }
