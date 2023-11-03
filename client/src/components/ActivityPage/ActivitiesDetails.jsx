@@ -40,7 +40,7 @@ function ActivitiesDetails() {
             width={`720px`}
           />
           <div className="inner-details">
-            <table>
+            <table className="details">
               <tr>
                 <th>Informationen</th>
               </tr>
