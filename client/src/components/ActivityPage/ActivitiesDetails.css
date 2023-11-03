@@ -22,25 +22,25 @@
   margin: 0 0 0 20px;
 }
 
-table {
+table.details {
   border-collapse: collapse;
   /* border: 1px solid red; */
   max-width: 250px;
 }
 
-table td {
+table.details td {
   padding: 5px;
   border-bottom: 1px solid #ddd;
   /* border: 1px solid #be0000; */
 }
 
-table th {
+table.details th {
   font-weight: bold;
   text-align: left;
   font-size: 25px;
 }
 
-table td {
+table.details td {
   text-align: left;
   font-size: 20px;
 }
