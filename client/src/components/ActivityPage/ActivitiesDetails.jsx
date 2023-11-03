@@ -2,6 +2,13 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import axios from "../../api/axios";
+import {
+  format,
+  formatDistanceToNow,
+  formatDistanceStrict,
+  parseISO,
+} from "date-fns";
+import "./ActivitiesDetails.css";
 
 function ActivitiesDetails() {
   const [activity, setActivity] = useState(null);
@@ -24,28 +31,62 @@ function ActivitiesDetails() {
 
   return (
     <>
-      <Card className="dflex align-items-center">
+      <Card className="activity-wrapper">
+        <h1>{activity.title}</h1>
         <img
           src={activity.image_url}
           alt={activity.image_alt}
           width={`720px`}
         />
-        <Card.Body>
-          <Card.Text>{activity.description}</Card.Text>
-        </Card.Body>
+
+        <div className="activity-description">
+          <Card.Body className="">
+            <Card.Text>{activity.description}</Card.Text>
+          </Card.Body>
+          <div className="activityDetails-date">
+            {format(parseISO(activity.startdate), "dd.MM.yyyy")}
+            <p>
+              (
+              {formatDistanceToNow(parseISO(activity.startdate), {
+                addSuffix: true,
+              })}
+              )
+            </p>
+          </div>
+        </div>
+        <div className="inner-details">
+          <table>
+            <tr>
+              <th>Überschrift</th>
+              <th>Eigenschaft</th>
+            </tr>
+            <tr>
+              <td>Min. Slots:</td>
+              <td>{activity.minslots}</td>
+            </tr>
+            <tr>
+              <td>Max. Slots:</td>
+              <td>{activity.maxslots}</td>
+            </tr>
+            <tr>
+              <td>Price:</td>
+              <td>{activity.price} €</td>
+            </tr>
+            <tr>
+              <td>Requirements:</td>
+              <td>{activity.requirements}</td>
+            </tr>
+            <tr>
+              <td>Category:</td>
+              <td>{activity.category}</td>
+            </tr>
+            <tr>
+              <td>Published:</td>
+              <td>{activity.published}</td>
+            </tr>
+          </table>
+        </div>
       </Card>
-
-      <h1>{activity.title}</h1>
-
-      <div>
-        <p>Start: {activity.startdate}</p>
-        <p>MinSlots: {activity.minslots}</p>
-        <p>MaxSlots: {activity.maxslots}</p>
-        <p>Price: {activity.price} €</p>
-        <p>Requirements: {activity.requirements}</p>
-        <p>Category: {activity.category}</p>
-        <p>Published: {activity.published}</p>
-      </div>
     </>
   );
 }
