@@ -43,7 +43,7 @@ export const getAllUser = asyncHandler(async (req, res, next) => {
 });
 
 export const updateUser = asyncHandler(async (req, res, next) => {
-  const { id, street, housenumber, zip, city, country, description, firstname, lastname, phone } = req.body;
+  const { email, street, housenumber, zip, city, country, description, firstname, lastname, phone } = req.body;
 
   try {
     const newAddress = await pool.query(
@@ -53,8 +53,8 @@ export const updateUser = asyncHandler(async (req, res, next) => {
     const addressId = newAddress.rows[0].id;
 
     await pool.query(
-      "UPDATE users SET firstname = $1, lastname = $2, phone = $3, address_id = $4 WHERE id = $5;",
-      [firstname, lastname, phone, addressId, id]
+      "UPDATE users SET firstname = $1, lastname = $2, phone = $3, address_id = $4 WHERE email = $5;",
+      [firstname, lastname, phone, addressId, email]
     );
 
     res.status(200).json({ message: "Address details updated successfully" });
