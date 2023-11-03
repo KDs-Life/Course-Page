@@ -1,6 +1,11 @@
 .navbar-wrapper {
   background-color: rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  transition: background-color 0.5s ease;
+}
+.colorChange {
+  background-color: rgb(180, 180, 180);
+  transition: background-color 0.5s ease;
 }
 #navbar-name {
   font-size: 1.5rem;
