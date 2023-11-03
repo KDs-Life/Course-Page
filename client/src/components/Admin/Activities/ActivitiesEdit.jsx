@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Container, Row, Col } from "react-bootstrap";
 import { format, parseISO } from "date-fns";
 import axios from "../../../api/axiosPrivate";
+import "../Admin.css";
 
 function ActivitiesEdit() {
   const [activity, setActivity] = useState();
@@ -12,22 +13,6 @@ function ActivitiesEdit() {
     e.preventDefault();
     console.log(e.target);
   };
-
-  // activity:
-  //  "id": 11,
-  // 	"title": "Test1",
-  // 	"description": "Test1",
-  // 	"active": false,
-  // 	"startdate": "2023-04-13T22:00:00.000Z",
-  // 	"minslots": 0,
-  // 	"maxslots": 0,
-  // 	"requirements": "Test1",
-  // 	"address_id": 0,
-  // 	"image_url": "http://localhost:5173/images/course9.jpg",
-  // 	"image_alt": "Test1",
-  // 	"price": 0,
-  // 	"category": "Test1",
-  // 	"published": "2023-04-13T22:00:00.000Z"
 
   useEffect(() => {
     const getActivity = () => {
@@ -48,59 +33,111 @@ function ActivitiesEdit() {
   //TODO: select or check for "active: true | false"
   return (
     <>
-      <div>Activity Edit</div>
-      {activity && (
-        <Form onSubmit={handleFormSubmit}>
-          <Form.Group className="mb-3" controlId="formTitle">
-            <Form.Label>Title</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter Title"
-              defaultValue={activity.title}
-            />
-          </Form.Group>
+      <Container fluid="md">
+        <div className="form-wrapper">
+          <Row>
+            <Col>
+              <div>Activity Edit</div>
+              {activity && (
+                <Form className="mb-3" onSubmit={handleFormSubmit}>
+                  <Form.Group className="mb-3" controlId="formTitle">
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter Title"
+                      defaultValue={activity.title}
+                    />
+                  </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formActive">
-            <Form.Label>Active ?</Form.Label>
-            <Form.Control as="select" value={activity.active}></Form.Control>
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formDescription">
-            <Form.Label>Description</Form.Label>
-            <Form.Control
-              as="textarea"
-              placeholder="Description"
-              defaultValue={activity.description}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formStartdate">
-            <Form.Label>Startdate</Form.Label>
-            <Form.Control
-              type="date"
-              placeholder="startdate"
-              defaultValue={format(parseISO(activity.startdate), "yyyy-MM-dd")}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formMinslots">
-            <Form.Label>Min slots</Form.Label>
-            <Form.Control type="text" defaultValue={activity.minslots} />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formMaxslots">
-            <Form.Label>Max slots</Form.Label>
-            <Form.Control type="text" defaultValue={activity.maxslots} />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formRequirements">
-            <Form.Label>Requirements</Form.Label>
-            <Form.Control
-              as="textarea"
-              placeholder="Requirements"
-              defaultValue={activity.requirements}
-            />
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Save
-          </Button>
-        </Form>
-      )}
+                  <Form.Group className="mb-3" controlId="formActive">
+                    <Form.Label>Active</Form.Label>
+                    <Form.Check
+                      type="switch"
+                      defaultChecked={activity.active}
+                    ></Form.Check>
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="formDescription">
+                    <Form.Label>Description</Form.Label>
+                    <Form.Control
+                      as="textarea"
+                      placeholder="Description"
+                      defaultValue={activity.description}
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="formStartdate">
+                    <Form.Label>Startdate</Form.Label>
+                    <Form.Control
+                      type="date"
+                      placeholder="startdate"
+                      defaultValue={format(
+                        parseISO(activity.startdate),
+                        "yyyy-MM-dd"
+                      )}
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="formMinslots">
+                    <Form.Label>Min slots</Form.Label>
+                    <Form.Control
+                      type="text"
+                      defaultValue={activity.minslots}
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="formMaxslots">
+                    <Form.Label>Max slots</Form.Label>
+                    <Form.Control
+                      type="text"
+                      defaultValue={activity.maxslots}
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="formRequirements">
+                    <Form.Label>Requirements</Form.Label>
+                    <Form.Control
+                      as="textarea"
+                      placeholder="Requirements"
+                      defaultValue={activity.requirements}
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="formAdressid">
+                    <Form.Label>Address</Form.Label>
+                    <Form.Control
+                      type="text"
+                      defaultValue={activity.address_id}
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="formImageurl">
+                    <Form.Label>Image URL</Form.Label>
+                    <Form.Control
+                      type="text"
+                      defaultValue={activity.image_url}
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="formImagealt">
+                    <Form.Label>Image alt</Form.Label>
+                    <Form.Control
+                      type="text"
+                      defaultValue={activity.image_alt}
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="formPrice">
+                    <Form.Label>Price</Form.Label>
+                    <Form.Control type="text" defaultValue={activity.price} />
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="formCategory">
+                    <Form.Label>Category</Form.Label>
+                    <Form.Control
+                      type="text"
+                      defaultValue={activity.category}
+                    />
+                  </Form.Group>
+                  <Button variant="primary" type="submit">
+                    Save
+                  </Button>
+                </Form>
+              )}
+            </Col>
+          </Row>
+        </div>
+      </Container>
     </>
   );
 }
