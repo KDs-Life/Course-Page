@@ -3,7 +3,9 @@ import pool from "../services/db.js";
 
 export const getActivities = asyncHandler(async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM activities;");
+    const result = await pool.query(
+      "SELECT * FROM activities WHERE startdate > NOW() AND active = true ORDER BY startdate;"
+    );
     return res.status(200).json(result.rows);
   } catch (error) {
     res.status(500).json({ message: "Activitiy not found" });
