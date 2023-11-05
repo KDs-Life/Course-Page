@@ -32,7 +32,7 @@ function ActivitiesDashboard() {
     <>
       <Stack gap={3}>
         <Button onClick={() => navigate("add")} variant="success">
-          New Activity <i class="fa fa-solid fa-plus"></i>
+          New Activity <i className="fa fa-solid fa-plus"></i>
         </Button>
         <Table responsive="lg" striped>
           <thead>
@@ -50,7 +50,7 @@ function ActivitiesDashboard() {
               ? "Loading"
               : activities.map((activitiy, key) => (
                   <tr key={key} className="align-middle">
-                    <td classname="align-content-center">
+                    <td className="align-content-center">
                       <NavLink to={`edit/${activitiy.id}`}>
                         {activitiy.title} (#{activitiy.id})
                       </NavLink>

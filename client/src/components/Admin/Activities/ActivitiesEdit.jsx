@@ -12,7 +12,7 @@ function ActivitiesEdit() {
   const navigate = useNavigate();
   const formRef = useRef();
   const formTitle = useRef();
-  const formActive = useRef(false);
+  const formActive = useRef();
   const formDescription = useRef();
   const formStartdate = useRef();
   const formMinslots = useRef();
@@ -24,10 +24,6 @@ function ActivitiesEdit() {
   const formPrice = useRef();
   const formCategory = useRef();
 
-  const handleChange = (e) => {
-    formActive.current = e.target.checked;
-  };
-
   const handleFormSubmit = (e) => {
     const myToast = toast.loading("Updating activity...");
     e.preventDefault();
@@ -35,7 +31,7 @@ function ActivitiesEdit() {
       id: id,
       title: formTitle.current?.value,
       description: formDescription.current?.value,
-      active: formActive.current,
+      active: formActive.current?.value,
       startdate: formStartdate.current?.value,
       minslots: Number(formMinslots.current?.value),
       maxslots: Number(formMaxslots.current?.value),
@@ -115,12 +111,11 @@ function ActivitiesEdit() {
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group as={Col} controlId="formActive">
-                Active
-                <Form.Check
-                  type="switch"
-                  defaultChecked={activity.active}
-                  onChange={handleChange}
-                ></Form.Check>
+                <Form.Label>Active</Form.Label>
+                <Form.Select defaultValue={activity.active} ref={formActive}>
+                  <option value="true">True</option>
+                  <option value="false">False</option>
+                </Form.Select>
               </Form.Group>
               <Form.Group as={Col} controlId="formStartdate">
                 <Form.Label>Startdate</Form.Label>
@@ -159,7 +154,7 @@ function ActivitiesEdit() {
                   type="number"
                   defaultValue={activity.maxslots}
                   ref={formMaxslots}
-                />{" "}
+                />
                 <Form.Control.Feedback type="invalid">
                   Max slots is required
                 </Form.Control.Feedback>
@@ -172,7 +167,7 @@ function ActivitiesEdit() {
                     type="number"
                     defaultValue={activity.price}
                     ref={formPrice}
-                  />{" "}
+                  />
                   <Form.Control.Feedback type="invalid">
                     Price is required
                   </Form.Control.Feedback>
