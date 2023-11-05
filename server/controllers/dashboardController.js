@@ -9,7 +9,7 @@ export const getBookings = asyncHandler(async (req, res) => {
     );
     return res.status(200).json(result.rows);
   } catch (error) {
-    res.status(500).json({ message: "Bookings not found" });
+    res.status(500).json({ status: "error", message: "Bookings not found" });
   }
 });
 
@@ -22,7 +22,9 @@ export const getBookingsByActivity = asyncHandler(async (req, res) => {
     );
     return res.status(200).json(result.rows[0]);
   } catch (error) {
-    res.status(500).json({ message: "Bookings for activity not found" });
+    res
+      .status(500)
+      .json({ status: "error", message: "Bookings for activity not found" });
   }
 });
 
@@ -45,10 +47,12 @@ export const getUsers = asyncHandler(async (req, res, next) => {
 //Activites
 export const getActivities = asyncHandler(async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM activities;");
+    const query =
+      "SELECT activities.*, COUNT(bookings.activities_id) as bookings FROM activities LEFT JOIN bookings ON bookings.activities_id = activities.id GROUP BY bookings.activities_id, activities.id ORDER BY activities.startdate ASC;";
+    const result = await pool.query(query);
     return res.status(200).json(result.rows);
   } catch (error) {
-    res.status(500).json({ message: "No activities found" });
+    res.status(500).json({ status: "error", message: "No activities found" });
   }
 });
 
@@ -60,7 +64,7 @@ export const getActivityById = asyncHandler(async (req, res) => {
     ]);
     return res.status(200).json(result.rows);
   } catch (error) {
-    res.status(500).json({ message: "Activity not found" });
+    res.status(500).json({ status: "error", message: "Activity not found" });
   }
 });
 
@@ -101,6 +105,96 @@ export const createActivity = asyncHandler(async (req, res) => {
     res.status(200).json(result.rows[0]);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "Could not create activity" });
+    res
+      .status(500)
+      .json({ status: "error", message: "Could not create activity" });
+  }
+});
+
+export const updateActivityById = asyncHandler(async (req, res) => {
+  try {
+    const {
+      id,
+      title,
+      description,
+      active,
+      startdate,
+      minslots,
+      maxslots,
+      requirements,
+      address_id,
+      image_url,
+      image_alt,
+      price,
+      category,
+    } = req.body;
+    const query =
+      "UPDATE activities SET title = $1, description = $2, active = $3, startdate = $4, minslots = $5, maxslots = $6, requirements = $7, address_id = $8, image_url = $9, image_alt = $10, price = $11, category = $12 WHERE id = $13 RETURNING *;";
+    const result = await pool.query(query, [
+      title,
+      description,
+      active,
+      startdate,
+      minslots,
+      maxslots,
+      requirements,
+      address_id,
+      image_url,
+      image_alt,
+      price,
+      category,
+      id,
+    ]);
+    res.status(200).json(result.rows[0]);
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .json({ status: "error", message: "Could not create activity" });
+  }
+});
+
+export const deleteActivityById = asyncHandler(async (req, res) => {
+  try {
+    const { id } = req.params;
+    const query = "DELETE FROM activities WHERE id = $1 RETURNING id;";
+    const result = await pool.query(query, [id]);
+    return res.status(200).json(result.rows);
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      message: "Could not delete activity",
+    });
+  }
+});
+
+//Admin Stats
+export const getStatsUsers = asyncHandler(async (req, res) => {
+  try {
+    const query = "SELECT count(id) FROM users;";
+    const result = await pool.query(query);
+    return res.status(200).json(result.rows);
+  } catch (error) {
+    res.status(500).json({ status: "error", message: "Userstats failed" });
+  }
+});
+
+export const getStatsBookings = asyncHandler(async (req, res) => {
+  try {
+    const query = "SELECT count(id) FROM bookings;";
+    const result = await pool.query(query);
+    return res.status(200).json(result.rows);
+  } catch (error) {
+    res.status(500).json({ status: "error", message: "Userstats failed" });
+  }
+});
+
+export const getStatsActivities = asyncHandler(async (req, res) => {
+  try {
+    const query = "SELECT count(id) FROM activities WHERE active = true;";
+    const result = await pool.query(query);
+    return res.status(200).json(result.rows);
+  } catch (error) {
+    res.status(500).json({ status: "error", message: "Userstats failed" });
   }
 });

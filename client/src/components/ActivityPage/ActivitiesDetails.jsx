@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 import axios from "../../api/axios";
 import {
   format,
@@ -13,8 +14,14 @@ import { Button } from "react-bootstrap";
 function ActivitiesDetails() {
   const [activity, setActivity] = useState(null);
   const { id } = useParams();
+  const navigate = useNavigate();
+
+  const handleBooking = (event) => {
+    toast.info(`Booking #${id}`);
+  };
 
   useEffect(() => {
+    if (isNaN(id)) return navigate("/activities");
     axios
       .get(`/activities/${id}`)
       .then((response) => {
@@ -64,7 +71,7 @@ function ActivitiesDetails() {
                 <td>{activity.category}</td>
               </tr>
               <tr>
-                <td>Published:</td>
+                <td>Start date:</td>
                 <td>
                   {" "}
                   <div className="activityDetails-date">
@@ -79,9 +86,13 @@ function ActivitiesDetails() {
                   </div>
                 </td>
               </tr>
-              <Button onClick="" className="booking-btn">
-                BUCHEN DU SAU
-              </Button>
+              <tr>
+                <td colSpan={2}>
+                  <Button onClick={handleBooking} className="booking-btn">
+                    BUCHEN DU SAU
+                  </Button>
+                </td>
+              </tr>
             </table>
           </div>
         </div>
@@ -89,6 +100,7 @@ function ActivitiesDetails() {
           <div>{activity.description}</div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }

@@ -11,6 +11,15 @@ dashboardRouter.get("/users", dashboardController.getUsers);
 dashboardRouter
   .get("/activities", dashboardController.getActivities)
   .post("/activities", dashboardController.createActivity);
-dashboardRouter.get("/activities/:id", dashboardController.getActivityById);
+dashboardRouter
+  .get("/activities/:id", dashboardController.getActivityById)
+  .put("/activities/:id", dashboardController.updateActivityById)
+  .delete("/activities/:id", dashboardController.deleteActivityById);
+dashboardRouter.get("/stats/users", dashboardController.getStatsUsers);
+dashboardRouter.get("/stats/bookings", dashboardController.getStatsBookings);
+dashboardRouter.get(
+  "/stats/activities",
+  dashboardController.getStatsActivities
+);
 
 export default dashboardRouter;

@@ -27,7 +27,6 @@
   /* border: 2px solid #00f625; */
 }
 
-
 .section-heading {
   font-size: 2.5em;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
@@ -52,7 +51,7 @@
 .footer-wrapper {
   background-color: rgba(255, 255, 255, 0.3);
   margin: auto;
-  padding: 10px ;
+  padding: 10px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }
 
@@ -61,23 +60,19 @@
   justify-content: space-around;
   align-items: center;
   font-size: 1.2em;
-
 }
 .social-media-links {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
-  
 }
 
 .footer-links {
   display: flex;
   justify-content: center;
   align-items: center;
- 
 }
-
 
 .footer-box a {
   text-decoration: none;
@@ -93,4 +88,13 @@
     font-size: 16px;
     padding: 10px 20px;
   }
+}
+/* Card Image Fix */
+.card-img,
+.card-img-top {
+  border-top-left-radius: var(--bs-card-inner-border-radius);
+  border-top-right-radius: var(--bs-card-inner-border-radius);
+  object-fit: cover;
+  object-position: top;
+  height: 225px;
 }

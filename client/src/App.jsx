@@ -6,17 +6,19 @@ import Profile from "./components/User/Profile.jsx";
 import Activities from "./components/ActivityPage/Activities.jsx";
 import NotFound from "./components/NotFound.jsx";
 import ActivitiesDetails from "./components/ActivityPage/ActivitiesDetails.jsx";
-import Dashboard from "./components/Admin/Dashboard.jsx";
 import AuthCheck from "./components/AuthCheck.jsx";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { Routes, Route } from "react-router-dom";
+import Dashboard from "./components/Admin/Dashboard.jsx";
+import AdminInfos from "./components/Admin/AdminInfos.jsx";
 import UserDashboard from "./components/Admin/User/UserDashboard.jsx";
 import BookingsDashboard from "./components/Admin/Bookings/BookingsDashboard.jsx";
 import ActivitiesDashboard from "./components/Admin/Activities/ActivitiesDashboard.jsx";
 import UserEdit from "./components/Admin/User/UserEdit.jsx";
 import BookingsEdit from "./components/Admin/Bookings/BookingsEdit.jsx";
-import ActivitiesEdit from "./components/Admin/Activities/ActivitiesEdit.jsx";
 import ActivitiesAdd from "./components/Admin/Activities/ActivityAdd.jsx";
+import ActivitiesEdit from "./components/Admin/Activities/ActivitiesEdit.jsx";
+import ActivityDelete from "./components/Admin/Activities/ActivityDelete.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -34,6 +36,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route element={<AuthCheck allowedRoles={["Admin"]} />}>
             <Route path="/dashboard" element={<Dashboard />}>
+              <Route path="" element={<AdminInfos />} />
               <Route path="users" element={<UserDashboard />} />
               <Route path="users/edit/:id" element={<UserEdit />} />
               <Route path="bookings" element={<BookingsDashboard />} />
@@ -41,6 +44,10 @@ function App() {
               <Route path="activities" element={<ActivitiesDashboard />} />
               <Route path="activities/add" element={<ActivitiesAdd />} />
               <Route path="activities/edit/:id" element={<ActivitiesEdit />} />
+              <Route
+                path="activities/delete/:id"
+                element={<ActivityDelete />}
+              />
             </Route>
           </Route>
           <Route path="*" element={<NotFound />} />

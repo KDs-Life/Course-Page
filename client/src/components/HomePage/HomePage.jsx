@@ -10,9 +10,9 @@ function HomePage() {
         <section className="masthead">
           <div className="container">
             <div className="masthead-subheading">
-              Willkommen auf der Skii-Erlebnis Seite
+              Welcome to your source for Ski-Courses in Freiburg!
             </div>
-            <div className="masthead-heading ">Lass dich verzaubern!!</div>
+            <div className="masthead-heading ">Test</div>
           </div>
         </section>
         <section className="page-section">
