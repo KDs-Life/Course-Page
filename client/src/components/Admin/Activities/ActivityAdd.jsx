@@ -107,8 +107,11 @@ function ActivitiesAdd() {
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group as={Col} controlId="formActive">
-                Active
-                <Form.Check type="switch" onChange={handleChange}></Form.Check>
+                <Form.Label>Active</Form.Label>
+                <Form.Select ref={formActive}>
+                  <option value="true">True</option>
+                  <option value="false">False</option>
+                </Form.Select>
               </Form.Group>
               <Form.Group as={Col} controlId="formStartdate">
                 <Form.Label>Startdate</Form.Label>
