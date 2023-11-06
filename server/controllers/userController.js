@@ -5,7 +5,7 @@ export const getUser = asyncHandler(async (req, res, next) => {
   const email = req.body.email.trim();
   try {
     const existingUser = await pool.query(
-      "SELECT users.email as email, users.created as created, users.lastname as lastname, users.firstname as firstname, users.role as role, count(b.*) as bookings FROM users LEFT JOIN bookings as b ON users.id = b.users_id WHERE users.email = $1 GROUP BY users.email, users.role, users.created, users.lastname, users.firstname;",
+      "SELECT users.email as email, users.created as created, users.lastname as lastname, users.firstname as firstname, users.phone as phone, a.street as street, a.housenumber as housenumber, a.city as city, a.country as country, users.role as role, count(b.*) as bookings FROM users LEFT JOIN bookings as b ON users.id = b.users_id LEFT JOIN address as a ON users.address_id = a.id WHERE users.email = $1 GROUP BY users.email, users.phone, users.role, users.created, users.lastname, users.firstname, a.street, a.housenumber,	a.city, a.country;",
       [email]
     );
     if (existingUser.rowCount !== 0) {
@@ -17,7 +17,9 @@ export const getUser = asyncHandler(async (req, res, next) => {
         role: existingUser.rows[0].role,
         member_since: existingUser.rows[0].created,
       };
-      return res.status(200).send({ status: "success", data });
+      return res
+        .status(200)
+        .send({ status: "success", data: existingUser.rows });
     } else
       res.status(404).send({ status: "error", message: "No Userdata found" });
   } catch (error) {
@@ -43,7 +45,18 @@ export const getAllUser = asyncHandler(async (req, res, next) => {
 });
 
 export const updateUser = asyncHandler(async (req, res, next) => {
-  const { email, street, housenumber, zip, city, country, description, firstname, lastname, phone } = req.body;
+  const {
+    email,
+    street,
+    housenumber,
+    zip,
+    city,
+    country,
+    description,
+    firstname,
+    lastname,
+    phone,
+  } = req.body;
 
   try {
     const newAddress = await pool.query(
@@ -62,4 +75,3 @@ export const updateUser = asyncHandler(async (req, res, next) => {
     next(error);
   }
 });
-

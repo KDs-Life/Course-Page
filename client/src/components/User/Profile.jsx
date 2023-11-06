@@ -1,7 +1,7 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, Outlet } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { useState, useEffect } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Container, Row, Col, Button, Card, Form } from "react-bootstrap";
 import jwtDecode from "jwt-decode";
 import axios from "../../api/axiosPrivate";
 import "./Profile.css";
@@ -18,20 +18,10 @@ function Profile() {
     setRole,
   } = useAuth();
   const navigate = useNavigate();
-  const [showForm, setShowForm] = useState(false);
-  const [userProfile, setUserProfile] = useState();
   const [tokenTimer, setTokenTimer] = useState(0);
+  const [userProfile, setUserProfile] = useState();
   const [email, setEmail] = useState("");
   const [password, setPwd] = useState("");
-  const [phone, setPhone] = useState("");
-  const [firstname, setFirstName] = useState("");
-  const [lastname, setLastName] = useState("");
-  const [street, setStreet] = useState("");
-  const [housenumber, setHousenumber] = useState("");
-  const [zip, setZip] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
-  const [description, setDescription] = useState("");
   const [errMsg, setErrMsg] = useState("");
 
   const handleLogout = () => {
@@ -45,7 +35,6 @@ function Profile() {
       setToken((curr) => (curr = ""));
       setRole((curr) => (curr = ""));
       navigate("/");
-      //return response.data;
     } catch (error) {
       console.log(error);
     }
@@ -89,167 +78,70 @@ function Profile() {
 
   // Usertable-Try
 
-  const handleUpdate = async (e) => {
-    e.preventDefault();
-    const data = { email: authUser, phone: phone, firstname: firstname, lastname: lastname, street: street, housenumber: Number(housenumber), zip: Number(zip), city: city, country: country, description: description  };
-    try {
-      const response = await axios.put(
-        "/user/profile",
-        data,
-      );
-      console.log(data);
-      setPwd("");
-      setPhone("");
-      setFirstName("");
-      setLastName("");
-      setStreet("");
-      setHousenumber("");
-      setZip("");
-      setCity("");
-      setCountry("");
-      setDescription("");
-      navigate("/profile");
-    } catch (error) {
-      if (error.response?.status === 400) {
-        setErrMsg("Missing Username or Password");
-      } else if (error.response?.status === 401) {
-        setErrMsg("Wrong credentials");
-      }
-    }
-  };
-
-
   return (
     <>
-      <div className="profile-wrapper">
-        <h3>Profile Page</h3>
-        {tokenTimer > 0 ? (
-          <p>Timer: {tokenTimer}</p>
-        ) : (
-          <p>
-            <NavLink href="/refresh">Token expired! REFRESH TOKEN</NavLink>
-          </p>
-        )}
-        {userProfile ? (
-          <>
-            {userProfile.role === "Admin" ? (
-              <NavLink to="/dashboard">Dashboard</NavLink>
+      <Container className="profile-wrapper">
+        <Row>
+          <Col xl={"auto"}>
+            <h3>Profile Page</h3>
+          </Col>
+        </Row>
+        <Row>
+          <Col xl={"auto"}>
+            <Card>
+              <Card.Body>
+                <Card.Title>
+                  <i className="fa fa-solid fa-user"></i>
+                </Card.Title>
+                <Card.Text>Usercount</Card.Text>
+                <NavLink to={`edit`}>
+                  <Button variant="primary">Edit profile</Button>
+                </NavLink>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col xl={"auto"}>
+            <Card>
+              <Card.Body>
+                <Card.Title>
+                  <i className="fa fa-solid fa-calendar-check"></i>
+                </Card.Title>
+                <Card.Text>Security</Card.Text>
+                <Button variant="primary">Change password</Button>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col xl={"auto"}>
+            <Card>
+              <Card.Body>
+                <Card.Title>
+                  <i className="fa fa-regular fa-calendar"></i>
+                </Card.Title>
+                <Card.Text>Bookings</Card.Text>
+                <Button variant="primary">Show Bookings</Button>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+        <Row>
+          <Col xl={"auto"}>
+            <Button onClick={handleLogout}>LOGOUT</Button>
+            {tokenTimer > 0 ? (
+              <p>Timer: {tokenTimer}</p>
             ) : (
-              ""
+              <p>
+                <NavLink href="/refresh">Token expired! REFRESH TOKEN</NavLink>
+              </p>
             )}
-            <div>Role: {userProfile.role}</div>
-            <div>Email: {authUser}</div>
-            <div>Bookings: {userProfile.bookings}</div>
-            <div>Member since: {userProfile.member_since}</div>
-          </>
-        ) : (
-          ""
-        )}
-
-        {!showForm ? (
-          <Button onClick={() => setShowForm(true)}>Update your data</Button>
-        ) : (
-          <Form className="Updateform" onSubmit={handleUpdate}>
-          <Form.Group className="mb-3" controlId="formGroupPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Password"
-              onChange={(e) => setPwd(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formGroupPhone">
-            <Form.Label>Phone</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Phone"
-              onChange={(e) => setPhone(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formGroupFirstName">
-            <Form.Label>First Name</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="First Name"
-              onChange={(e) => setFirstName(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formGroupLastName">
-            <Form.Label>Last Name</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Last Name"
-              onChange={(e) => setLastName(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formGroupStreet">
-            <Form.Label>Street</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Street"
-              onChange={(e) => setStreet(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formGroupHousenumber">
-            <Form.Label>Housenumber</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Housenumber"
-              onChange={(e) => setHousenumber(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formGroupZip">
-            <Form.Label>Zip</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Zip"
-              onChange={(e) => setZip(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formGroupCity">
-            <Form.Label>City</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="City"
-              onChange={(e) => setCity(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formGroupCountry">
-            <Form.Label>Country</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Country"
-              onChange={(e) => setCountry(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formGroupDescription">
-            <Form.Label>Description</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Description"
-              onChange={(e) => setDescription(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <Button onClick={handleUpdate}>Update</Button>
-          <Button onClick={() => setShowForm(false)}>Back to Profile</Button>
-  
-        </Form>
-        )}
-        <Button onClick={handleLogout}>LOGOUT</Button>
-      </div>
+          </Col>
+        </Row>
+        <Outlet
+          style={{ marginTop: "10px;" }}
+          context={[userProfile, setUserProfile]}
+        />
+      </Container>
     </>
   );
-  }
+}
 
 export default Profile;
-

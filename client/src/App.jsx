@@ -3,6 +3,7 @@ import HomePage from "./components/HomePage/HomePage.jsx";
 import LogIn from "./components/User/LogIn.jsx";
 import SignUp from "./components/User/SignUp.jsx";
 import Profile from "./components/User/Profile.jsx";
+import ProfileEdit from "./components/User/ProfileEdit.jsx";
 import Activities from "./components/ActivityPage/Activities.jsx";
 import NotFound from "./components/NotFound.jsx";
 import ActivitiesDetails from "./components/ActivityPage/ActivitiesDetails.jsx";
@@ -33,7 +34,9 @@ function App() {
           <Route path="/activities/:id" element={<ActivitiesDetails />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile />}>
+            <Route path="edit" element={<ProfileEdit />} />
+          </Route>
           <Route element={<AuthCheck allowedRoles={["Admin"]} />}>
             <Route path="/dashboard" element={<Dashboard />}>
               <Route path="" element={<AdminInfos />} />
