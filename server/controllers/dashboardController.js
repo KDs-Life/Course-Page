@@ -20,7 +20,7 @@ export const getBookingsByActivity = asyncHandler(async (req, res) => {
       "SELECT a.title, u.email, b.quantity FROM bookings AS b JOIN activities AS a ON a.id = b.activities_id JOIN users AS u ON u.id = b.users_id WHERE b.activities_id = $1 GROUP BY b.activities_id, a.title, u.email, b.quantity",
       [id]
     );
-    return res.status(200).json(result.rows[0]);
+    return res.status(200).json(result.rows);
   } catch (error) {
     res
       .status(500)
