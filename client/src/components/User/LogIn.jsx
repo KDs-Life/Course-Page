@@ -93,12 +93,8 @@ function LogIn() {
                 />
               </Form.Group>
               <div className="btn-container">
-                <Button type="submit">
-                  Log-In
-                </Button>
-                <Button onClick={() => navigate("/signup")}>
-                  Sign-Up
-                </Button>
+                <Button type="submit">Log-In</Button>
+                <Button onClick={() => navigate("/signup")}>Sign-Up</Button>
               </div>
             </Form>
           </div>
