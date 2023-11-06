@@ -122,6 +122,23 @@ function Profile() {
               </Card.Body>
             </Card>
           </Col>
+          {role === "Admin" ? (
+            <Col xl={"auto"}>
+              <Card>
+                <Card.Body>
+                  <Card.Title>
+                    <i className="fa fa-regular fa-calendar"></i>
+                  </Card.Title>
+                  <Card.Text>Dashboard</Card.Text>
+                  <NavLink to={`/dashboard`}>
+                    <Button variant="primary">Show Bookings</Button>
+                  </NavLink>
+                </Card.Body>
+              </Card>
+            </Col>
+          ) : (
+            ""
+          )}
         </Row>
         <Row>
           <Col xl={"auto"}>
