@@ -43,6 +43,17 @@ function Activities() {
     setSeason(value); // Aktuellen Filter festlegen
   };
 
+  
+    const freeSlots = (max, booked) => {
+      if(max === 0){
+        return "Es sind noch Plätze frei" }
+      if(max-booked<=0){
+        return "Es sind keine Plätze frei"
+      } 
+       return `Es sind noch ${max - booked} Plätze frei`
+    }
+   
+
   return (
     <>
       <div className="activities-wrapper">
@@ -70,8 +81,7 @@ function Activities() {
                     })}
                     )
                     <br />
-                    Min Slots:{activity.minslots} Max Slots:{activity.maxslots}{" "}
-                    Bookings:?
+                      {freeSlots(activity.maxslots,activity.total_quantity)}
                     {/* OBERE PART HIER ANZEIGEN! 
                           UNTERE PART AUF DETAILS SEITE */}
                     {/*  {activity.description}                         

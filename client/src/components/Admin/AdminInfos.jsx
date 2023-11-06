@@ -1,11 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Container, Col, Row, Button, Card, Spinner } from "react-bootstrap";
 import axios from "../../api/axiosPrivate";
 
 function AdminInfos() {
-  const users = useRef(null);
-  const bookings = useRef(null);
-  const activities = useRef(null);
+  const [users, setUsers] = useState();
+  const [bookings, setBookings] = useState();
+  const [activities, setActivites] = useState();
 
   //TODO: load infos on users, bookings and activities for the dashboard
   const getInfos = (target) => {
@@ -17,13 +17,13 @@ function AdminInfos() {
       .then((response) => {
         switch (target) {
           case "users":
-            users.current = response.data;
+            setUsers(response.data[0]);
             break;
           case "bookings":
-            bookings.current = response.data;
+            setBookings(response.data[0]);
             break;
           case "activities":
-            activities.current = response.data;
+            setActivites(response.data[0]);
             break;
           default:
             break;
@@ -36,6 +36,8 @@ function AdminInfos() {
 
   useEffect(() => {
     getInfos("users");
+    getInfos("bookings");
+    getInfos("activities");
   }, []);
 
   return (
@@ -49,16 +51,20 @@ function AdminInfos() {
                   <i className="fa fa-solid fa-user"></i>
                 </Card.Title>
                 <Card.Text>Current Usercount</Card.Text>
-                <Button variant="primary" disabled>
-                  <Spinner
-                    as="span"
-                    animation="grow"
-                    size="sm"
-                    role="status"
-                    aria-hidden="true"
-                  />
-                  Loading Users...
-                </Button>
+                {users ? (
+                  users.count
+                ) : (
+                  <Button variant="primary" disabled>
+                    <Spinner
+                      as="span"
+                      animation="grow"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                    />
+                    Loading Users...
+                  </Button>
+                )}
               </Card.Body>
             </Card>
           </Col>
@@ -69,16 +75,20 @@ function AdminInfos() {
                   <i className="fa fa-solid fa-calendar-check"></i>
                 </Card.Title>
                 <Card.Text>Current Bookingcount</Card.Text>
-                <Button variant="primary" disabled>
-                  <Spinner
-                    as="span"
-                    animation="grow"
-                    size="sm"
-                    role="status"
-                    aria-hidden="true"
-                  />
-                  Loading Bookings...
-                </Button>
+                {bookings ? (
+                  bookings.count
+                ) : (
+                  <Button variant="primary" disabled>
+                    <Spinner
+                      as="span"
+                      animation="grow"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                    />
+                    Loading Bookings...
+                  </Button>
+                )}
               </Card.Body>
             </Card>
           </Col>
@@ -89,16 +99,20 @@ function AdminInfos() {
                   <i className="fa fa-regular fa-calendar"></i>
                 </Card.Title>
                 <Card.Text>Current Activitycount</Card.Text>
-                <Button variant="primary" disabled>
-                  <Spinner
-                    as="span"
-                    animation="grow"
-                    size="sm"
-                    role="status"
-                    aria-hidden="true"
-                  />
-                  Loading Activities...
-                </Button>
+                {activities ? (
+                  activities.count
+                ) : (
+                  <Button variant="primary" disabled>
+                    <Spinner
+                      as="span"
+                      animation="grow"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                    />
+                    Loading Activities...
+                  </Button>
+                )}
               </Card.Body>
             </Card>
           </Col>
