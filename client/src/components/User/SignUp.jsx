@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "../../api/axios"; // Importiere Axios
+import axios from "../../api/axios";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -27,7 +27,7 @@ function SignUp() {
     }
 
     axios
-      .post("/signup", newUser) //Backend beachten!!!!!!!
+      .post("/signup", newUser)
       .then((response) => {
         console.log("Hallo", response.data);
         alert("User created");
@@ -56,10 +56,10 @@ function SignUp() {
   return (
     <div className="sign-up-wrapper">
       <h2 className="sign-up-title">Sign Up</h2>
-      <div>
-        <Form className="sign-up-form" onSubmit={handleSubmit}>
-          <Row className="mb-3">
-            <Form.Group as={Col} controlId="formGridEmail">
+      <Row>
+        <Col xs={4}>
+          <Form className="sign-up-form" onSubmit={handleSubmit}>
+            <Form.Group controlId="formGridEmail">
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
@@ -70,68 +70,46 @@ function SignUp() {
                 onChange={handleChange}
               />
             </Form.Group>
-          </Row>
-          {/* 
-          <Row className="mb-3">
-            <Form.Group as={Col} controlId="formGridFirstName">
-              <Form.Label>First Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="First Name"
-                name="firstname"
-                value={newUser.firstname}
-                onChange={handleChange}
-              />
-            </Form.Group>
-
-            <Form.Group as={Col} controlId="formGridLastName">
-              <Form.Label>Last Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Last Name"
-                name="lastname"
-                value={newUser.lastname}
-                onChange={handleChange}
-              />
-            </Form.Group>
-          </Row> */}
-
-          <Row className="mb-3">
-            <Form.Group as={Col} controlId="formGridPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                name="password"
-                required
-                value={newUser.password}
-                onChange={handleChange}
-              />
-            </Form.Group>
-
-            <Form.Group as={Col} controlId="formGridPasswordConfirm">
-              <Form.Label>Confirm Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Confirm Password"
-                name="confirmPassword"
-                required
-                value={newUser.confirmPassword}
-                onChange={handleChange}
-              />
-            </Form.Group>
-          </Row>
-
-          {/* <Form.Group className="mb-3" controlId="formGridAddress1">
-            <Form.Label>Address</Form.Label>
-            <Form.Control type="text" placeholder="adresse" name="adresse" />
-          </Form.Group> */}
-
-          <Button type="submit" id="signUp-Btn">
-            Submit
-          </Button>
-        </Form>
-      </div>
+            <Col className="mb-3">
+              <Form.Group controlId="formGridPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  required
+                  value={newUser.password}
+                  onChange={handleChange}
+                />
+                <Form.Label>Confirm Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Confirm Password"
+                  name="confirmPassword"
+                  required
+                  value={newUser.confirmPassword}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            </Col>
+            <div className="btn-container">
+              <div>
+                <Button type="submit">Submit</Button>
+              </div>
+              <div>
+                <Button onClick={() => navigate("/login")}>Log-In</Button>
+              </div>
+              You already have an account?
+            </div>
+          </Form>
+        </Col>
+        <Col xs={1} className="vertical-line"></Col>
+        <div>
+          <div className="sign-up-img">
+            <img src="https://i.pinimg.com/originals/5f/62/98/5f62987c9339cfc7312d717f1899feff.gif" alt="" />
+          </div>
+        </div>
+      </Row>
     </div>
   );
 }

@@ -21,8 +21,9 @@ body  {
   font-size: 16px;
   transition: background-color 0.3s;
   animation: gradient 15s ease infinite;
-  width: auto;
-  height: auto;
+  width: 100px;
+  height: 45px;
+
 }
 
 .btn:hover {
