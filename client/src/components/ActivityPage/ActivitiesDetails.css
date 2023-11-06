@@ -1,19 +1,23 @@
 .activity-wrapper-container {
   padding: 0px 0px 0px 25px;
-  margin: 25px ;
-  /* background-color: rgba(255, 255, 255, 0.4); */
-  background: transparent;
+  margin: auto ;
+  background-color: rgba(255, 255, 255, 0.2);
+  width: 100%;
+  /* background: transparent; */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  color: white;
+  align-items: flex-start;
+}
+.activity-wrapper-container h1 {
+
 }
 .activity-wrapper {
   /* border: 1px solid red; */
+  width: 100%;
   padding: 0 0 0 0;
-  margin: 0px 18% 0px 0px;
+  /* margin: 0px 18% 0px 0px; */
   display: flex;
   flex-wrap: wrap;
 }
@@ -67,8 +71,9 @@ h1 {
   text-align: justify;
   word-break: break-word;
   font-size: 20px;
-  padding: 10px 25% 0 10%;
+  padding: 10px 25% 0 0;
   margin: 0 0 0 20px;
+  width: 100%;
 }
 
 .activityDetails-date p {

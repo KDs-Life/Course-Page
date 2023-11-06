@@ -2,19 +2,20 @@
   font-family: monospace;
   font-size: 16px;
   font-weight: 600;
-  color: #fdfdfd;
-  /* border: 2px solid green; */
+  color: #000000;
+  max-width: 1500px;
+  margin: auto;
 }
 
-body {
-  margin: 0;
-  padding: 0 ;
-  background-image: url("https://i.postimg.cc/Kvx8G1hZ/Grau-ski-bild-dunkel.jpg");
+body  {
+  background-image: url(https://i.postimg.cc/k57nZgm6/mountain-ski-slope-wallpaper-5120x2160.jpg);
   background-repeat: no-repeat;
+  background-size: 100%;
   background-attachment: fixed;
-  background-size: cover;
-  background-position: center;
+  backdrop-filter: blur(5px);
+  /* background-size: cover; */
 }
+
 
 .btn {
   font-size: 16px;
@@ -22,31 +23,9 @@ body {
   animation: gradient 15s ease infinite;
   width: auto;
   height: auto;
- 
 }
 
-/* @keyframes parallax {
-  0% {
-    background-position: 0% 0%;
-  }
-  100% {
-    background-position: 0% 100%;
-  }
+.btn:hover {
+  background-color: #000000;
+  color: #ffffff;
 }
-
-.parallax {
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.parallax-1 {
-  background-image: url(https://i.postimg.cc/JzrkPT1B/winter-aesthetic-morning-foggy-moon-landscape-cold-5k-5786x3254-497.jpg);
-  height: 400px; 
-}
-
-.parallax-2 {
-  background-image: url(https://i.postimg.cc/JzrkPT1B/winter-aesthetic-morning-foggy-moon-landscape-cold-5k-5786x3254-497.jpg);
-  height: 600px; 
-} */

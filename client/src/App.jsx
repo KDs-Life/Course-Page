@@ -19,6 +19,7 @@ import BookingsEdit from "./components/Admin/Bookings/BookingsEdit.jsx";
 import ActivitiesAdd from "./components/Admin/Activities/ActivityAdd.jsx";
 import ActivitiesEdit from "./components/Admin/Activities/ActivitiesEdit.jsx";
 import ActivityDelete from "./components/Admin/Activities/ActivityDelete.jsx";
+import Footer from "./components/Footer/Footer.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -52,6 +53,7 @@ function App() {
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <Footer />
       </div>
     </AuthProvider>
   );

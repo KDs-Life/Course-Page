@@ -1,6 +1,4 @@
-// import { Container, Row, Col, Button } from "react-bootstrap";
-// import Carousel from "react-bootstrap/Carousel";
-import { Button } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import "./HomePage.css";
 
 function HomePage() {
@@ -8,105 +6,54 @@ function HomePage() {
     <>
       <div className="wrapper-container-homepage">
         <section className="masthead">
-          <div className="container">
-            <div className="masthead-subheading">
-              Welcome to your source for Ski-Courses in Freiburg!
-            </div>
-            <div className="masthead-heading ">Test</div>
+          <div className="masthead-container">
+            <h2>Welcome to your source for Ski-Courses in Freiburg!</h2>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam,
+              vitae.
+            </p>
           </div>
         </section>
         <section className="page-section">
-          <div className="container">
-            <div className="text-center">
-              <h2 className="section-heading">Services</h2>
-              <h3 className="section-subheading">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae
-                non eum quod dignissimos nisi alias iusto quibusdam, fugit
-                ducimus similique deleniti ex esse magni recusandae quam
-                mollitia maiores itaque pariatur quae consequatur voluptas
-                aliquam molestiae fugiat vel. Dolores, distinctio. Tempore omnis
-                quo fugiat, sit itaque ducimus aut. Voluptates laudantium
-                consequatur voluptate quos molestias adipisci, asperiores
-                debitis provident tempore illo non quis pariatur facilis hic
-                totam odio quisquam nulla libero quas saepe, consectetur
-                aspernatur veritatis? Facilis enim, dolore porro harum
-                recusandae saepe atque quaerat quae nostrum corrupti, et,
-                deserunt voluptatem sit quia quod eveniet magni ducimus unde eum
-                cupiditate officia nam.
-              </h3>
+          <h2>Services</h2>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae non
+            eum quod dignissimos nisi alias iusto quibusdam, fugit ducimus
+            similique deleniti ex esse magni recusandae quam mollitia maiores
+            itaque pariatur quae consequatur voluptas aliquam molestiae fugiat
+            vel. Dolores, distinctio. Tempore omnis quo fugiat, sit itaque
+            ducimus aut. Voluptates laudantium consequatur voluptate quos
+            molestias adipisci, asperiores debitis provident tempore illo non
+            quis pariatur facilis hic totam odio quisquam nulla libero quas
+            saepe, consectetur aspernatur veritatis? Facilis enim, dolore porro
+            harum recusandae saepe atque quaerat quae nostrum corrupti, et,
+            deserunt voluptatem sit quia quod eveniet magni ducimus unde eum
+            cupiditate officia nam.
+          </p>
+          <section className="service-wrapper">
+            <div>
+              <i className="fas fa-4x fa-gem text-primary mb-3 sr-icon-1">
+                <h3>Sturdy Templates</h3>
+              </i>
+              <p>Our templates are updated regularly so they don't break.</p>
             </div>
-            <div className="row text-center">
-              <div className="col-md-4">
-                <span className="fa-stack fa-4x">
-                  <i className="fas fa-solid fa-child fa-stack-2x text-secondary"></i>
-                </span>
-                <h4 className="my-3">Kurse für Kinder</h4>
-                <p className="">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Minima maxime quam architecto quo inventore harum ex magni,
-                  dicta impedit.
-                </p>
-              </div>
 
-              <div className="col-md-4">
-                <span className="fa-stack fa-4x">
-                  <i className="fa-solid fa-people-line"></i>
-                </span>
-                <h4 className="my-3">Kurse für Gruppen und Familien</h4>
-                <p className="">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Minima maxime quam architecto quo inventore harum ex magni,
-                  dicta impedit.
-                </p>
-              </div>
-
-              <div className="col-md-4">
-                <span className="fa-stack fa-4x">
-                  <i className="fas fa-circle fa-stack-2x text-primary"></i>
-                </span>
-                <h4 className="my-3">Privatkurse & Weinachtsevents</h4>
-                <p className="text">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Minima maxime quam architecto quo inventore harum ex magni,
-                  dicta impedit.
-                </p>
-              </div>
+            <div>
+              <i className="fas fa-4x fa-gem text-primary mb-3 sr-icon-1">
+                <h3>Sturdy Templates</h3>
+              </i>
+              <p>Our templates are updated regularly so they don't break.</p>
             </div>
-          </div>
+
+            <div>
+              <i className="fas fa-4x fa-gem text-primary mb-3 sr-icon-1">
+                <h3>Sturdy Templates</h3>
+              </i>
+              <p>Our templates are updated regularly so they don't break.</p>
+            </div>
+          </section>
         </section>
-        {/* Other sections go here */}
       </div>
-      <footer className="footer-wrapper">
-        <div className="footer-box">
-          <div>Copyright &copy; Your Website 2023</div>
-          <div className="social-media-links">
-            <Button>
-              <a href="#!" aria-label="Twitter">
-                <i className="fab fa-twitter"></i>
-              </a>
-            </Button>
-            <Button>
-              <a href="#!" aria-label="Facebook">
-                <i className="fab fa-facebook-f"></i>
-              </a>
-            </Button>
-            <Button>
-              <a href="#!" aria-label="LinkedIn">
-                <i className="fab fa-linkedin-in"></i>
-              </a>
-            </Button>
-          </div>
-          <div className="footer-links">
-            <a className="" href="#!">
-              Privacy Policy
-            </a>
-
-            <a className="" href="#!">
-              Terms of Use
-            </a>
-          </div>
-        </div>
-      </footer>
     </>
   );
 }
