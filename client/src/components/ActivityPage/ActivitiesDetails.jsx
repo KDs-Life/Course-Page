@@ -36,6 +36,15 @@ function ActivitiesDetails() {
     return <p>Lade...</p>;
   }
 
+  const freeSlots = (max, booked) => {
+    if(max === 0){
+      return "Es sind noch Plätze frei" }
+    if(max-booked<=0){
+      return "Es sind keine Plätze frei"
+    } 
+     return `Es sind noch ${max - booked} Plätze frei`
+  }
+
   return (
     <>
       <div className="activity-wrapper-container">
@@ -52,10 +61,7 @@ function ActivitiesDetails() {
                 <th>Informationen</th>
               </tr>
               <tr>
-                <td>Slots:</td>
-                <td>
-                  {activity.minslots}/{activity.maxslots}
-                </td>
+                <td>{freeSlots(activity.maxslots,activity.total_quantity)}</td>
               </tr>
 
               <tr>
