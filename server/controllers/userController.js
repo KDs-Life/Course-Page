@@ -1,5 +1,16 @@
+import bcrypt from "bcrypt";
 import asyncHandler from "../utils/asyncHandler.js";
 import pool from "../services/db.js";
+
+const JWT_OPTIONS_ACCESS = {
+  algorithm: process.env.JWT_ALGORITHM,
+  expiresIn: process.env.ACCESS_TOKEN_EXPIRE,
+};
+
+const JWT_OPTIONS_REFRESH = {
+  algorithm: process.env.JWT_ALGORITHM,
+  expiresIn: process.env.REFRESH_TOKEN_EXPIRE,
+};
 
 export const getUser = asyncHandler(async (req, res, next) => {
   const email = req.body.email.trim();
@@ -101,34 +112,55 @@ export const updateUser = asyncHandler(async (req, res, next) => {
   }
 });
 
-// export const updateUser = asyncHandler(async (req, res, next) => {
-//   const {
-//     email,
-//     street,
-//     housenumber,
-//     zip,
-//     city,
-//     country,
-//     description,
-//     firstname,
-//     lastname,
-//     phone,
-//   } = req.body;
+export const updatePassword = asyncHandler(async (req, res, next) => {
+  const { email, oldPassword, newPassword } = req.body;
+  if (!oldPassword || !newPassword)
+    return res
+      .status(401)
+      .json({ status: "error", message: "no passwords sent" });
+  try {
+    const foundUser = await pool.query(
+      "SELECT email, password FROM users WHERE email = $1;",
+      [email]
+    );
+    if (!foundUser) {
+      return res
+        .status(401)
+        .json({ status: "error", message: "Email not found." });
+    }
+    //check oldPassword
+    const match = await bcrypt.compare(oldPassword, foundUser.rows[0].password);
+    if (!match)
+      return res
+        .status(401)
+        .json({ status: "error ", message: "Old password incorrect." });
+    const hash = await bcrypt.hash(newPassword, 10);
+    await pool.query("UPDATE users SET password = $1 WHERE email = $2;", [
+      hash,
+      email,
+    ]);
+    res
+      .status(200)
+      .json({ status: "success", message: "Password updated successfully" });
+  } catch (error) {
+    next(error);
+  }
+});
 
-//   try {
-//     const newAddress = await pool.query(
-//       "INSERT INTO address (street, housenumber, zip, city, country, description) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;",
-//       [street, housenumber, zip, city, country, description]
-//     );
-//     const addressId = newAddress.rows[0].id;
-
-//     await pool.query(
-//       "UPDATE users SET firstname = $1, lastname = $2, phone = $3, address_id = $4 WHERE email = $5;",
-//       [firstname, lastname, phone, addressId, email]
-//     );
-
-//     res.status(200).json({ message: "Address details updated successfully" });
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+export const getBookings = asyncHandler(async (req, res) => {
+  const { email } = req.params;
+  try {
+    const result = await pool.query(
+      `SELECT b.id, title, quantity,b.price,(b.price*b.quantity)as sum,a.startdate
+    FROM bookings AS b
+    JOIN users AS u ON u.id = b.users_id
+    JOIN activities AS a ON a.id = b.activities_id
+    WHERE email = $1 AND startdate > NOW()
+    ORDER BY startdate ASC;`,
+      [email]
+    );
+    return res.status(200).json(result.rows);
+  } catch (error) {
+    res.status(500).json({ message: "Booking not found" });
+  }
+});

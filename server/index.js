@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 //app.use("*", checkUser);
 app.use("/", authRouter);
 app.use("/activities", activityRouter);
-app.use("/bookings", bookingRouter);
+app.use("/bookings", requireAuth, bookingRouter);
 app.use("/user", requireAuth, userRouter);
 app.use("/refresh", requireAuth, refreshRouter);
 app.use("/dashboard", requireAuth, dashboardRouter);
