@@ -3,15 +3,20 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import axios from "../../api/axios";
 import { Alert } from "react-bootstrap";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import "./LogIn.css";
+import jwtDecode from "jwt-decode";
 
 function LogIn() {
-  const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn, token, setToken } =
-    useAuth();
+  const {
+    authUser,
+    setAuthUser,
+    isLoggedIn,
+    setIsLoggedIn,
+    role,
+    setRole,
+    setToken,
+  } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
@@ -25,6 +30,7 @@ function LogIn() {
       });
       setAuthUser({});
       setIsLoggedIn(false);
+      setToken((curr) => (curr = ""));
       navigate("/login");
     } catch (error) {
       console.log(error);
@@ -44,7 +50,9 @@ function LogIn() {
       );
       setAuthUser(email);
       setIsLoggedIn(true);
+      const tempToken = jwtDecode(response.data.accessToken);
       setToken((curr) => (curr = response.data.accessToken));
+      setRole(() => tempToken.role);
       setEmail("");
       setPwd("");
       navigate("/profile");
@@ -69,40 +77,42 @@ function LogIn() {
 
   return (
     <div className="logIn-Wrapper">
-      <Row>
-        <Col xs={4}>
-          <div className="user-log-in-container">
-            <h2 className="logIn-Title">Log-In</h2>
-            <div>
-              {errMsg !== "" ? <Alert variant="danger">{errMsg}</Alert> : ""}
-              <Form className="log-in-form" onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="formGroupEmail">
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control
-                    type="email"
-                    placeholder="Enter email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formGroupPassword">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control
-                    type="password"
-                    placeholder="Password"
-                    onChange={(e) => setPwd(e.target.value)}
-                    required
-                  />
-                </Form.Group>
-                <div className="btn-container">
-                  <Button type="submit">Log-In</Button>
-                  <Button onClick={() => navigate("/signup")}>Sign-Up</Button>
-                </div>
-              </Form>
-            </div>
-          </div>
-        </Col> 
-      </Row>
+      <div className="user-log-in-container">
+        <Container>
+          <Row>
+            <Col>
+              <h2 className="logIn-Title">Log-In</h2>
+              <div>
+                {errMsg !== "" ? <Alert variant="danger">{errMsg}</Alert> : ""}
+                <Form className="log-in-form" onSubmit={handleSubmit}>
+                  <Form.Group className="mb-3" controlId="formGroupEmail">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control
+                      type="email"
+                      placeholder="Enter email"
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="formGroupPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                      type="password"
+                      placeholder="Password"
+                      onChange={(e) => setPwd(e.target.value)}
+                      required
+                    />
+                  </Form.Group>
+                  <div className="btn-container">
+                    <Button type="submit">Log-In</Button>
+                    <Button onClick={() => navigate("/signup")}>Sign-Up</Button>
+                  </div>
+                </Form>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     </div>
   );
 }
