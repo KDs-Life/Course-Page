@@ -56,6 +56,7 @@ function Activities() {
 
   return (
     <>
+    
       <div className="activities-wrapper">
 
         {/* Ansicht für Aktivitäten */}
