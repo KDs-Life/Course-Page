@@ -2,21 +2,11 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Card, Button, Table, Alert, Stack } from "react-bootstrap";
 import { format, formatDistanceToNow, parseISO } from "date-fns";
-import axios from "../../../api/axios";
+import axios from "../../api/axios";
 
 function ActivitiesCurrent() {
   const [activityData, setActivityData] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const freeSlots = (max, booked) => {
-    if (max === 0) {
-      return "Free slots available";
-    }
-    if (max - booked <= 0) {
-      return "No slots available";
-    }
-    return `${max - booked} slots available`;
-  };
 
   useEffect(() => {
     axios
@@ -51,7 +41,7 @@ function ActivitiesCurrent() {
                   })}
                   )
                   <br />
-                  {freeSlots(activity.maxslots, activity.total_quantity)}
+                  {activity.freeslots && <b>Free slots:{activity.freeslots}</b>}
                 </Card.Text>
                 <NavLink
                   as="a"
@@ -59,7 +49,7 @@ function ActivitiesCurrent() {
                   variant="primary"
                   id="more-info-link"
                 >
-                  Mehr
+                  More
                 </NavLink>
               </Card.Body>
             </Card>
