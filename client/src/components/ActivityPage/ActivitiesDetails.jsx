@@ -29,7 +29,7 @@ function ActivitiesDetails() {
     }
     console.log(JSON.stringify(data))
     axios
-      .post('/bookings', data,
+      .post('/bookings', data, 
       { withCredentials: true })
       .then((response) => {
         toast.info(`Booking #${id} successful!`);
@@ -121,6 +121,7 @@ function ActivitiesDetails() {
                   <Form.Control
                     type="number"
                     min="1"
+                    max={activity.maxslots - activity.total_quantity}
                     value={bookingCount}
                     onChange={(e) => setBookingCount(e.target.value)}
                   />
