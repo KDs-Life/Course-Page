@@ -49,7 +49,7 @@ function NavBar() {
         <Navbar.Collapse id="" className="links-container">
           <Nav className="navbar-links">
             <Nav.Link as={Link} to="/activities">
-              Kurse
+              Courses
             </Nav.Link>
             {!isLoggedIn && (
               <>
