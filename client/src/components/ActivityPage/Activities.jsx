@@ -102,7 +102,7 @@ function Activities() {
                     id="more-info-link"
                   >
                     {" "}
-                    Mehr
+                    more
                   </NavLink>
                 </Card.Body>
               </Card>

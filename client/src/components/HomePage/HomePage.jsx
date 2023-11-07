@@ -1,5 +1,4 @@
-import { Container, Row, Col, Button } from "react-bootstrap";
-import ActivitiesCurrent from "../Admin/Activities/ActivitiesCurrent";
+import ActivitiesCurrent from "../ActivityPage/ActivitiesCurrent";
 
 import "./HomePage.css";
 

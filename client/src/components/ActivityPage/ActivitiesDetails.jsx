@@ -13,14 +13,19 @@ import {useAuth} from "../../context/AuthContext";
 import { Button, Form } from "react-bootstrap";
 
 function ActivitiesDetails() {
-  const {authUser} = useAuth();
+  const {authUser, isLoggedIn} = useAuth();
   const [activity, setActivity] = useState(null);
   const [bookingCount, setBookingCount] = useState(1);
   const { id } = useParams();
   const navigate = useNavigate();
+   
 
   const handleBooking = (event) => {
     event.preventDefault();
+    if (!isLoggedIn) {
+      toast.error("Please log in to book an activity.");
+      return;
+    }
     const data = {
       email: authUser,
       activity_id: id,
@@ -121,7 +126,7 @@ function ActivitiesDetails() {
                   <Form.Control
                     type="number"
                     min="1"
-                    max={activity.maxslots - activity.total_quantity}
+                    max={activity.maxslots === 0 ? Number.MAX_SAFE_INTEGER : activity.maxslots - activity.total_quantity}
                     value={bookingCount}
                     onChange={(e) => setBookingCount(e.target.value)}
                   />
