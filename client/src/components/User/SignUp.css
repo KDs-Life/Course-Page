@@ -11,20 +11,20 @@
   background-image: url(https://media3.giphy.com/media/tIHktzgRi8yjIplFVI/giphy.gif?cid=ecf05e478n3b2zwoxig95o8gk4h0o1i8cq580csads5ece1v&ep=v1_stickers_search&rid=giphy.gif&ct=s);
 }
 
-.sign-up-title {
+/* .sign-up-title {
   font-size: 2rem;
   margin-top: 50px;
   margin-bottom: 20px;
-}
+} */
 
 .sign-up-form {
   /* border: 1px solid black; */
-  width: 100%;
+  /* width: 100%;
   margin: 0 100%;
   display: flex;
   flex-direction: column;
   border-radius: 8px;
-  padding: 20px;
+  padding: 20px; */
 }
 
 .mb-3 input {
