@@ -44,14 +44,14 @@ function Activities() {
   };
 
   
-    const freeSlots = (max, booked) => {
-      if(max === 0){
-        return "Es sind noch Plätze frei" }
-      if(max-booked<=0){
-        return "Es sind keine Plätze frei"
-      } 
-       return `Es sind noch ${max - booked} Plätze frei`
-    }
+  const freeSlots = (max, booked) => {
+    if(max === 0){
+      return "Free slots available" }
+    if(max-booked<=0){
+      return "No free slots available"
+    } 
+     return `${max - booked} Slots available`
+  }
    
 
   return (

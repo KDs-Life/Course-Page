@@ -66,11 +66,11 @@ function ActivitiesDetails() {
 
   const freeSlots = (max, booked) => {
     if(max === 0){
-      return "Es sind noch Plätze frei" }
+      return "Free slots available" }
     if(max-booked<=0){
-      return "Es sind keine Plätze frei"
+      return "No free slots available"
     } 
-     return `Es sind noch ${max - booked} Plätze frei`
+     return `${max - booked} Slots available`
   }
 
   return (
@@ -86,7 +86,7 @@ function ActivitiesDetails() {
           <div className="inner-details">
             <table className="details">
               <tr>
-                <th>Informationen</th>
+                <th>Informations</th>
               </tr>
               <tr>
                 <td>{freeSlots(activity.maxslots,activity.total_quantity)}</td>

@@ -6,7 +6,7 @@ function Footer() {
     <footer>
       <div className="footer-wrapper">
         <div className="impressum">
-          <a href="#">Impressium</a>
+          <a href="#">Impressum</a>
           <p>© 2021 - All rights reserved</p>
         </div>
 
