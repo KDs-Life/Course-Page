@@ -1,10 +1,11 @@
 .profile-wrapper {
+  /* height: 100%; statt vh */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   text-align: center;
-  margin: 50px auto;
+  /* margin: 50px auto; */
   padding: 40px;
   border: rgb(83, 82, 82) solid 1px;
   border-radius: 8px;

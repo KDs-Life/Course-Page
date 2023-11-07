@@ -71,7 +71,7 @@ function Activities() {
             activityData.map((activity, key) => (
               <Card id="cardBox" key={activity.id}>
                 <Card.Img variant="top" src={activity.image_url} />
-                <Card.Body>
+                <Card.Body className="big-box-activity">
                   <Card.Title className="col-12 text-truncate">
                     {activity.title}
                   </Card.Title>
