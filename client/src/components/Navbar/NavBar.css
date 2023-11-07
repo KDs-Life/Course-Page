@@ -3,30 +3,60 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   transition: background-color 0.5s ease;
   height: 50px;
-  /* border: 1px solid red; */
   display: flex;
   justify-content: space-between;
 }
+
 .colorChange {
   background-color: rgb(180, 180, 180);
   transition: background-color 0.5s ease;
 }
 
 #navbar-name {
-  
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  margin-left: 1rem;
 }
+
 .show > .navbar-links.navbar-nav {
-  background: aliceblue;
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 25px;
+  width: 100%;
+  margin: 0;
 }
 
 .links-container {
-  /* border: 1px solid red;  */
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
 }
+
 .navbar-links {
   font-size: 20px;
   gap: 1rem;
-  /* border: 1px solid red; */
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.5s ease;
+}
+
+@media (max-width: 768px) {
+  .navbar-wrapper {
+    height: auto; 
+  }
+
+  .links-container {
+    flex-direction: column; 
+  }
+
+  .navbar-links {
+    font-size: 16px;
+    gap: 0.5rem; 
+  }
 }
