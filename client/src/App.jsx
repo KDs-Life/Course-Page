@@ -4,6 +4,8 @@ import LogIn from "./components/User/LogIn.jsx";
 import SignUp from "./components/User/SignUp.jsx";
 import Profile from "./components/User/Profile.jsx";
 import ProfileEdit from "./components/User/ProfileEdit.jsx";
+import ProfileBookings from "./components/User/ProfileBookings.jsx";
+import UserPassword from "./components/User/UserPassword.jsx";
 import Activities from "./components/ActivityPage/Activities.jsx";
 import NotFound from "./components/NotFound.jsx";
 import ActivitiesDetails from "./components/ActivityPage/ActivitiesDetails.jsx";
@@ -37,6 +39,8 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/profile" element={<Profile />}>
             <Route path="edit" element={<ProfileEdit />} />
+            <Route path="password" element={<UserPassword />} />
+            <Route path="bookings" element={<ProfileBookings />} />
           </Route>
           <Route element={<AuthCheck allowedRoles={["Admin"]} />}>
             <Route path="/dashboard" element={<Dashboard />}>

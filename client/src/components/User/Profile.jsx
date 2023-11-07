@@ -107,7 +107,9 @@ function Profile() {
                   <i className="fa fa-solid fa-calendar-check"></i>
                 </Card.Title>
                 <Card.Text>Security</Card.Text>
-                <Button variant="primary">Change password</Button>
+                <NavLink to={`password`}>
+                  <Button variant="primary">Change password</Button>
+                </NavLink>
               </Card.Body>
             </Card>
           </Col>
@@ -118,7 +120,9 @@ function Profile() {
                   <i className="fa fa-regular fa-calendar"></i>
                 </Card.Title>
                 <Card.Text>Bookings</Card.Text>
-                <Button variant="primary">Show Bookings</Button>
+                <NavLink to={`bookings`}>
+                  <Button variant="primary">Show Bookings</Button>
+                </NavLink>
               </Card.Body>
             </Card>
           </Col>
