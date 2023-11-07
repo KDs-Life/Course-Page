@@ -15,6 +15,9 @@
 #navbar-name {
   
 }
+.show > .navbar-links.navbar-nav {
+  background: aliceblue;
+}
 
 .links-container {
   /* border: 1px solid red;  */
