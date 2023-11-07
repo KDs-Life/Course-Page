@@ -17,19 +17,26 @@ body {
   background-size: cover;
 }
 
-/* .btn-primary {
-  --bs-btn-color: #fff;
-  --bs-btn-bg: #110dfd;
-  --bs-btn-border-color: #0d6efd;
-  --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #0b5ed7;
-  --bs-btn-hover-border-color: #0a58ca;
-  --bs-btn-focus-shadow-rgb: 49,132,253;
-  --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: #0a58ca;
-  --bs-btn-active-border-color: #0a53be;
-  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-btn-disabled-color: #fff;
-  --bs-btn-disabled-bg: #0d6efd;
-  --bs-btn-disabled-border-color: #0d6efd;
-} */
+form {
+  align-items: center;
+
+}
+
+label {
+  font-size: 1.2rem;
+  font-weight: 700;
+  /* border: 4px solid green; */
+}
+
+.form-control {
+  /* border: 4px solid green; */
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 5px;
+  margin: 0 10px 0 10px;
+}
+
+.form-control:focus {
+  border: 2px solid #3a04ff;
+
+}
