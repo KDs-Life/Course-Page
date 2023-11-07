@@ -1,6 +1,7 @@
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useState, useRef, useEffect } from "react";
+import { ToastContainer, toast, Flip } from "react-toastify";
 import { useAuth } from "../../context/AuthContext";
 import axios from "../../api/axiosPrivate";
 
@@ -31,22 +32,27 @@ function ProfileEdit() {
       city: formCity.current?.value,
       country: formCountry.current?.value,
     };
-    console.log(data);
+    const myToast = toast.loading("Updatind user data");
     try {
-      //const response = await axios.put("/user/profile", data);
-      //console.log(data);
+      const response = await axios.put("/user/profile", data);
+      toast.update(myToast, {
+        render: `User data updated`,
+        type: "success",
+        isLoading: false,
+        autoClose: 2000,
+      });
     } catch (error) {
-      if (error.response?.status === 400) {
-        setErrMsg("Missing Username or Password");
-      } else if (error.response?.status === 401) {
-        setErrMsg("Wrong credentials");
-      }
+      toast.update(myToast, {
+        render: `Error on update`,
+        type: "error",
+        isLoading: false,
+        autoClose: 2000,
+      });
     }
   };
 
   useEffect(() => {
     const getUserdata = () => {
-      console.log({ email: authUser });
       return axios.post(
         "/user/profile",
         { email: authUser },
@@ -58,12 +64,11 @@ function ProfileEdit() {
     };
     getUserdata()
       .then((response) => {
-        setUserProfile(response.data.data);
+        setUserProfile(response.data.data[0]);
       })
       .catch((err) => {
         console.log("ERROR: ", err.message);
       });
-    console.log(userProfile);
   }, []);
 
   return (
@@ -208,6 +213,19 @@ function ProfileEdit() {
           </Form>
         </div>
       </Container>
+      <ToastContainer
+        position="top-center"
+        transition={Flip}
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </>
   );
 }

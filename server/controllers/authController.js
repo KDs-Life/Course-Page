@@ -65,7 +65,7 @@ export const loginUser = asyncHandler(async (req, res) => {
   }
   try {
     const foundUser = await pool.query(
-      "SELECT email, password FROM users WHERE email = $1;",
+      "SELECT email, password, role FROM users WHERE email = $1;",
       [email]
     );
     if (!foundUser) {
@@ -82,7 +82,7 @@ export const loginUser = asyncHandler(async (req, res) => {
     const accessToken = jwt.sign(
       {
         email: foundUser.rows[0].email,
-        roles: foundUser.rows[0].role,
+        role: foundUser.rows[0].role,
       },
       process.env.ACCESS_TOKEN_SECRET,
       { expiresIn: process.env.ACCESS_TOKEN_EXPIRE }
@@ -90,6 +90,7 @@ export const loginUser = asyncHandler(async (req, res) => {
     const refreshToken = jwt.sign(
       {
         email: foundUser.rows[0].email,
+        role: foundUser.rows[0].role,
       },
       process.env.REFRESH_TOKEN_SECRET,
       { expiresIn: process.env.REFRESH_TOKEN_EXPIRE }

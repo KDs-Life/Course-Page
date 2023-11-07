@@ -1,6 +1,6 @@
 .logIn-Wrapper {
-  min-height: 100vh;  
-  max-width: 100%; 
+  min-height: 100vh;
+  max-width: 100%;
   flex-direction: column;
   text-align: center;
   margin: auto;
@@ -8,24 +8,22 @@
   box-shadow: 0px 0px 10px 0px rgba(87, 87, 87, 0.75);
   background-color: rgba(255, 255, 255, 0.3);
   background-color: transparent;
-  
 }
 
 .user-log-in-container {
   /* border: 1px solid rgb(83, 82, 82); */
-  width: 100%;
+  /* width: 100%;
   margin: 0 100%;
   display: flex;
   flex-direction: column;
   border-radius: 8px;
-  padding: 20px;
+  padding: 20px; */
 }
 
 .logIn-Title {
   font-size: 2rem;
   margin: 20px;
 }
-
 
 log-in-form {
   border-radius: 8px;
@@ -34,7 +32,6 @@ log-in-form {
   max-width: 400px;
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
-
 }
 
 .mb-3 {
@@ -48,4 +45,3 @@ log-in-form {
   margin-top: 50px;
   gap: 10px;
 }
-

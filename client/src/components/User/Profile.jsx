@@ -82,12 +82,12 @@ function Profile() {
     <>
       <Container className="profile-wrapper">
         <Row>
-          <Col xl={"auto"}>
-            <h3>Profile Page</h3>
+          <Col>
+            <h3>Profile Page{role}</h3>
           </Col>
         </Row>
         <Row>
-          <Col xl={"auto"}>
+          <Col>
             <Card>
               <Card.Body>
                 <Card.Title>
@@ -100,7 +100,7 @@ function Profile() {
               </Card.Body>
             </Card>
           </Col>
-          <Col xl={"auto"}>
+          <Col>
             <Card>
               <Card.Body>
                 <Card.Title>
@@ -111,7 +111,7 @@ function Profile() {
               </Card.Body>
             </Card>
           </Col>
-          <Col xl={"auto"}>
+          <Col>
             <Card>
               <Card.Body>
                 <Card.Title>
@@ -123,7 +123,7 @@ function Profile() {
             </Card>
           </Col>
           {role === "Admin" ? (
-            <Col xl={"auto"}>
+            <Col>
               <Card>
                 <Card.Body>
                   <Card.Title>
@@ -131,7 +131,7 @@ function Profile() {
                   </Card.Title>
                   <Card.Text>Dashboard</Card.Text>
                   <NavLink to={`/dashboard`}>
-                    <Button variant="primary">Show Bookings</Button>
+                    <Button variant="primary">Admin Dashboard</Button>
                   </NavLink>
                 </Card.Body>
               </Card>
@@ -141,7 +141,7 @@ function Profile() {
           )}
         </Row>
         <Row>
-          <Col xl={"auto"}>
+          <Col>
             <Button onClick={handleLogout}>LOGOUT</Button>
             {tokenTimer > 0 ? (
               <p>Timer: {tokenTimer}</p>

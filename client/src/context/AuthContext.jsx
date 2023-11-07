@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [authUser, setAuthUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState("");
-  const [role, setRole] = useState("User");
+  const [role, setRole] = useState("");
 
   const value = {
     authUser,
