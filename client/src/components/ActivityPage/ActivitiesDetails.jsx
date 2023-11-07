@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import axios from "../../api/axios";
+import axios from "../../api/axiosPrivate";
 import {
   format,
   formatDistanceToNow,
@@ -9,16 +9,37 @@ import {
   parseISO,
 } from "date-fns";
 import "./ActivitiesDetails.css";
-import { Button } from "react-bootstrap";
+import {useAuth} from "../../context/AuthContext";
+import { Button, Form } from "react-bootstrap";
 
 function ActivitiesDetails() {
+  const {authUser} = useAuth();
   const [activity, setActivity] = useState(null);
+  const [bookingCount, setBookingCount] = useState(1);
   const { id } = useParams();
   const navigate = useNavigate();
 
   const handleBooking = (event) => {
-    toast.info(`Booking #${id}`);
+    event.preventDefault();
+    const data = {
+      email: authUser,
+      activity_id: id,
+      quantity: bookingCount,
+      price: totalPrice,
+    }
+    console.log(JSON.stringify(data))
+    axios
+      .post('/bookings', data,
+      { withCredentials: true })
+      .then((response) => {
+        toast.info(`Booking #${id} successful!`);
+      })
+      .catch((error) => {
+        console.error("Error booking activity: ", error);
+      });
   };
+
+  
 
   useEffect(() => {
     if (isNaN(id)) return navigate("/activities");
@@ -35,6 +56,8 @@ function ActivitiesDetails() {
   if (!activity) {
     return <p>Lade...</p>;
   }
+
+  const totalPrice = bookingCount * activity.price;
 
   const freeSlots = (max, booked) => {
     if(max === 0){
@@ -93,9 +116,24 @@ function ActivitiesDetails() {
                 </td>
               </tr>
               <tr>
+                <td>how many:</td>
+                <td>
+                  <Form.Control
+                    type="number"
+                    min="1"
+                    value={bookingCount}
+                    onChange={(e) => setBookingCount(e.target.value)}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Price:</td>
+                <td>{totalPrice} €</td>
+              </tr>
+              <tr>
                 <td colSpan={2}>
                   <Button onClick={handleBooking} className="booking-btn">
-                    BUCHEN DU SAU
+                    book Activity
                   </Button>
                 </td>
               </tr>
