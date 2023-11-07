@@ -18,7 +18,7 @@ function Footer() {
 
         <div className="terms-privacy">
           <a href="#">Terms of Service</a>
-          <a href="#">Datenschutz</a>
+          <a href="#">Data Protection</a>
         </div>
       </div>
     </footer>
