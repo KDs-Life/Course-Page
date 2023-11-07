@@ -121,7 +121,7 @@ function ActivitiesDetails() {
                   <Form.Control
                     type="number"
                     min="1"
-                    max={activity.maxslots - activity.total_quantity}
+                    max={activity.maxslots === 0 ? Number.MAX_SAFE_INTEGER : activity.maxslots - activity.total_quantity}
                     value={bookingCount}
                     onChange={(e) => setBookingCount(e.target.value)}
                   />
