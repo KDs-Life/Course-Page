@@ -95,7 +95,7 @@ function Profile() {
                 </Card.Title>
                 <Card.Text>Usercount</Card.Text>
                 <NavLink to={`edit`}>
-                  <Button variant="primary">Edit profile</Button>
+                  <Button variant="primary" className="text-nowrap" >Edit profile</Button>
                 </NavLink>
               </Card.Body>
             </Card>
@@ -108,7 +108,7 @@ function Profile() {
                 </Card.Title>
                 <Card.Text>Security</Card.Text>
                 <NavLink to={`password`}>
-                  <Button variant="primary">Change password</Button>
+                  <Button variant="primary" className="text-nowrap">Change password</Button>
                 </NavLink>
               </Card.Body>
             </Card>
@@ -121,7 +121,7 @@ function Profile() {
                 </Card.Title>
                 <Card.Text>Bookings</Card.Text>
                 <NavLink to={`bookings`}>
-                  <Button variant="primary">Show Bookings</Button>
+                  <Button variant="primary" className="text-nowrap">Show Bookings</Button>
                 </NavLink>
               </Card.Body>
             </Card>
@@ -135,7 +135,7 @@ function Profile() {
                   </Card.Title>
                   <Card.Text>Dashboard</Card.Text>
                   <NavLink to={`/dashboard`}>
-                    <Button variant="primary">Admin Dashboard</Button>
+                    <Button variant="primary" className="text-nowrap">Admin Dashboard</Button>
                   </NavLink>
                 </Card.Body>
               </Card>
@@ -143,18 +143,6 @@ function Profile() {
           ) : (
             ""
           )}
-        </Row>
-        <Row>
-          <Col>
-            <Button onClick={handleLogout}>LOGOUT</Button>
-            {tokenTimer > 0 ? (
-              <p>Timer: {tokenTimer}</p>
-            ) : (
-              <p>
-                <NavLink href="/refresh">Token expired! REFRESH TOKEN</NavLink>
-              </p>
-            )}
-          </Col>
         </Row>
         <Outlet
           style={{ marginTop: "10px;" }}
