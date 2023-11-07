@@ -1,11 +1,16 @@
 .courseContainer {
   gap: 5px;
   margin-top: 40px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* flex-wrap: wrap; */
   /* justify-content: center; */
-  align-content: center;
+  /* align-content: center; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+
+
 }
 
 .courseContainer .card {
@@ -78,7 +83,9 @@
 
 @media (max-width: 768px) {
   .courseContainer {
-    justify-content: flex-start; 
+    /* justify-content: flex-start;  */
+    grid-template-columns: 1fr;
+    
   }
 
   .courseContainer .card {
