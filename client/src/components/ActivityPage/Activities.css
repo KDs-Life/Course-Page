@@ -19,7 +19,7 @@
   animation: fadeIn 1s ease-in-out;
 }
 
-.card-body {
+.big-box-activity {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -87,6 +87,6 @@
   }
 
   .card-body {
-    height: auto;
+    /* height: auto; */
   }
 }
