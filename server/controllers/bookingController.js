@@ -23,14 +23,14 @@ export const getBookingsByID = asyncHandler(async (req, res) => {
 });
 
 export const createBooking = asyncHandler(async (req, res) => {
-  const { userId, activityId, quantity, price } = req.body;
+  const { email, activity_id, quantity, price,} = req.body;
 
-  const userResult = await pool.query("SELECT * FROM users WHERE id = $1;", [
-    userId,
+  const userResult = await pool.query("SELECT id FROM users WHERE email = $1;", [
+    email,
   ]);
   const activityResult = await pool.query(
     "SELECT * FROM activities WHERE id = $1;",
-    [activityId]
+    [activity_id]
   );
 
   if (userResult.rows.length === 0 || activityResult.rows.length === 0) {
@@ -38,8 +38,8 @@ export const createBooking = asyncHandler(async (req, res) => {
   }
 
   const totalQuantityResult = await pool.query(
-    "SELECT b.activities_id, SUM(b.quantity) AS total_quantity, a.maxslots FROM bookings AS b JOIN activities AS a ON b.activities_id = a.id WHERE b.activities_id = $1 GROUP BY b.activities_id, a.maxslots ORDER BY b.activities_id ASC;",
-    [activityId]
+    " SELECT a.id, SUM(b.quantity) AS total_quantity, a.maxslots FROM bookings AS b RIGHT JOIN activities AS a ON b.activities_id = a.id WHERE a.id = $1 GROUP BY a.id, a.maxslots, b.quantity ORDER BY a.id ASC;",
+    [activity_id]
   );
 
   if (
@@ -48,10 +48,9 @@ export const createBooking = asyncHandler(async (req, res) => {
   ) {
     return res.status(400).json({ message: "Activity is fully booked" });
   }
-
   const result = await pool.query(
     "INSERT INTO bookings (users_id, activities_id, quantity, price) VALUES ($1, $2, $3, $4) RETURNING *;",
-    [userId, activityId, quantity, price]
+    [userResult.rows[0].id, activity_id, quantity, price]
   );
 
   res.status(201).json(result.rows[0]);
