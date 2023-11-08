@@ -14,7 +14,6 @@ import {
 import "./Activities.css";
 import "react-bootstrap";
 
-
 // Platzhalterdaten für Winteraktivitäten (werden später durch echte Daten ersetzt)
 
 function Activities() {
@@ -43,85 +42,50 @@ function Activities() {
     setSeason(value); // Aktuellen Filter festlegen
   };
 
-  
   const freeSlots = (max, booked) => {
-    if(max === 0){
-      return "Free slots available" }
-    if(max-booked<=0){
-      return "No free slots available"
-    } 
-     return `${max - booked} Slots available`
-  }
-   
+    if (max === 0) {
+      return "Free slots available";
+    }
+    if (max - booked <= 0) {
+      return "No free slots available";
+    }
+    return `${max - booked} Slots available`;
+  };
 
   return (
     <>
-    
       <div className="activities-wrapper">
-
-        {/* Ansicht für Aktivitäten */}
         <div className="courseContainer container">
-          {/* Liste von Aktivitäten in Bootstrap-Karten */}
-
-          {/* Rendern der Winteraktivitäten */}
-
           {loading ? (
             <p>Lade Winterkursdaten...</p>
           ) : (
             activityData.map((activity, key) => (
-              <Card id="cardBox" key={activity.id}>
-                <Card.Img variant="top" src={activity.image_url} />
-                <Card.Body className="big-box-activity">
-                  <Card.Title className="col-12 text-truncate">
-                    {activity.title}
-                  </Card.Title>
-                  <Card.Text className="information-box">
-                    {format(parseISO(activity.startdate), "dd.MM.yyyy")} (
-                    {formatDistanceToNow(parseISO(activity.startdate), {
-                      addSuffix: true,
-                    })}
-                    )
-                    <br />
-                      {freeSlots(activity.maxslots,activity.total_quantity)}
-                    {/* OBERE PART HIER ANZEIGEN! 
-                          UNTERE PART AUF DETAILS SEITE */}
-                    {/*  {activity.description}                         
-                          {activity.requirements}
-                          {activity.address.street}
-                          {activity.address.Housenumber}
-                          {activity.address.ZIP}
-                          {activity.address.City}
-                          {activity.address.Country}
-                          {activity.category}
-                          {activity.publishedDate} */}
-                  </Card.Text>
-                  <NavLink
-                    as="a"
-                    to={`/activities/${activity.id}`}
-                    variant="primary"
-                    id="more-info-link"
-                  >
-                    {" "}
-                    more
-                  </NavLink>
-                </Card.Body>
-              </Card>
+              <NavLink
+                as={Card}
+                to={`/activities/${activity.id}`}
+                key={activity.id}
+                className="card-link">
+                <Card id="cardBox">
+                  <Card.Img variant="top" src={activity.image_url} />
+                  <Card.Body className="big-box-activity">
+                    <Card.Title className="col-12 text-truncate">
+                      {activity.title}
+                    </Card.Title>
+                    <Card.Text className="information-box">
+                      {format(parseISO(activity.startdate), "dd.MM.yyyy")} (
+                      {formatDistanceToNow(parseISO(activity.startdate), {
+                        addSuffix: true,
+                      })}
+                      )
+                      <br />
+                      {freeSlots(activity.maxslots, activity.total_quantity)}
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </NavLink>
             ))
           )}
         </div>
-
-        {/* Ansicht für Sommeraktivitäten^q */}
-        {/* {season === "Summer" && (
-          <div className="courseContainer">
-            <Button
-              onClick={toggleSummerActivity}
-              variant="success"
-              id="summer-btn"
-            >
-              Sommerkurse
-            </Button>
-          </div>
-        )} */}
       </div>
     </>
   );
