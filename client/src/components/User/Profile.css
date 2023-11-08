@@ -63,8 +63,7 @@
   }
 }
 
-@media only screen 
-   and (max-width : 390px) {
+@media only screen and (max-width: 390px) {
   .profile-wrapper {
     height: auto;
     width: 100%;
@@ -74,15 +73,12 @@
     justify-content: center;
     align-items: center;
     margin-left: 25%;
-
-}
-.profile-wrapper > div {
+  }
+  .profile-wrapper > div {
     width: 100%;
     /* border: 1px solid rgb(241, 0, 0); */
-    
- 
-}
-.profile-wrapper > div > div {
+  }
+  .profile-wrapper > div > div {
     /* border: 1px solid rgb(241, 0, 0); */
     margin: 0;
     display: flex;
@@ -90,9 +86,9 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-}
+  }
 
-.profile-wrapper > div > div > div {
+  .profile-wrapper > div > div > div {
     /* border: 1px solid rgb(241, 0, 0); */
     margin: 0;
     display: flex;
@@ -100,4 +96,5 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+  }
 }
