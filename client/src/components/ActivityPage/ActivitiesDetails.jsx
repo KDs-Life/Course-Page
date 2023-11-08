@@ -15,7 +15,7 @@ import { Button, Form } from "react-bootstrap";
 function ActivitiesDetails() {
   const {authUser, isLoggedIn} = useAuth();
   const [activity, setActivity] = useState(null);
-  const [bookingCount, setBookingCount] = useState(1);
+  const [bookingCount, setBookingCount] = useState(0);
   const { id } = useParams();
   const navigate = useNavigate();
    
@@ -125,7 +125,7 @@ function ActivitiesDetails() {
                 <td>
                   <Form.Control
                     type="number"
-                    min="1"
+                    min="0"
                     max={activity.maxslots === 0 ? Number.MAX_SAFE_INTEGER : activity.maxslots - activity.total_quantity}
                     value={bookingCount}
                     onChange={(e) => setBookingCount(e.target.value)}
