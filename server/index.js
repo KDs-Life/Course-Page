@@ -17,7 +17,10 @@ const HOST = process.env.HOST;
 const app = express();
 
 app.use(
-  cors({ origin: `${process.env.FRONTEND_CONNECTION}`, credentials: true })
+  cors({
+    origin: ["http://localhost:5173", "https://skicoursepage.netlify.app"],
+    credentials: true,
+  })
 );
 app.use(express.json());
 app.use(cookieParser());
