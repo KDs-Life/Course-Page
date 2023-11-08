@@ -27,24 +27,40 @@ function HomePage() {
         </section>
         <section className="service-section">
           <div>
-          <img src="https://i.postimg.cc/yYKT7gFs/pngwing-com-1.png" alt="" />
-              <h3>Ski-Tour</h3>
-           
-            <p>Our templates are updated regularly so they don't break.</p>
+            <img src="https://i.postimg.cc/yYKT7gFs/pngwing-com-1.png" alt="" />
+            <h3>Ski-Tour</h3>
+            <p>
+              Are you ready for an exhilarating adventure in the heart of the
+              mountains? Join our Standard Ski Tours for a memorable journey
+              through the snow-covered slopes. We offer an exceptional skiing
+              experience that's perfect for individuals
+            </p>
           </div>
 
           <div>
-            <i className="fas fa-4x fa-gem text-primary mb-3 sr-icon-1">
-              <h3>Adult learning courses</h3>
-            </i>
-            <p>Our templates are updated regularly so they don't break.</p>
+            <img src="https://i.postimg.cc/c43p65kw/team-28-128.png" alt="" />
+            <h3>Group Tour</h3>
+            <p>
+              Are you ready to embark on an unforgettable adventure in the snowy
+              embrace of the mountains? Look no further than our Group Ski
+              Tours! We specialize in curating the ultimate skiing experience
+              for everyone, from friends to family and even coworkers, blending
+              excitement and camaraderie with the breathtaking beauty of the
+              slopes.
+            </p>
           </div>
 
           <div>
-            <i className="fas fa-4x fa-gem text-primary mb-3 sr-icon-1">
-              <h3>KEINE AHNUNG</h3>
-            </i>
-            <p>Our templates are updated regularly so they don't break.</p>
+            <img
+              src="https://i.postimg.cc/Qth00fj9/Screenshot-2023-11-08-112002-removebg-preview.png"
+              alt=""
+            />
+            <h3>Our Private Ski Courses</h3>
+            <p>
+              Looking to take your skiing abilities to the next level? Our
+              Private Ski Courses are the perfect solution for personalized
+              coaching and rapid improvement on the slopes.
+            </p>
           </div>
         </section>
       </div>

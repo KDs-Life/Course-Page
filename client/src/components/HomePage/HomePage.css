@@ -70,8 +70,9 @@
 
 .service-section > div {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-direction: column;
+ 
   padding: 0px 20px 0px 20px;
   margin: 0px 0 20px 0;
 }
