@@ -30,7 +30,7 @@ function ActivitiesAdd() {
     const data = {
       title: formTitle.current?.value,
       description: formDescription.current?.value,
-      active: formActive.current,
+      active: formActive.current.valueOf,
       startdate: formStartdate.current?.value,
       minslots: Number(formMinslots.current?.value),
       maxslots: Number(formMaxslots.current?.value),
