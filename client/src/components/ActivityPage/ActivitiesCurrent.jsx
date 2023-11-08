@@ -29,7 +29,14 @@ function ActivitiesCurrent() {
         ) : (
           activityData.map((activity, key) => (
             <Card id="cardBox" key={activity.id}>
-              <Card.Img variant="top" src={activity.image_url} />
+              <NavLink
+                as="a"
+                to={`/activities/${activity.id}`}
+                variant="primary"
+                id="more-info-link"
+              >
+                <Card.Img variant="top" src={activity.image_url} />
+              </NavLink>
               <Card.Body className="big-box-activity">
                 <Card.Title className="col-12 text-truncate">
                   {activity.title}
@@ -43,14 +50,6 @@ function ActivitiesCurrent() {
                   <br />
                   {activity.freeslots && <b>Free slots:{activity.freeslots}</b>}
                 </Card.Text>
-                <NavLink
-                  as="a"
-                  to={`/activities/${activity.id}`}
-                  variant="primary"
-                  id="more-info-link"
-                >
-                  More
-                </NavLink>
               </Card.Body>
             </Card>
           ))
