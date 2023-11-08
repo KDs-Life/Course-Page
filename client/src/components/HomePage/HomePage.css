@@ -76,6 +76,11 @@
   margin: 0px 0 20px 0;
 }
 
+.service-section img {
+  width: 80px;
+  text-align: center;
+  margin: 0 auto;
+}
 .service-section h3 {
   color: #000000;
 }

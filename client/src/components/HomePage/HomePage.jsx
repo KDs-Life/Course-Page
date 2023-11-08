@@ -27,9 +27,9 @@ function HomePage() {
         </section>
         <section className="service-section">
           <div>
-            <i className="fas fa-4x fa-gem text-primary mb-3 sr-icon-1">
-              <h3>Kids Ski-Tour</h3>
-            </i>
+          <img src="https://i.postimg.cc/yYKT7gFs/pngwing-com-1.png" alt="" />
+              <h3>Ski-Tour</h3>
+           
             <p>Our templates are updated regularly so they don't break.</p>
           </div>
 
