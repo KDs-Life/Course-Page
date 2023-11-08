@@ -42,7 +42,7 @@ function AdminInfos() {
 
   return (
     <>
-      <Container>
+      <Container fluid>
         <Row>
           <Col sm={4}>
             <Card>
@@ -50,21 +50,23 @@ function AdminInfos() {
                 <Card.Title>
                   <i className="fa fa-solid fa-user"></i>
                 </Card.Title>
-                <Card.Text>Current Usercount</Card.Text>
-                {users ? (
-                  users.count
-                ) : (
-                  <Button variant="primary" disabled>
-                    <Spinner
-                      as="span"
-                      animation="grow"
-                      size="sm"
-                      role="status"
-                      aria-hidden="true"
-                    />
-                    Loading Users...
-                  </Button>
-                )}
+                <Card.Text as="h4">
+                  Usercount:
+                  {users ? (
+                    users.count
+                  ) : (
+                    <Button variant="primary" disabled>
+                      <Spinner
+                        as="span"
+                        animation="grow"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                      />
+                      Loading Users...
+                    </Button>
+                  )}
+                </Card.Text>
               </Card.Body>
             </Card>
           </Col>
@@ -74,21 +76,23 @@ function AdminInfos() {
                 <Card.Title>
                   <i className="fa fa-solid fa-calendar-check"></i>
                 </Card.Title>
-                <Card.Text>Current Bookingcount</Card.Text>
-                {bookings ? (
-                  bookings.count
-                ) : (
-                  <Button variant="primary" disabled>
-                    <Spinner
-                      as="span"
-                      animation="grow"
-                      size="sm"
-                      role="status"
-                      aria-hidden="true"
-                    />
-                    Loading Bookings...
-                  </Button>
-                )}
+                <Card.Text as="h4">
+                  Bookingcount:
+                  {bookings ? (
+                    bookings.count
+                  ) : (
+                    <Button variant="primary" disabled>
+                      <Spinner
+                        as="span"
+                        animation="grow"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                      />
+                      Loading Bookings...
+                    </Button>
+                  )}
+                </Card.Text>
               </Card.Body>
             </Card>
           </Col>
@@ -98,21 +102,23 @@ function AdminInfos() {
                 <Card.Title>
                   <i className="fa fa-regular fa-calendar"></i>
                 </Card.Title>
-                <Card.Text>Current Activitycount</Card.Text>
-                {activities ? (
-                  activities.count
-                ) : (
-                  <Button variant="primary" disabled>
-                    <Spinner
-                      as="span"
-                      animation="grow"
-                      size="sm"
-                      role="status"
-                      aria-hidden="true"
-                    />
-                    Loading Activities...
-                  </Button>
-                )}
+                <Card.Text as="h4">
+                  Activitycount:
+                  {activities ? (
+                    activities.count
+                  ) : (
+                    <Button variant="primary" disabled>
+                      <Spinner
+                        as="span"
+                        animation="grow"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                      />
+                      Loading Activities...
+                    </Button>
+                  )}
+                </Card.Text>
               </Card.Body>
             </Card>
           </Col>
