@@ -60,29 +60,30 @@ function Activities() {
             <p>Lade Winterkursdaten...</p>
           ) : (
             activityData.map((activity, key) => (
-              <NavLink
-                as={Card}
-                to={`/activities/${activity.id}`}
-                key={activity.id}
-                className="card-link">
-                <Card id="cardBox">
+              <Card id="cardBox">
+                {" "}
+                <NavLink
+                  as={Card}
+                  to={`/activities/${activity.id}`}
+                  key={activity.id}
+                  className="card-link">
                   <Card.Img variant="top" src={activity.image_url} />
-                  <Card.Body className="big-box-activity">
-                    <Card.Title className="col-12 text-truncate">
-                      {activity.title}
-                    </Card.Title>
-                    <Card.Text className="information-box">
-                      {format(parseISO(activity.startdate), "dd.MM.yyyy")} (
-                      {formatDistanceToNow(parseISO(activity.startdate), {
-                        addSuffix: true,
-                      })}
-                      )
-                      <br />
-                      {freeSlots(activity.maxslots, activity.total_quantity)}
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </NavLink>
+                </NavLink>
+                <Card.Body className="big-box-activity">
+                  <Card.Title className="col-12 text-truncate">
+                    {activity.title}
+                  </Card.Title>
+                  <Card.Text className="information-box">
+                    {format(parseISO(activity.startdate), "dd.MM.yyyy")} (
+                    {formatDistanceToNow(parseISO(activity.startdate), {
+                      addSuffix: true,
+                    })}
+                    )
+                    <br />
+                    {freeSlots(activity.maxslots, activity.total_quantity)}
+                  </Card.Text>
+                </Card.Body>
+              </Card>
             ))
           )}
         </div>
