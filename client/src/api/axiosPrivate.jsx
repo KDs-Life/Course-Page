@@ -1,8 +1,12 @@
 import axios from "axios";
+let devMode = false;
+if (import.meta.env.MODE === "development") devMode = true;
 
-//TODO: move baseURL to env
+const baseUrl = devMode
+  ? import.meta.env.VITE_LOCALHOST_URL
+  : import.meta.env.VITE_BACKEND_URL;
 
 export default axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: baseUrl,
   withCredentials: true,
 });
