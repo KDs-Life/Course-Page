@@ -1,15 +1,10 @@
 #root {
-  font-family: "Plus Jakarta Sans";
-  font-size: 16px;
-  font-weight: 600;
-  color: #000000;
   max-width: 1500px;
   margin: auto;
-
 }
 
 body {
-  background-image: url(https://i.postimg.cc/k57nZgm6/mountain-ski-slope-wallpaper-5120x2160.jpg);
+  background-image: url(images/bg.jpg);
   background-repeat: no-repeat;
   background-size: 100%;
   background-attachment: fixed;
@@ -20,17 +15,14 @@ body {
 
 form {
   align-items: center;
-
 }
 
 label {
   font-size: 1.2rem;
   font-weight: 700;
-  /* border: 4px solid green; */
 }
 
 .form-control {
-  /* border: 4px solid green; */
   font-size: 1.2rem;
   font-weight: 700;
   padding: 5px;
@@ -39,5 +31,4 @@ label {
 
 .form-control:focus {
   border: 2px solid #3a04ff;
-
 }
