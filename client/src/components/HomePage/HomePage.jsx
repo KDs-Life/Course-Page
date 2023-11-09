@@ -27,7 +27,7 @@ function HomePage() {
         </section>
         <section className="service-section">
           <div>
-            <img src="https://i.postimg.cc/yYKT7gFs/pngwing-com-1.png" alt="" />
+            <img src="/images/skicourse_icon.png" alt="ski course" />
             <h3>Ski-Tour</h3>
             <p>
               Are you ready for an exhilarating adventure in the heart of the
@@ -38,7 +38,7 @@ function HomePage() {
           </div>
 
           <div>
-            <img src="https://i.postimg.cc/c43p65kw/team-28-128.png" alt="" />
+            <img src="images/team_icon.png" alt="group ski tour" />
             <h3>Group Tour</h3>
             <p>
               Are you ready to embark on an unforgettable adventure in the snowy
@@ -52,8 +52,8 @@ function HomePage() {
 
           <div>
             <img
-              src="https://i.postimg.cc/Qth00fj9/Screenshot-2023-11-08-112002-removebg-preview.png"
-              alt=""
+              src="images/privatelesson_icon.png"
+              alt="private ski lessons"
             />
             <h3>Our Private Ski Courses</h3>
             <p>
