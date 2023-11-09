@@ -1,14 +1,14 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import { requireAuth, checkUser } from "./middlewares/authMiddleware.js";
+import { requireAuth } from "./middlewares/authMiddleware.js";
 import authRouter from "./routes/authRouter.js";
 import userRouter from "./routes/userRouter.js";
 import activityRouter from "./routes/activityRouter.js";
 import bookingRouter from "./routes/bookingRouter.js";
 import refreshRouter from "./routes/refreshTokenRouter.js";
 import dashboardRouter from "./routes/dashboardRouter.js";
-// import "./db/server.js";
+import "dotenv/config";
 import "./services/db.js";
 
 const PORT = process.env.PORT || 8000;
@@ -18,7 +18,10 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://skicoursepage.netlify.app"],
+    origin: [
+      process.env.FRONTEND_CONNECTION1,
+      process.env.FRONTEND_CONNECTION2,
+    ],
     credentials: true,
   })
 );
