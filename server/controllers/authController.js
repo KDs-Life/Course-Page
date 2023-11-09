@@ -48,7 +48,7 @@ export const registerUser = asyncHandler(async (req, res, next) => {
 export const logoutUser = async (req, res, next) => {
   const cookies = req.cookies;
   for (let prop in cookies) {
-    res.clearCookie(prop); //Or res.cookie(prop, '', {expires: new Date(0)});
+    res.clearCookie(prop, { httpOnly: true, secure: true, sameSite: "None" }); //Or res.cookie(prop, '', {expires: new Date(0)});
   }
   return res
     .status(200)
@@ -102,8 +102,8 @@ export const loginUser = asyncHandler(async (req, res) => {
     //TODO: cookie settings in ENV for production?!
     res.cookie("jwt", refreshToken, {
       httpOnly: true,
-      //secure: true,
-      //sameSite: "None",
+      secure: true,
+      sameSite: "None",
       maxAge: process.env.REFRESH_COOKIE_EXPIRE,
     });
     res.json({ accessToken });
